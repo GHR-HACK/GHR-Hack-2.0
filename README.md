@@ -2,7 +2,10 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-Use pnpm i (Strictly to install packages)
+Use:
+
+** pnpm i **
+(Strictly to install packages)
 
 First, run the development server:
 
