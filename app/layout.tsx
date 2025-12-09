@@ -41,9 +41,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} overflow-hidden`}
+        suppressHydrationWarning
       >
         <GSAPSetup />
         <OptimizedSnakeCursor />
