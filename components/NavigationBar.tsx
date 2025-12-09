@@ -44,6 +44,9 @@ export default function NavigationBar() {
 
   useEffect(() => {
     if (mobileMenuRef.current) {
+      // Ensure closed state on mount to avoid flicker
+      gsap.set(mobileMenuRef.current, { height: 0, opacity: 0 });
+
       if (isMobileMenuOpen) {
         gsap.fromTo(mobileMenuRef.current,
           { 
