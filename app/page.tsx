@@ -1,5 +1,9 @@
 import HeroSection from "../components/HeroSection";
 import AboutEventDetails from "../components/AboutEventDetails";
+import EventHighlightsSection from "../components/EventHighlights";
+import HackathonThemesSection from "../components/HackathonThemes";
+import EventTimelineSection from "../components/EventTimeline";
+import PrizeSection from "../components/PrizeSection";
 import Sponsors from "../components/Sponsors";
 import Mentors from "../components/Mentors";
 import Organizers from "../components/Organizers";
@@ -12,6 +16,10 @@ export default function Home() {
     <div>
       <HeroSection />
       <AboutEventDetails />
+      <EventHighlightsSection />
+      <HackathonThemesSection />
+      <EventTimelineSection />
+      <PrizeSection />
       <Sponsors />
       <Mentors />
       <Organizers />

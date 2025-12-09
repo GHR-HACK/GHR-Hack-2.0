@@ -14,10 +14,8 @@ const SPARKS = 8;
 
 export default function SnakeCursor() {
   const segmentsRef = useRef<HTMLDivElement[]>([]);
-  const headRef = useRef<HTMLDivElement>(null);
   const trailRef = useRef<HTMLDivElement>(null);
   const sparkRefs = useRef<HTMLDivElement[]>([]);
-  const eyeRefs = useRef<HTMLDivElement[]>([]);
   const positionsRef = useRef<Array<{x: number, y: number, rotation: number}>>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const lastMouseRef = useRef({ x: 0, y: 0 });
@@ -152,33 +150,7 @@ export default function SnakeCursor() {
         }
       });
 
-      // Update head with snake head shape
-      if (headRef.current) {
-        const headScale = 1 + Math.min(speed * 0.015, 0.3);
-        const headColor = `linear-gradient(135deg, 
-          ${COLOR_START} 0%, 
-          ${COLOR_START} 40%, 
-          ${COLOR_MID} 70%, 
-          ${COLOR_END} 100%)`;
-
-        gsap.set(headRef.current, {
-          x: positionsRef.current[0].x - HEAD_SIZE / 2,
-          y: positionsRef.current[0].y - HEAD_SIZE / 2,
-          rotation: positionsRef.current[0].rotation,
-          scale: headScale,
-          background: headColor,
-        });
-
-        // Animate eyes based on speed
-        eyeRefs.current.forEach((eye, index) => {
-          if (eye) {
-            const eyeScale = 1 + Math.min(speed * 0.01, 0.2);
-            gsap.set(eye, {
-              scale: eyeScale,
-            });
-          }
-        });
-      }
+      // No head (hidden per request)
 
       // Update trail/snake tongue effect
       if (trailRef.current) {
@@ -242,51 +214,9 @@ export default function SnakeCursor() {
     const originalCursor = document.body.style.cursor;
     document.body.style.cursor = 'none';
 
-    // Hover effects for interactive elements
-    const handleElementMouseEnter = () => {
-      if (headRef.current) {
-        gsap.to(headRef.current, {
-          scale: 1.4,
-          duration: 0.2,
-          ease: "power2.out",
-          background: `linear-gradient(135deg, 
-            #FB923C 0%, 
-            #C026D3 50%, 
-            #8B5CF6 100%)`,
-        });
-        
-        // Make snake contract
-        gsap.to(segmentsRef.current, {
-          scaleY: 0.6,
-          duration: 0.3,
-          stagger: 0.02,
-          ease: "power2.out",
-        });
-      }
-    };
-
-    const handleElementMouseLeave = () => {
-      if (headRef.current) {
-        gsap.to(headRef.current, {
-          scale: 1,
-          duration: 0.2,
-          ease: "power2.out",
-          background: `linear-gradient(135deg, 
-            ${COLOR_START} 0%, 
-            ${COLOR_START} 40%, 
-            ${COLOR_MID} 70%, 
-            ${COLOR_END} 100%)`,
-        });
-        
-        // Return to normal shape
-        gsap.to(segmentsRef.current, {
-          scaleY: 1,
-          duration: 0.3,
-          stagger: 0.02,
-          ease: "power2.out",
-        });
-      }
-    };
+    // Hover effects removed (no head)
+    const handleElementMouseEnter = () => {};
+    const handleElementMouseLeave = () => {};
 
     // Add hover listeners
     const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, textarea');
@@ -296,7 +226,7 @@ export default function SnakeCursor() {
     });
 
     // Initial reveal animation
-    gsap.from([headRef.current, ...segmentsRef.current], {
+    gsap.from(segmentsRef.current, {
       scale: 0,
       opacity: 0,
       duration: 1,
@@ -317,13 +247,16 @@ export default function SnakeCursor() {
         el.removeEventListener('mouseleave', handleElementMouseLeave);
       });
       
-      gsap.killTweensOf([headRef.current, ...segmentsRef.current, ...sparkRefs.current, ...eyeRefs.current]);
+      gsap.killTweensOf([...segmentsRef.current, ...sparkRefs.current]);
     };
   }, []);
 
   // Don't render on mobile/tablet
   if (typeof window !== 'undefined') {
-    const isMobileOrTablet = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 1024;
+    const isMobileOrTablet =
+      window.matchMedia('(pointer: coarse)').matches ||
+      window.innerWidth <= 1024 ||
+      /Mobi|Android/i.test(navigator.userAgent);
     if (isMobileOrTablet) {
       return null;
     }
@@ -344,51 +277,6 @@ export default function SnakeCursor() {
           transformOrigin: '0% 50%',
         }}
       />
-
-      {/* Snake Head */}
-      <div
-        ref={headRef}
-        className="fixed pointer-events-none z-[9999]"
-        style={{
-          width: HEAD_SIZE,
-          height: HEAD_SIZE * 0.8,
-          borderRadius: '50% 50% 40% 40% / 60% 60% 40% 40%', // Snake head shape
-          background: `linear-gradient(135deg, ${COLOR_START} 0%, ${COLOR_START} 40%, ${COLOR_MID} 70%, ${COLOR_END} 100%)`,
-          boxShadow: `
-            0 0 25px ${COLOR_START}80,
-            0 0 50px ${COLOR_MID}40,
-            inset 0 2px 4px rgba(255, 255, 255, 0.3),
-            inset 0 -2px 4px rgba(0, 0, 0, 0.2)
-          `,
-          border: '1px solid rgba(255, 255, 255, 0.1)',
-        }}
-      >
-        {/* Snake Eyes */}
-        <div
-          ref={(el) => { if (el) eyeRefs.current[0] = el; }}
-          className="absolute top-1/3 left-1/4 w-3 h-3 rounded-full"
-          style={{
-            background: 'radial-gradient(circle at 30% 30%, white, #1F2937)',
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-        <div
-          ref={(el) => { if (el) eyeRefs.current[1] = el; }}
-          className="absolute top-1/3 right-1/4 w-3 h-3 rounded-full"
-          style={{
-            background: 'radial-gradient(circle at 30% 30%, white, #1F2937)',
-            transform: 'translate(50%, -50%)',
-          }}
-        />
-        
-        {/* Snake Mouth */}
-        <div className="absolute bottom-1/4 left-1/2 w-6 h-1 transform -translate-x-1/2"
-          style={{
-            background: 'linear-gradient(90deg, transparent, #7C3AED, transparent)',
-            borderRadius: '1px',
-          }}
-        />
-      </div>
 
       {/* Snake Body Segments */}
       {Array.from({ length: SEGMENTS }).map((_, index) => (
