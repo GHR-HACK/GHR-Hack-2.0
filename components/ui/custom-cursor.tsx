@@ -1,0 +1,469 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+
+const SEGMENTS = 20; // Increased for longer snake
+const BASE_SIZE = 16;
+const COLOR_START = '#F97316'; // orange
+const COLOR_MID = '#C026D3';   // purple-pink transition
+const COLOR_END = '#8B5CF6';   // purple
+const HEAD_SIZE = 22;
+const TRAIL_LENGTH = 120;
+const SPARKS = 8;
+
+export default function SnakeCursor() {
+  const segmentsRef = useRef<HTMLDivElement[]>([]);
+  const headRef = useRef<HTMLDivElement>(null);
+  const trailRef = useRef<HTMLDivElement>(null);
+  const sparkRefs = useRef<HTMLDivElement[]>([]);
+  const eyeRefs = useRef<HTMLDivElement[]>([]);
+  const positionsRef = useRef<Array<{x: number, y: number, rotation: number}>>([]);
+  const mouseRef = useRef({ x: 0, y: 0 });
+  const lastMouseRef = useRef({ x: 0, y: 0 });
+  const animationIdRef = useRef<number>(0);
+
+  useEffect(() => {
+    // Hide on mobile and tablet
+    const isMobileOrTablet = () => {
+      return window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 1024;
+    };
+
+    if (isMobileOrTablet()) {
+      return;
+    }
+
+    // Initialize positions
+    positionsRef.current = Array.from({ length: SEGMENTS }, () => ({
+      x: window.innerWidth / 2,
+      y: window.innerHeight / 2,
+      rotation: 0,
+    }));
+
+    mouseRef.current = { 
+      x: window.innerWidth / 2, 
+      y: window.innerHeight / 2 
+    };
+    lastMouseRef.current = { ...mouseRef.current };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseRef.current.x = e.clientX;
+      mouseRef.current.y = e.clientY;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    // Lerp function
+    const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+
+    const animate = () => {
+      // Calculate mouse velocity for snake-like movement
+      const velX = mouseRef.current.x - lastMouseRef.current.x;
+      const velY = mouseRef.current.y - lastMouseRef.current.y;
+      const speed = Math.sqrt(velX * velX + velY * velY);
+      
+      // Update head with snake-like movement
+      const headLerp = 0.15 + Math.min(speed * 0.005, 0.1);
+      positionsRef.current[0].x = lerp(
+        positionsRef.current[0].x, 
+        mouseRef.current.x, 
+        headLerp
+      );
+      positionsRef.current[0].y = lerp(
+        positionsRef.current[0].y, 
+        mouseRef.current.y, 
+        headLerp
+      );
+      
+      // Calculate head rotation based on movement direction
+      if (speed > 0.5) {
+        positionsRef.current[0].rotation = Math.atan2(velY, velX) * (180 / Math.PI);
+      }
+
+      // Update body segments with diminishing lerp for snake effect
+      for (let i = 1; i < SEGMENTS; i++) {
+        const lerpAmount = 0.25 * (1 - i / (SEGMENTS * 2));
+        
+        positionsRef.current[i].x = lerp(
+          positionsRef.current[i].x,
+          positionsRef.current[i - 1].x,
+          lerpAmount
+        );
+        positionsRef.current[i].y = lerp(
+          positionsRef.current[i].y,
+          positionsRef.current[i - 1].y,
+          lerpAmount
+        );
+        
+        // Calculate rotation for each segment based on direction to previous segment
+        const dx = positionsRef.current[i - 1].x - positionsRef.current[i].x;
+        const dy = positionsRef.current[i - 1].y - positionsRef.current[i].y;
+        if (Math.abs(dx) > 0.1 || Math.abs(dy) > 0.1) {
+          positionsRef.current[i].rotation = Math.atan2(dy, dx) * (180 / Math.PI);
+        }
+      }
+
+      // Update segment visuals
+      positionsRef.current.forEach((pos, i) => {
+        const segment = segmentsRef.current[i];
+        if (segment) {
+          // Snake-like sizing - larger head, gradually smaller body
+          const sizeProgress = i / SEGMENTS;
+          const size = BASE_SIZE * (1 - sizeProgress * 0.7);
+          const opacity = 0.2 + (1 - sizeProgress) * 0.8;
+          
+          // Calculate color based on position in snake
+          let segmentColor;
+          if (i < SEGMENTS * 0.3) {
+            // Head section - more orange
+            const blend = i / (SEGMENTS * 0.3);
+            segmentColor = `linear-gradient(135deg, 
+              ${COLOR_START}, 
+              ${COLOR_MID})`;
+          } else if (i < SEGMENTS * 0.7) {
+            // Middle section - transition
+            const blend = (i - SEGMENTS * 0.3) / (SEGMENTS * 0.4);
+            segmentColor = `linear-gradient(135deg, 
+              ${COLOR_MID}, 
+              ${COLOR_END})`;
+          } else {
+            // Tail section - more purple
+            segmentColor = `linear-gradient(135deg, 
+              ${COLOR_END}, 
+              ${COLOR_MID})`;
+          }
+
+          gsap.set(segment, {
+            x: pos.x - size / 2,
+            y: pos.y - size / 2,
+            rotation: pos.rotation,
+            width: size,
+            height: size * 0.7, // Oval shape for snake body
+            opacity: opacity,
+            background: segmentColor,
+          });
+
+          // Add scale pattern to body segments (not head)
+          if (i > 0 && i < SEGMENTS - 2) {
+            segment.style.backgroundImage = segmentColor + 
+              `, radial-gradient(circle at 50% 30%, rgba(255,255,255,0.2) 2px, transparent 3px)`;
+            segment.style.backgroundSize = 'auto, 8px 8px';
+          }
+        }
+      });
+
+      // Update head with snake head shape
+      if (headRef.current) {
+        const headScale = 1 + Math.min(speed * 0.015, 0.3);
+        const headColor = `linear-gradient(135deg, 
+          ${COLOR_START} 0%, 
+          ${COLOR_START} 40%, 
+          ${COLOR_MID} 70%, 
+          ${COLOR_END} 100%)`;
+
+        gsap.set(headRef.current, {
+          x: positionsRef.current[0].x - HEAD_SIZE / 2,
+          y: positionsRef.current[0].y - HEAD_SIZE / 2,
+          rotation: positionsRef.current[0].rotation,
+          scale: headScale,
+          background: headColor,
+        });
+
+        // Animate eyes based on speed
+        eyeRefs.current.forEach((eye, index) => {
+          if (eye) {
+            const eyeScale = 1 + Math.min(speed * 0.01, 0.2);
+            gsap.set(eye, {
+              scale: eyeScale,
+            });
+          }
+        });
+      }
+
+      // Update trail/snake tongue effect
+      if (trailRef.current) {
+        const trailOpacity = Math.min(0.7, 0.1 + speed * 0.01);
+        const tongueColor = `linear-gradient(90deg, 
+          ${COLOR_START} 0%, 
+          ${COLOR_MID} 50%, 
+          transparent 100%)`;
+
+        gsap.set(trailRef.current, {
+          x: positionsRef.current[0].x,
+          y: positionsRef.current[0].y,
+          rotation: positionsRef.current[0].rotation,
+          opacity: trailOpacity,
+          background: tongueColor,
+        });
+      }
+
+      // Spark effects when moving quickly
+      if (speed > 8 && Math.random() < 0.25) {
+        const randomIndex = Math.floor(Math.random() * SPARKS);
+        const spark = sparkRefs.current[randomIndex];
+        if (spark) {
+          const angle = Math.random() * Math.PI * 2;
+          const distance = 15 + Math.random() * 20;
+          const offsetX = Math.cos(angle) * distance;
+          const offsetY = Math.sin(angle) * distance;
+          const sparkColor = Math.random() > 0.5 ? COLOR_START : COLOR_END;
+
+          gsap.killTweensOf(spark);
+          
+          gsap.set(spark, {
+            x: positionsRef.current[0].x + offsetX,
+            y: positionsRef.current[0].y + offsetY,
+            opacity: 1,
+            scale: 1,
+            background: `radial-gradient(circle, ${sparkColor}, transparent 70%)`,
+          });
+          
+          gsap.to(spark, {
+            opacity: 0,
+            scale: 0,
+            duration: 0.6,
+            ease: "power2.out",
+          });
+        }
+      }
+
+      lastMouseRef.current = { 
+        x: positionsRef.current[0].x, 
+        y: positionsRef.current[0].y 
+      };
+
+      animationIdRef.current = requestAnimationFrame(animate);
+    };
+
+    // Start animation
+    animationIdRef.current = requestAnimationFrame(animate);
+
+    // Hide default cursor
+    const originalCursor = document.body.style.cursor;
+    document.body.style.cursor = 'none';
+
+    // Hover effects for interactive elements
+    const handleElementMouseEnter = () => {
+      if (headRef.current) {
+        gsap.to(headRef.current, {
+          scale: 1.4,
+          duration: 0.2,
+          ease: "power2.out",
+          background: `linear-gradient(135deg, 
+            #FB923C 0%, 
+            #C026D3 50%, 
+            #8B5CF6 100%)`,
+        });
+        
+        // Make snake contract
+        gsap.to(segmentsRef.current, {
+          scaleY: 0.6,
+          duration: 0.3,
+          stagger: 0.02,
+          ease: "power2.out",
+        });
+      }
+    };
+
+    const handleElementMouseLeave = () => {
+      if (headRef.current) {
+        gsap.to(headRef.current, {
+          scale: 1,
+          duration: 0.2,
+          ease: "power2.out",
+          background: `linear-gradient(135deg, 
+            ${COLOR_START} 0%, 
+            ${COLOR_START} 40%, 
+            ${COLOR_MID} 70%, 
+            ${COLOR_END} 100%)`,
+        });
+        
+        // Return to normal shape
+        gsap.to(segmentsRef.current, {
+          scaleY: 1,
+          duration: 0.3,
+          stagger: 0.02,
+          ease: "power2.out",
+        });
+      }
+    };
+
+    // Add hover listeners
+    const interactiveElements = document.querySelectorAll('a, button, [role="button"], input, textarea');
+    interactiveElements.forEach(el => {
+      el.addEventListener('mouseenter', handleElementMouseEnter);
+      el.addEventListener('mouseleave', handleElementMouseLeave);
+    });
+
+    // Initial reveal animation
+    gsap.from([headRef.current, ...segmentsRef.current], {
+      scale: 0,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.03,
+      ease: "elastic.out(1, 0.5)",
+    });
+
+    // Cleanup
+    return () => {
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+      }
+      window.removeEventListener('mousemove', handleMouseMove);
+      document.body.style.cursor = originalCursor;
+      
+      interactiveElements.forEach(el => {
+        el.removeEventListener('mouseenter', handleElementMouseEnter);
+        el.removeEventListener('mouseleave', handleElementMouseLeave);
+      });
+      
+      gsap.killTweensOf([headRef.current, ...segmentsRef.current, ...sparkRefs.current, ...eyeRefs.current]);
+    };
+  }, []);
+
+  // Don't render on mobile/tablet
+  if (typeof window !== 'undefined') {
+    const isMobileOrTablet = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 1024;
+    if (isMobileOrTablet) {
+      return null;
+    }
+  }
+
+  return (
+    <>
+      {/* Snake Tongue/Trail */}
+      <div
+        ref={trailRef}
+        className="fixed pointer-events-none z-[9999]"
+        style={{
+          width: TRAIL_LENGTH,
+          height: 4,
+          borderRadius: '2px',
+          filter: 'blur(2px)',
+          opacity: 0,
+          transformOrigin: '0% 50%',
+        }}
+      />
+
+      {/* Snake Head */}
+      <div
+        ref={headRef}
+        className="fixed pointer-events-none z-[9999]"
+        style={{
+          width: HEAD_SIZE,
+          height: HEAD_SIZE * 0.8,
+          borderRadius: '50% 50% 40% 40% / 60% 60% 40% 40%', // Snake head shape
+          background: `linear-gradient(135deg, ${COLOR_START} 0%, ${COLOR_START} 40%, ${COLOR_MID} 70%, ${COLOR_END} 100%)`,
+          boxShadow: `
+            0 0 25px ${COLOR_START}80,
+            0 0 50px ${COLOR_MID}40,
+            inset 0 2px 4px rgba(255, 255, 255, 0.3),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.2)
+          `,
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        }}
+      >
+        {/* Snake Eyes */}
+        <div
+          ref={(el) => { if (el) eyeRefs.current[0] = el; }}
+          className="absolute top-1/3 left-1/4 w-3 h-3 rounded-full"
+          style={{
+            background: 'radial-gradient(circle at 30% 30%, white, #1F2937)',
+            transform: 'translate(-50%, -50%)',
+          }}
+        />
+        <div
+          ref={(el) => { if (el) eyeRefs.current[1] = el; }}
+          className="absolute top-1/3 right-1/4 w-3 h-3 rounded-full"
+          style={{
+            background: 'radial-gradient(circle at 30% 30%, white, #1F2937)',
+            transform: 'translate(50%, -50%)',
+          }}
+        />
+        
+        {/* Snake Mouth */}
+        <div className="absolute bottom-1/4 left-1/2 w-6 h-1 transform -translate-x-1/2"
+          style={{
+            background: 'linear-gradient(90deg, transparent, #7C3AED, transparent)',
+            borderRadius: '1px',
+          }}
+        />
+      </div>
+
+      {/* Snake Body Segments */}
+      {Array.from({ length: SEGMENTS }).map((_, index) => (
+        <div
+          key={`segment-${index}`}
+          ref={(el) => {
+            if (el) segmentsRef.current[index] = el;
+          }}
+          className="fixed pointer-events-none z-[9998]"
+          style={{
+            borderRadius: '40%', // Oval shape for snake body
+            border: '1px solid rgba(255, 255, 255, 0.1)',
+            boxShadow: `
+              0 2px 8px rgba(0, 0, 0, 0.2),
+              inset 0 1px 2px rgba(255, 255, 255, 0.1)
+            `,
+            opacity: 0,
+          }}
+        />
+      ))}
+
+      {/* Magic Sparks */}
+      {Array.from({ length: SPARKS }).map((_, index) => (
+        <div
+          key={`spark-${index}`}
+          ref={(el) => {
+            if (el) sparkRefs.current[index] = el;
+          }}
+          className="fixed pointer-events-none z-[9997] rounded-full"
+          style={{
+            width: 10,
+            height: 10,
+            filter: 'blur(2px)',
+            opacity: 0,
+          }}
+        />
+      ))}
+
+      {/* Global styles */}
+      <style jsx global>{`
+        * {
+          cursor: none !important;
+        }
+        
+        /* Show cursor on mobile and tablet */
+        @media (max-width: 1024px), (pointer: coarse) {
+          * {
+            cursor: auto !important;
+          }
+        }
+        
+        html, body {
+          cursor: none;
+        }
+        
+        /* Hardware acceleration */
+        .fixed {
+          transform: translate3d(0, 0, 0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+          will-change: transform, opacity;
+        }
+        
+        /* Snake-like wavy animation for body segments */
+        @keyframes snakeWave {
+          0%, 100% { transform: scaleY(1); }
+          50% { transform: scaleY(0.9); }
+        }
+        
+        /* Pulsing animation for head */
+        @keyframes snakePulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
+        }
+      `}</style>
+    </>
+  );
+}
