@@ -30,18 +30,24 @@ export default function FAQs() {
         ease: 'power3.out',
       });
 
-      // Animate FAQ items
-      gsap.from('.faq-item', {
-        scrollTrigger: {
-          trigger: '.faqs-grid',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
+      // Ensure visible defaults
+      gsap.set('.faq-item', { autoAlpha: 1, y: 0 });
+
+      // Animate FAQ items with batch for reliability
+      ScrollTrigger.batch('.faq-item', {
+        start: 'top 90%',
+        once: true,
+        onEnter: (batch) => {
+          (batch as HTMLElement[]).forEach((el, idx) => {
+            gsap.from(el, {
+              y: 30,
+              autoAlpha: 0,
+              duration: 0.6,
+              ease: 'power3.out',
+              delay: idx * 0.05,
+            });
+          });
         },
-        y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power3.out',
       });
     }, sectionRef);
 
