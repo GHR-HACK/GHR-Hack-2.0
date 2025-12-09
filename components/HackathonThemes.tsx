@@ -59,10 +59,18 @@ export default function HackathonThemesSection() {
                 hover
                 className="theme-card group"
               >
-                <div className="text-center p-6">
-                  <div className="w-12 h-12 mx-auto mb-4 bg-gradient-to-r from-primary-purple/20 to-primary-orange/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-2xl">🚀</span>
-                  </div>
+                <div className="text-center p-6 flex flex-col items-center gap-4">
+                  {theme.image ? (
+                    <img
+                      src={theme.image}
+                      alt={theme.name}
+                      className="w-16 h-16 object-contain mx-auto group-hover:scale-105 transition-transform duration-300"
+                    />
+                  ) : (
+                    <div className="w-16 h-16 mx-auto bg-gradient-to-r from-primary-purple/20 to-primary-orange/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <span className="text-2xl">🚀</span>
+                    </div>
+                  )}
                   <h4 className="text-lg font-orbitron font-bold text-white group-hover:gradient-text transition-all duration-300">
                     {theme.name}
                   </h4>

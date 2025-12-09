@@ -28,14 +28,14 @@ export const eventHighlights = {
 };
 
 export const hackathonThemes = [
-  { name: "EdTech Evolution", icon: "" },
-  { name: "Web3/Blockchain", icon: "" },
-  { name: "AI and Machine Learning", icon: "" },
-  { name: "AR/VR Realities", icon: "" },
-  { name: "HealthTech Innovations", icon: "" },
-  { name: "Cyber security", icon: "" },
-  { name: "Agritech", icon: "" },
-  { name: "Social Impact", icon: "" }
+  { name: "EdTech Evolution", image: "/themes/Edtech.png" },
+  { name: "Web3/Blockchain", image: "/themes/Blockchain.png" },
+  { name: "AI and Machine Learning", image: "/themes/machineLearning.png" },
+  { name: "AR/VR Realities", image: "/themes/AR.png" },
+  { name: "HealthTech Innovations", image: "/themes/Healthcare.png" },
+  { name: "Cyber security", image: "/themes/cyber-security.png" },
+  { name: "Agritech", image: "/themes/Agritech-removebg-preview.png" },
+  { name: "Social Impact", image: "/themes/Social-impact.png" }
 ];
 
 export const prizes = {
