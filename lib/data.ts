@@ -43,6 +43,17 @@ export const prizes = {
   description: "Exciting Prizes Await!"
 };
 
+export const eventTimeline = [
+  { title: "Registrations Open", time: "Feb 10, 2025", detail: "Apply via Devfolio" },
+  { title: "Shortlisting Announced", time: "Mar 5, 2025", detail: "Selected teams notified" },
+  { title: "Check-in & Kickoff", time: "Mar 8, 10:00 AM", detail: "Opening ceremony at GHRCEM Jalgaon" },
+  { title: "Hacking Begins", time: "Mar 8, 11:00 AM", detail: "28-hour build sprint starts" },
+  { title: "Midway Review", time: "Mar 8, 8:00 PM", detail: "Mentor check-ins and progress reviews" },
+  { title: "Submission Deadline", time: "Mar 9, 3:00 PM", detail: "Projects submitted for judging" },
+  { title: "Judging & Demos", time: "Mar 9, 4:00 PM", detail: "Final presentations to jury" },
+  { title: "Awards & Closing", time: "Mar 9, 6:00 PM", detail: "Prize distribution and closing ceremony" },
+];
+
 export const registration = {
   timeline: "Registration Timeline",
   details: "Registration Details",
@@ -55,8 +66,8 @@ export const registration = {
 
 export const sponsors = {
   gold: [
-    { name: "DEVFOLIO", logo: "" }
-  ],
+    { name: "DEVFOLIO", logo: "" 
+ } ],
   silver: [
     { name: "ETHINDIA", logo: "" },
     { name: "POLYGON", logo: "" },
