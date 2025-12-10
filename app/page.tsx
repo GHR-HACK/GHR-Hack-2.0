@@ -1,3 +1,20 @@
+"use client"
+
+import dynamic from "next/dynamic"
+
+const FireAnimation = dynamic(() => import("../components/fire-animation"), {
+  loading: () => <div className="w-full h-screen bg-neutral-950" />,
+  ssr: false,
+})
+
+export default function Home() {
+  return <FireAnimation />
+}
+
+
+
+/*
+
 import HeroSection from "../components/HeroSection";
 import AboutEventDetails from "../components/AboutEventDetails";
 import EventHighlightsSection from "../components/EventHighlights";
@@ -29,3 +46,4 @@ export default function Home() {
     </div>
   );
 }
+  */

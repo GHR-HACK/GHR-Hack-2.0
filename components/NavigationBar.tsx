@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
 const navItems = [
-  { name: 'Home', href: '#home' },
+  { name:  'Home', href: '#home' },
   { name: 'Themes', href: '#themes' },
   { name: 'Schedule', href: '#schedule' },
   { name: 'Prize', href: '#prize' },
@@ -25,7 +25,7 @@ export default function NavigationBar() {
     // Initial animation for logo
     gsap.fromTo(logoRef.current,
       { opacity: 0, x: -20 },
-      { opacity: 1, x: 0, duration: 0.8, ease: "power2.out" }
+      { opacity:  1, x: 0, duration: 0.8, ease: "power2.out" }
     );
 
     // Stagger animation for desktop menu items
@@ -43,46 +43,45 @@ export default function NavigationBar() {
   }, []);
 
   useEffect(() => {
-    if (mobileMenuRef.current) {
-      // Ensure closed state on mount to avoid flicker
-      gsap.set(mobileMenuRef.current, { height: 0, opacity: 0 });
+    if (! mobileMenuRef.current) return;
 
-      if (isMobileMenuOpen) {
-        gsap.fromTo(mobileMenuRef.current,
-          { 
-            opacity: 0,
-            height: 0,
-            y: -20
-          },
-          { 
-            opacity: 1,
-            height: "auto",
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out"
-          }
-        );
-
-        // Animate mobile menu items
-        const mobileItems = mobileMenuRef.current.querySelectorAll('button');
-        gsap.fromTo(mobileItems,
-          { opacity: 0, x: -20 },
-          { 
-            opacity: 1, 
-            x: 0, 
-            duration: 0.3, 
-            stagger: 0.05,
-            ease: "power2.out"
-          }
-        );
-      } else {
-        gsap.to(mobileMenuRef.current, {
+    if (isMobileMenuOpen) {
+      // OPEN MENU
+      gsap.fromTo(mobileMenuRef.current,
+        { 
           opacity: 0,
           height: 0,
-          duration: 0.3,
-          ease: "power2.in"
-        });
-      }
+          y: -20
+        },
+        { 
+          opacity: 1,
+          height: "auto",
+          y: 0,
+          duration: 0.4,
+          ease: "power2.out"
+        }
+      );
+
+      // Animate mobile menu items
+      const mobileItems = mobileMenuRef.current. querySelectorAll('button');
+      gsap.fromTo(mobileItems,
+        { opacity: 0, x: -20 },
+        { 
+          opacity: 1, 
+          x: 0, 
+          duration: 0.3, 
+          stagger: 0.05,
+          ease: "power2.out"
+        }
+      );
+    } else {
+      // CLOSE MENU
+      gsap.to(mobileMenuRef.current, {
+        opacity: 0,
+        height: 0,
+        duration: 0.3,
+        ease: "power2.in"
+      });
     }
   }, [isMobileMenuOpen]);
 
@@ -126,7 +125,7 @@ export default function NavigationBar() {
       gsap.to(bottomLine, { rotation: -45, y: -6, duration: 0.3 });
     } else {
       gsap.to(topLine, { rotation: 0, y: 0, duration: 0.3 });
-      gsap.to(middleLine, { opacity: 1, duration: 0.2, delay: 0.1 });
+      gsap.to(middleLine, { opacity:  1, duration: 0.2, delay: 0.1 });
       gsap.to(bottomLine, { rotation: 0, y: 0, duration: 0.3 });
     }
   };
@@ -160,9 +159,9 @@ export default function NavigationBar() {
                   if (el) menuItemsRef.current[index] = el;
                 }}
                 onClick={() => scrollToSection(item.href)}
-                className="relative font-rajdhani font-semibold text-white text-base lg:text-lg px-2 py-1 group hover:text-orange-400 transition-colors duration-300"
+                className="relative font-rajdhani font-semibold text-white text-base lg:text-lg px-2 py-1 group hover: text-orange-400 transition-colors duration-300"
               >
-                {item.name}
+                {item. name}
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-purple-500 group-hover:w-full transition-all duration-300"></span>
               </button>
             ))}
@@ -185,17 +184,21 @@ export default function NavigationBar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
-      <div ref={mobileMenuRef} className="lg:hidden overflow-hidden">
+      {/* Mobile Menu - HIDDEN BY DEFAULT WITH CSS */}
+      <div 
+        ref={mobileMenuRef} 
+        className="lg:hidden overflow-hidden"
+        style={{ display: isMobileMenuOpen ? 'block' : 'none' }}
+      >
         <div className="px-6 pb-4 bg-gradient-to-b from-black/95 to-purple-900/10 border-t border-white/10">
           <div className="pt-4 space-y-2">
             {navItems.map((item) => (
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left px-4 py-3 font-rajdhani font-semibold text-white rounded-lg hover:bg-gradient-to-r hover:from-orange-500/10 hover:to-purple-500/10 hover:text-orange-300 transition-all duration-300 border border-transparent hover:border-orange-500/20"
+                className="block w-full text-left px-4 py-3 font-rajdhani font-semibold text-white rounded-lg hover: bg-gradient-to-r hover:from-orange-500/10 hover:to-purple-500/10 hover:text-orange-300 transition-all duration-300 border border-transparent hover: border-orange-500/20"
               >
-                {item.name}
+                {item. name}
               </button>
             ))}
           </div>

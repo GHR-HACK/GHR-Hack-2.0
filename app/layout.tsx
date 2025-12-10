@@ -46,14 +46,15 @@ export default function RootLayout({
         className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} overflow-hidden`}
         suppressHydrationWarning
       >
-        <GSAPSetup />
+        {/* <GSAPSetup /> */}
         <OptimizedSnakeCursor />
-        <NavigationBar />
-        <div id="smooth-wrapper">
+        {/* <NavigationBar /> */}
+        {/* <div id="smooth-wrapper">
           <div id="smooth-content">
             {children}
           </div>
-        </div>
+        </div> */}
+        {children}
       </body>
     </html>
   );
