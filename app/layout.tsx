@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Orbitron, Rajdhani, JetBrains_Mono } from "next/font/google";
+import { Orbitron, Rajdhani, JetBrains_Mono, Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 //import GSAPSetup from "../components/GSAPSetup";
 import OptimizedSnakeCursor from "@/components/ui/custom-cursor";
@@ -21,6 +21,12 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+});
+
+const redHatDisplay = Red_Hat_Display({
+  variable: "--font-red-hat-display",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -121,7 +127,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} overflow-hidden`}
+        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatDisplay.variable} overflow-hidden`}
         suppressHydrationWarning
       >
         {/* <GSAPSetup /> */}

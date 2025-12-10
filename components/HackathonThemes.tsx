@@ -71,7 +71,7 @@ export default function HackathonThemesSection() {
                       <span className="text-2xl">🚀</span>
                     </div>
                   )}
-                  <h4 className="text-lg font-orbitron font-bold text-white group-hover:gradient-text transition-all duration-300">
+                  <h4 className="text-lg font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300">
                     {theme.name}
                   </h4>
                 </div>

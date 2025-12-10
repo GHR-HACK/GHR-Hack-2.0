@@ -23,31 +23,36 @@
   --font-orbitron: var(--font-orbitron);
   --font-rajdhani: var(--font-rajdhani);
   --font-jetbrains-mono: var(--font-jetbrains-mono);
+  --font-red-hat-display: var(--font-red-hat-display);
 }
 
 * {  
   box-sizing: border-box;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  font-family: var(--font-red-hat-display), sans-serif !important;
 }
 
 html {
   scroll-behavior: smooth;
+  font-family: var(--font-red-hat-display), sans-serif !important;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-rajdhani), sans-serif;
+  font-family: var(--font-red-hat-display), sans-serif !important;
   overflow: hidden; /* Hide default scrollbar */
+}
+
+/* Ensure font-red-hat-display class works */
+.font-red-hat-display {
+  font-family: var(--font-red-hat-display), sans-serif !important;
 }
 
 /* Hide scrollbar */
 ::-webkit-scrollbar {
   display: none;
-}
-
-* {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
 }
 
 /* GSAP ScrollSmoother wrapper */

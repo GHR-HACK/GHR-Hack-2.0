@@ -62,7 +62,7 @@ export default function AboutEventDetails() {
             {aboutEvent.title}
           </Title>
           <div className="max-w-4xl mx-auto">
-            <p className="about-description text-lg md:text-xl text-white/80 font-rajdhani leading-relaxed">
+            <p className="about-description text-lg md:text-xl text-white/80 font-red-hat-display leading-relaxed">
               {aboutEvent.description}
             </p>
           </div>

@@ -55,14 +55,14 @@ export default function EventHighlightsSection() {
               <Card key={key} variant="glass" hover className="highlight-card">
                 <div className="text-center">
                   <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-purple to-primary-orange rounded-full flex items-center justify-center">
-                    <span className="text-2xl font-orbitron font-bold text-white">
+                    <span className="text-2xl font-red-hat-display font-bold text-white">
                       {index + 1}
                     </span>
                   </div>
-                  <h4 className="text-xl font-orbitron font-bold text-white mb-2 capitalize">
+                  <h4 className="text-xl font-red-hat-display font-bold text-white mb-2 capitalize">
                     {key.replace(/([A-Z])/g, ' $1').trim()}
                   </h4>
-                  <p className="text-white/70 font-rajdhani">
+                  <p className="text-white/70 font-red-hat-display">
                     {value}
                   </p>
                 </div>

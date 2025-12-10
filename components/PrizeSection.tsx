@@ -158,10 +158,10 @@ export default function PrizeSection() {
           <Card variant="gradient" className="p-8 prize-card relative overflow-hidden">
             <div className="text-center">
               <div className="mb-6">
-                <div className="prize-amount text-6xl font-orbitron font-bold gradient-text mb-2">
+                <div className="prize-amount text-6xl font-red-hat-display font-bold gradient-text mb-2">
                   {prizes.cash}
                 </div>
-                <p className="text-white/70 font-rajdhani">Cash Prizes Worth</p>
+                <p className="text-white/70 font-red-hat-display">Cash Prizes Worth</p>
               </div>
               <div className="relative mt-2">
                 <div className="prize-pool relative mx-auto w-64 h-40 rounded-[24px] border border-white/20 bg-black/20 overflow-hidden">
@@ -189,7 +189,7 @@ export default function PrizeSection() {
                           <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="6" cy="8" r="3"/><circle cx="18" cy="8" r="3"/><circle cx="12" cy="18" r="3"/><path d="M8.5 10.5 11 14"/><path d="M15.5 10.5 13 14"/></svg>
                         )}
                       </span>
-                      <span className="text-white/90 font-rajdhani">{text}</span>
+                      <span className="text-white/90 font-red-hat-display">{text}</span>
                     </div>
                   </Card>
                 ))}

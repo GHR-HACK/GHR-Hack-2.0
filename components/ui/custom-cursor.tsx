@@ -5,8 +5,8 @@ import { gsap } from 'gsap';
 
 const SEGMENTS = 20; // Increased for longer snake
 const BASE_SIZE = 16;
-const COLOR_START = '#ff6b35'; // orange
-const COLOR_END = '#a855f7';   // purple
+const COLOR_START = '#e9552b'; // orange
+const COLOR_END = '#680b7d';   // purple
 const HEAD_SIZE = 22;
 const TRAIL_LENGTH = 120;
 const SPARKS = 8;
