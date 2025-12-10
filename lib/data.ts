@@ -43,6 +43,17 @@ export const prizes = {
   description: "Exciting Prizes Await!"
 };
 
+export const eventTimeline = [
+  { title: "Registration", time: "Open Now", detail: "Scan the QR and join the hackathon" },
+  { title: "Day 1 Kickoff", time: "March 8, 9:00 AM", detail: "Opening ceremony and problem statements" },
+  { title: "Hacking Begins", time: "March 8, 10:00 AM", detail: "Build, innovate, and collaborate" },
+  { title: "Checkpoints", time: "March 8, Afternoon", detail: "Mentor rounds and progress reviews" },
+  { title: "Overnight Sprint", time: "March 8-9", detail: "Push features, refine, and test" },
+  { title: "Submission", time: "March 9, 1:00 PM", detail: "Finalize and submit your project" },
+  { title: "Demos & Judging", time: "March 9, 2:00 PM", detail: "Present to judges and showcase impact" },
+  { title: "Results & Prizes", time: "March 9, 5:00 PM", detail: "Winners announced and prizes awarded" },
+];
+
 export const registration = {
   timeline: "Registration Timeline",
   details: "Registration Details",

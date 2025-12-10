@@ -1,0 +1,61 @@
+"use client"
+
+import { useEffect } from "react"
+
+import { useState } from "react"
+import Image from "next/image"
+import ParticlesWeb from "@/components/particles-web"
+
+export default function FireAnimation() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    // Use requestIdleCallback for better performance
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(() => setMounted(true))
+    } else {
+      setTimeout(() => setMounted(true), 0)
+    }
+  }, [])
+
+  return (
+    <div className="w-full h-screen bg-neutral-950 relative overflow-hidden flex items-center justify-center">
+      <ParticlesWeb />
+
+      <div className="text-center relative z-10 flex flex-col items-center justify-center gap-6">
+        <div className="w-56 h-56 md:w-64 md:h-64 relative">
+          <Image src="/logo.png" alt="GHR Hack 2.0 Logo" fill className="object-contain" priority />
+        </div>
+
+        <h2
+          className="text-6xl md:text-7xl font-bold tracking-wider mt-6"
+          style={{
+            backgroundImage: "linear-gradient(135deg, #ff6b35 0%, #a855f7 50%, #ff6b35 100%)",
+            backgroundSize: "200% 200%",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            animation: `gradientShift 4s ease-in-out infinite`,
+            textShadow: "none",
+            filter: "drop-shadow(0 0 30px rgba(255, 107, 53, 0.4)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.3))",
+          }}
+        >
+          COMING SOON
+        </h2>
+      </div>
+
+      <style>{`
+        @keyframes gradientShift {
+          0%, 100% {
+            background-position: 0% 50%;
+            filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.4)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.3));
+          }
+          50% {
+            background-position: 100% 50%;
+            filter: drop-shadow(0 0 40px rgba(255, 107, 53, 0.6)) drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+          }
+        }
+      `}</style>
+    </div>
+  )
+}

@@ -5,9 +5,8 @@ import { gsap } from 'gsap';
 
 const SEGMENTS = 20; // Increased for longer snake
 const BASE_SIZE = 16;
-const COLOR_START = '#F97316'; // orange
-const COLOR_MID = '#C026D3';   // purple-pink transition
-const COLOR_END = '#8B5CF6';   // purple
+const COLOR_START = '#ff6b35'; // orange
+const COLOR_END = '#a855f7';   // purple
 const HEAD_SIZE = 22;
 const TRAIL_LENGTH = 120;
 const SPARKS = 8;
@@ -111,25 +110,9 @@ export default function SnakeCursor() {
           const opacity = 0.2 + (1 - sizeProgress) * 0.8;
           
           // Calculate color based on position in snake
-          let segmentColor;
-          if (i < SEGMENTS * 0.3) {
-            // Head section - more orange
-            const blend = i / (SEGMENTS * 0.3);
-            segmentColor = `linear-gradient(135deg, 
-              ${COLOR_START}, 
-              ${COLOR_MID})`;
-          } else if (i < SEGMENTS * 0.7) {
-            // Middle section - transition
-            const blend = (i - SEGMENTS * 0.3) / (SEGMENTS * 0.4);
-            segmentColor = `linear-gradient(135deg, 
-              ${COLOR_MID}, 
-              ${COLOR_END})`;
-          } else {
-            // Tail section - more purple
-            segmentColor = `linear-gradient(135deg, 
-              ${COLOR_END}, 
-              ${COLOR_MID})`;
-          }
+          // Simple transition from orange to purple
+          const colorProgress = i / SEGMENTS;
+          const segmentColor = colorProgress < 0.5 ? COLOR_START : COLOR_END;
 
           gsap.set(segment, {
             x: pos.x - size / 2,
@@ -138,14 +121,14 @@ export default function SnakeCursor() {
             width: size,
             height: size * 0.7, // Oval shape for snake body
             opacity: opacity,
-            background: segmentColor,
+            backgroundColor: segmentColor,
+            backgroundImage: 'none',
           });
 
           // Add scale pattern to body segments (not head)
           if (i > 0 && i < SEGMENTS - 2) {
-            segment.style.backgroundImage = segmentColor + 
-              `, radial-gradient(circle at 50% 30%, rgba(255,255,255,0.2) 2px, transparent 3px)`;
-            segment.style.backgroundSize = 'auto, 8px 8px';
+            segment.style.backgroundImage = 'radial-gradient(circle at 50% 30%, rgba(255,255,255,0.2) 2px, transparent 3px)';
+            segment.style.backgroundSize = '8px 8px';
           }
         }
       });
@@ -155,17 +138,14 @@ export default function SnakeCursor() {
       // Update trail/snake tongue effect
       if (trailRef.current) {
         const trailOpacity = Math.min(0.7, 0.1 + speed * 0.01);
-        const tongueColor = `linear-gradient(90deg, 
-          ${COLOR_START} 0%, 
-          ${COLOR_MID} 50%, 
-          transparent 100%)`;
-
+        
         gsap.set(trailRef.current, {
           x: positionsRef.current[0].x,
           y: positionsRef.current[0].y,
           rotation: positionsRef.current[0].rotation,
           opacity: trailOpacity,
-          background: tongueColor,
+          backgroundColor: COLOR_START,
+          backgroundImage: 'none',
         });
       }
 
@@ -275,6 +255,7 @@ export default function SnakeCursor() {
           filter: 'blur(2px)',
           opacity: 0,
           transformOrigin: '0% 50%',
+          backgroundColor: COLOR_START,
         }}
       />
 
@@ -294,6 +275,8 @@ export default function SnakeCursor() {
               inset 0 1px 2px rgba(255, 255, 255, 0.1)
             `,
             opacity: 0,
+            // Solid colors - orange for first half, purple for second half
+            backgroundColor: index < SEGMENTS / 2 ? COLOR_START : COLOR_END,
           }}
         />
       ))}
