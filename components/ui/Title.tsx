@@ -44,12 +44,12 @@ export default React.forwardRef<HTMLElement, TitleProps>(function Title({
   };
 
   const fontSizes = {
-    sm: 'font-orbitron',
-    md: 'font-orbitron',
-    lg: 'font-orbitron',
-    xl: 'font-orbitron',
-    '2xl': 'font-orbitron',
-    '3xl': 'font-orbitron',
+    sm: 'font-red-hat-display',
+    md: 'font-red-hat-display',
+    lg: 'font-red-hat-display',
+    xl: 'font-red-hat-display',
+    '2xl': 'font-red-hat-display',
+    '3xl': 'font-red-hat-display',
   };
 
   const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${alignments[align]} ${fontSizes[size]} ${className}`;

@@ -26,7 +26,7 @@ export default function ParticlesWeb() {
               },
             },
             color: {
-              value: ["#ff6b35", "#a855f7"],
+              value: ["#e9552b", "#680b7d"],
             },
             shape: {
               type: "circle",

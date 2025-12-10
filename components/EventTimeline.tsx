@@ -129,14 +129,14 @@ export default function EventTimelineSection() {
                           <div className="pr-0 md:pr-10">
                             <div className="p-4 rounded-lg bg-black/20">
                               <div className="flex items-center justify-between">
-                                <h4 className="text-white font-orbitron font-bold text-base md:text-lg">
+                                <h4 className="text-white font-red-hat-display font-bold text-base md:text-lg">
                                   {item.title}
                                 </h4>
-                                <span className="text-primary-orange font-rajdhani text-sm md:text-base">
+                                <span className="text-primary-orange font-red-hat-display text-sm md:text-base">
                                   {item.time}
                                 </span>
                               </div>
-                              <p className="text-white/70 font-rajdhani mt-2 text-sm md:text-base">
+                              <p className="text-white/70 font-red-hat-display mt-2 text-sm md:text-base">
                                 {item.detail}
                               </p>
                             </div>
@@ -145,14 +145,14 @@ export default function EventTimelineSection() {
                           <div className="md:col-start-2 pl-0 md:pl-10">
                             <div className="p-4 rounded-lg bg-black/20 md:text-right">
                               <div className="flex items-center justify-between">
-                                <span className="text-primary-orange font-rajdhani text-sm md:text-base">
+                                <span className="text-primary-orange font-red-hat-display text-sm md:text-base">
                                   {item.time}
                                 </span>
-                                <h4 className="text-white font-orbitron font-bold text-base md:text-lg">
+                                <h4 className="text-white font-red-hat-display font-bold text-base md:text-lg">
                                   {item.title}
                                 </h4>
                               </div>
-                              <p className="text-white/70 font-rajdhani mt-2 text-sm md:text-base">
+                              <p className="text-white/70 font-red-hat-display mt-2 text-sm md:text-base">
                                 {item.detail}
                               </p>
                             </div>

@@ -121,7 +121,7 @@ export default function FAQs() {
           <Title level={2} variant="gradient" size="xl" className="faqs-title mb-8">
             Frequently Asked Questions
           </Title>
-          <p className="text-lg text-white/70 font-rajdhani max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 font-red-hat-display max-w-2xl mx-auto">
             Got questions? We've got answers. Find everything you need to know about GHR Hack 2.0.
           </p>
         </div>
@@ -139,7 +139,7 @@ export default function FAQs() {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-orbitron font-bold text-white group-hover:gradient-text transition-all duration-300 pr-4">
+                  <h3 className="text-lg font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300 pr-4">
                     {faq.question}
                   </h3>
                   <div className="faq-icon flex-shrink-0 w-6 h-6 text-primary-orange transition-transform duration-300">
@@ -149,7 +149,7 @@ export default function FAQs() {
                   </div>
                 </div>
                 <div className="faq-answer overflow-hidden" style={{ height: 0, opacity: 0 }}>
-                  <p className="text-white/70 font-rajdhani mt-4 pt-4 border-t border-white/10">
+                  <p className="text-white/70 font-red-hat-display mt-4 pt-4 border-t border-white/10">
                     {faq.answer || "We're working on providing detailed answers for all your questions. Stay tuned for updates!"}
                   </p>
                 </div>
@@ -164,12 +164,12 @@ export default function FAQs() {
             <Title level={3} variant="default" size="md" className="mb-4">
               Still Have Questions?
             </Title>
-            <p className="text-white/70 font-rajdhani mb-6">
+            <p className="text-white/70 font-red-hat-display mb-6">
               Can't find the answer you're looking for? Reach out to our team directly.
             </p>
             <a
               href="#contact"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-primary-purple to-primary-orange text-white font-orbitron font-bold rounded-lg hover:shadow-lg hover:shadow-primary-purple/25 transition-all duration-300 transform hover:scale-105"
+              className="inline-block px-6 py-3 bg-gradient-to-r from-primary-purple to-primary-orange text-white font-red-hat-display font-bold rounded-lg hover:shadow-lg hover:shadow-primary-purple/25 transition-all duration-300 transform hover:scale-105"
             >
               Contact Us
             </a>

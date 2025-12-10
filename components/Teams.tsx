@@ -135,7 +135,7 @@ export default function Contact() {
           <Title level={2} variant="gradient" size="xl" className="contact-title mb-8">
             Get In Touch
           </Title>
-          <p className="text-lg text-white/70 font-rajdhani max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 font-red-hat-display max-w-2xl mx-auto">
             Ready to join the revolution? Connect with us and be part of GHR Hack 2.0.
           </p>
         </div>
@@ -152,7 +152,7 @@ export default function Contact() {
                 <Title level={3} variant="default" size="md" className="mb-4">
                   How to Register
                 </Title>
-                <p className="text-white/70 font-rajdhani mb-6">
+                <p className="text-white/70 font-red-hat-display mb-6">
                   Scan the QR code to register for GHR Hack 2.0
                 </p>
                 <div className="w-32 h-32 mx-auto mb-4 bg-white/10 rounded-lg flex items-center justify-center">
@@ -179,7 +179,7 @@ export default function Contact() {
                     <span className="text-primary-purple">📧</span>
                   </div>
                   <div>
-                    <p className="text-white font-rajdhani font-medium">Email</p>
+                    <p className="text-white font-red-hat-display font-medium">Email</p>
                     <p className="text-white/70">{contact.email}</p>
                   </div>
                 </div>
@@ -189,7 +189,7 @@ export default function Contact() {
                     <span className="text-primary-orange">📞</span>
                   </div>
                   <div>
-                    <p className="text-white font-rajdhani font-medium">Phone</p>
+                    <p className="text-white font-red-hat-display font-medium">Phone</p>
                     {contact.phones.map((phone, index) => (
                       <p key={index} className="text-white/70">{phone}</p>
                     ))}
@@ -201,7 +201,7 @@ export default function Contact() {
                     <span className="text-primary-purple">📍</span>
                   </div>
                   <div>
-                    <p className="text-white font-rajdhani font-medium">Address</p>
+                    <p className="text-white font-red-hat-display font-medium">Address</p>
                     <p className="text-white/70">{contact.address}</p>
                   </div>
                 </div>
@@ -239,7 +239,7 @@ export default function Contact() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
+                <label className="block text-white font-red-hat-display font-medium mb-2">
                   Full Name *
                 </label>
                 <input
@@ -254,7 +254,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
+                <label className="block text-white font-red-hat-display font-medium mb-2">
                   Email *
                 </label>
                 <input
@@ -269,7 +269,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
+                <label className="block text-white font-red-hat-display font-medium mb-2">
                   Phone Number *
                 </label>
                 <div className="flex">
@@ -289,7 +289,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
+                <label className="block text-white font-red-hat-display font-medium mb-2">
                   I AM INTERESTED IN:
                 </label>
                 <select
@@ -308,7 +308,7 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
+                <label className="block text-white font-red-hat-display font-medium mb-2">
                   Leave us a message
                 </label>
                 <textarea
@@ -330,7 +330,7 @@ export default function Contact() {
                   required
                   className="mt-1 w-4 h-4 text-primary-purple bg-black/20 border-white/20 rounded focus:ring-primary-purple"
                 />
-                <label className="text-white/70 font-rajdhani text-sm">
+                <label className="text-white/70 font-red-hat-display text-sm">
                   I have read & I agree to the privacy policy.
                 </label>
               </div>
@@ -339,7 +339,7 @@ export default function Contact() {
                 type="submit"
                 variant="primary"
                 size="lg"
-                className="w-full font-orbitron"
+                className="w-full font-red-hat-display"
               >
                 Submit
               </Button>
