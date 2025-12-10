@@ -24,7 +24,7 @@ export default React.forwardRef<HTMLDivElement, CardProps>(function Card({
   const variants = {
     default: 'bg-white/5 border border-white/10 backdrop-blur-sm',
     glass: 'glass',
-    gradient: 'bg-gradient-to-br from-primary-purple/10 to-primary-orange/10 border border-primary-purple/20',
+    gradient: 'bg-gradient-to-br from-primary-orange/10 to-primary-purple/10 border border-primary-purple/20',
     elevated: 'bg-black/20 border border-white/5 shadow-2xl backdrop-blur-md',
   };
 
@@ -43,7 +43,7 @@ export default React.forwardRef<HTMLDivElement, CardProps>(function Card({
     <div ref={ref} onClick={onClick} className={classes}>
       {children}
       {variant === 'gradient' && (
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-purple/5 to-primary-orange/5 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-orange/5 to-primary-purple/5 rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       )}
     </div>
   );

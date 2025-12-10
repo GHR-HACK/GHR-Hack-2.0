@@ -3,12 +3,12 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
-  --primary-purple: #8B5CF6;
-  --primary-orange: #F97316;
-  --secondary-purple: #A855F7;
-  --secondary-orange: #FB923C;
-  --accent-purple: #C084FC;
-  --accent-orange: #FDBA74;
+  --primary-purple: #680b7d;
+  --primary-orange: #e9552b;
+  --secondary-purple: #680b7d;
+  --secondary-orange: #e9552b;
+  --accent-purple: #680b7d;
+  --accent-orange: #e9552b;
 }
 
 @theme inline {
@@ -80,14 +80,14 @@ body {
   position: absolute;
   top: 0;
   width: 100%;
-  background: linear-gradient(180deg, var(--primary-purple), var(--primary-orange));
+  background: linear-gradient(180deg, var(--primary-orange), var(--primary-purple));
   border-radius: 4px;
   transition: opacity 0.3s ease;
 }
 
-/* Gradient text utilities */
+/* Gradient text utilities - Always orange to purple */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary-purple), var(--primary-orange));
+  background: linear-gradient(135deg, var(--primary-orange), var(--primary-purple));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -87,7 +87,7 @@ export default function Organizers() {
                   className="organizer-card group"
                 >
                   <div className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-purple to-primary-orange rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-orange to-primary-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <span className="text-2xl font-red-hat-display font-bold text-white">
                         {coordinator.name.charAt(0)}
                       </span>
@@ -129,7 +129,7 @@ export default function Organizers() {
                     className="organizer-card group"
                   >
                     <div className="p-4 text-center">
-                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-primary-purple/20 to-primary-orange/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-12 h-12 mx-auto mb-3 bg-gradient-to-r from-primary-orange/20 to-primary-purple/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                         <span className="text-xl">{role.icon}</span>
                       </div>
                       <h5 className="text-sm font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300">

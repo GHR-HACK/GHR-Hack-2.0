@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 import Title from './ui/Title';
 import Container from './ui/Container';
 import { eventData, contact, socialLinks } from '../lib/data';
@@ -108,9 +109,14 @@ export default function Footer() {
         <div className="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Title variant="gradient" size="lg" className="mb-4 !p-0 !m-0">
-              {eventData.name}
-            </Title>
+            <div className="relative h-16 w-48 mb-4">
+              <Image
+                src="/logo.png"
+                alt="GHR Hack 2.0 Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
             <p className="text-white/70 font-red-hat-display mb-6 max-w-md">
               {eventData.tagline}
             </p>

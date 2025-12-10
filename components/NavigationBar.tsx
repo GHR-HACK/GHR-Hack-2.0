@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Image from 'next/image';
 
 const navItems = [
   { name:  'Home', href: '#home' },
@@ -136,17 +137,23 @@ export default function NavigationBar() {
       className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-lg border-b border-purple-500/20"
     >
       {/* Main container with proper padding */}
-      <div className="w-full px-6 sm:px-8 lg:px-12 xl:px-16">
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="flex items-center justify-between h-20 mx-auto max-w-7xl">
           
-          {/* Logo - Left side with ample padding */}
-          <div className="pl-12 lg:pl-12 xl:pl-16">
+          {/* Logo - Left side with proper padding */}
+          <div className="flex-shrink-0">
             <button
               ref={logoRef}
               onClick={() => scrollToSection('#home')}
-              className="text-2xl md:text-3xl font-bold font-red-hat-display bg-gradient-to-r from-orange-400 via-purple-500 to-orange-400 bg-clip-text text-transparent hover:opacity-90 transition-opacity duration-300"
+              className="relative h-12 w-32 md:h-14 md:w-40 hover:opacity-90 transition-opacity duration-300"
             >
-              GHR Hack 2.0
+              <Image
+                src="/logo.png"
+                alt="GHR Hack 2.0 Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </button>
           </div>
 
@@ -159,10 +166,10 @@ export default function NavigationBar() {
                   if (el) menuItemsRef.current[index] = el;
                 }}
                 onClick={() => scrollToSection(item.href)}
-                className="relative font-red-hat-display font-semibold text-white text-base lg:text-lg px-2 py-1 group hover: text-orange-400 transition-colors duration-300"
+                className="relative font-red-hat-display font-semibold text-white text-base lg:text-lg px-2 py-1 group hover:text-primary-orange transition-colors duration-300"
               >
                 {item. name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-400 to-purple-500 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary-orange to-primary-purple group-hover:w-full transition-all duration-300"></span>
               </button>
             ))}
           </div>
@@ -196,7 +203,7 @@ export default function NavigationBar() {
               <button
                 key={item.name}
                 onClick={() => scrollToSection(item.href)}
-                className="block w-full text-left px-4 py-3 font-red-hat-display font-semibold text-white rounded-lg hover: bg-gradient-to-r hover:from-orange-500/10 hover:to-purple-500/10 hover:text-orange-300 transition-all duration-300 border border-transparent hover: border-orange-500/20"
+                className="block w-full text-left px-4 py-3 font-red-hat-display font-semibold text-white rounded-lg hover:bg-gradient-to-r hover:from-primary-orange/10 hover:to-primary-purple/10 hover:text-primary-orange transition-all duration-300 border border-transparent hover:border-primary-orange/20"
               >
                 {item. name}
               </button>

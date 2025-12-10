@@ -26,8 +26,8 @@ export default function Button({
   const baseClasses = 'relative inline-flex items-center justify-center font-medium transition-all duration-300 ease-in-out transform hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-purple disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden';
 
   const variants = {
-    primary: 'bg-gradient-to-r from-primary-purple to-primary-orange text-white hover:shadow-lg hover:shadow-primary-purple/25',
-    secondary: 'bg-gradient-to-r from-secondary-purple to-secondary-orange text-white hover:shadow-lg hover:shadow-secondary-purple/25',
+    primary: 'bg-gradient-to-r from-primary-orange to-primary-purple text-white hover:shadow-lg hover:shadow-primary-purple/25',
+    secondary: 'bg-gradient-to-r from-primary-orange to-primary-purple text-white hover:shadow-lg hover:shadow-primary-purple/25',
     outline: 'border-2 border-primary-purple text-primary-purple hover:bg-primary-purple hover:text-white',
     ghost: 'text-primary-purple hover:bg-primary-purple/10',
   };

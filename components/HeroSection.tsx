@@ -238,24 +238,6 @@ export default function HeroSection() {
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            {[
-              { number: '28', label: 'Hours' },
-              { number: '8', label: 'Themes' },
-              { number: '₹80k+', label: 'Prizes' },
-              { number: '100+', label: 'Participants' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center group">
-                <div className="text-3xl md:text-4xl font-red-hat-display font-bold gradient-text mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {stat.number}
-                </div>
-                <div className="text-white/60 font-red-hat-display text-sm uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 

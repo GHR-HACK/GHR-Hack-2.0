@@ -151,7 +151,7 @@ export default function PrizeSection() {
       className="py-16 md:py-24 bg-gradient-to-b from-gray-900 via-black to-gray-900"
     >
       <Container>
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
           <Title level={3} variant="gradient" size="lg" className="text-center mb-12">
             {prizes.description}
           </Title>
@@ -166,7 +166,7 @@ export default function PrizeSection() {
               <div className="relative mt-2">
                 <div className="prize-pool relative mx-auto w-64 h-40 rounded-[24px] border border-white/20 bg-black/20 overflow-hidden">
                   <div className="absolute inset-0 prize-pool-layer pointer-events-none z-[2]" />
-                  <div className="prize-pool-fill absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-primary-purple/50 via-primary-orange/40 to-transparent z-[1]" />
+                  <div className="prize-pool-fill absolute bottom-0 left-0 w-full h-0 bg-gradient-to-t from-primary-orange/50 to-primary-purple/40 to-transparent z-[1]" />
                   <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent mix-blend-overlay z-[0] pointer-events-none" />
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function PrizeSection() {
                 ].map(({ key, text }) => (
                   <Card key={key} variant="glass" hover className="perk-card p-4 bg-black/20 border border-white/10 rounded-lg">
                     <div className="flex items-center">
-                      <span className="mr-3 inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-primary-purple/20 to-primary-orange/20 rounded-md border border-white/15">
+                      <span className="mr-3 inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-primary-orange/20 to-primary-purple/20 rounded-md border border-white/15">
                         {key === 'meal' && (
                           <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 3v8"/><path d="M8 3v8"/><path d="M6 3v8"/><path d="M20 3s-3 1-3 4 3 4 3 4V3Z"/><path d="M4 11v10"/><path d="M8 11v10"/></svg>
                         )}

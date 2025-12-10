@@ -30,14 +30,14 @@ export default function FireAnimation() {
         <h2
           className="text-3xl md:text-6xl sm:text-xl font-bold tracking-wider mt-2 font-red-hat-display"
           style={{
-            backgroundImage: "linear-gradient(135deg, #ff6b35 0%, #a855f7 50%, #ff6b35 100%)",
+            backgroundImage: "linear-gradient(135deg, #e9552b 0%, #680b7d 50%, #e9552b 100%)",
             backgroundSize: "200% 200%",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
             animation: `gradientShift 4s ease-in-out infinite`,
             textShadow: "none",
-            filter: "drop-shadow(0 0 30px rgba(255, 107, 53, 0.4)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.3))",
+            filter: "drop-shadow(0 0 30px rgba(233, 85, 43, 0.4)) drop-shadow(0 0 20px rgba(104, 11, 125, 0.3))",
             fontFamily: "var(--font-red-hat-display), sans-serif",
           }}
         >
@@ -58,11 +58,11 @@ export default function FireAnimation() {
         @keyframes gradientShift {
           0%, 100% {
             background-position: 0% 50%;
-            filter: drop-shadow(0 0 30px rgba(255, 107, 53, 0.4)) drop-shadow(0 0 20px rgba(168, 85, 247, 0.3));
+            filter: drop-shadow(0 0 30px rgba(233, 85, 43, 0.4)) drop-shadow(0 0 20px rgba(104, 11, 125, 0.3));
           }
           50% {
             background-position: 100% 50%;
-            filter: drop-shadow(0 0 40px rgba(255, 107, 53, 0.6)) drop-shadow(0 0 30px rgba(168, 85, 247, 0.5));
+            filter: drop-shadow(0 0 40px rgba(233, 85, 43, 0.6)) drop-shadow(0 0 30px rgba(104, 11, 125, 0.5));
           }
         }
       `}</style>
