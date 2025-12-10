@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Orbitron, Rajdhani, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import GSAPSetup from "../components/GSAPSetup";
+//import GSAPSetup from "../components/GSAPSetup";
 import OptimizedSnakeCursor from "@/components/ui/custom-cursor";
-import NavigationBar from "../components/NavigationBar";
+//import NavigationBar from "../components/NavigationBar";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -24,15 +24,58 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GHR Hack 2.0 - Code the Unexplored",
-  description: "GHR-HACK, a groundbreaking hackathon by GHRCEM JALGAON, redefines creativity and technology. Join us in the pursuit of innovation, transcending traditional hackathons.",
-  keywords: ["hackathon", "GHR", "GHRCEM", "Jalgaon", "technology", "innovation", "coding"],
-  authors: [{ name: "GHR Hack Team" }],
-  openGraph: {
-    title: "GHR Hack 2.0 - Code the Unexplored",
-    description: "28-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon",
-    type: "website",
+  title: "GHR Hack 2.0 - Code to Career | 30-Hour Hackathon at GHRCEM Jalgaon",
+  description: "Join GHR Hack 2.0, a 30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Code to Career - Transform your coding skills into professional opportunities. Registration open for students and innovators.",
+  keywords: [
+    "GHR Hack 2.0",
+    "Code to Career",
+    "30 hour hackathon",
+    "GHRCEM Jalgaon hackathon",
+    "offline hackathon India",
+    "G H Raisoni College hackathon",
+    "coding competition Jalgaon",
+    "Maharashtra hackathon 2025",
+    "student hackathon",
+    "tech event Jalgaon",
+    "hackathon registration",
+    "innovation challenge",
+    "programming competition",
+    "career development hackathon",
+    "GHRCEM tech event"
+  ],
+  authors: [{ name: "GHR Hack 2.0 Team" }],
+  creator: "G H Raisoni College of Engineering and Management, Jalgaon",
+  publisher: "GHRCEM Jalgaon",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
+  openGraph: {
+    title: "GHR Hack 2.0 - Code to Career | 30-Hour Hackathon",
+    description: "Join the ultimate 30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Transform your coding skills into career opportunities.",
+    type: "website",
+    locale: "en_IN",
+    siteName: "GHR Hack 2.0",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "GHR Hack 2.0 - Code to Career Hackathon",
+      },
+    ],
+  }, 
+  alternates: {
+    canonical: "https://www.ghrhack.tech/", 
+  },
+  category: "Technology", 
 };
 
 export default function RootLayout({
@@ -42,6 +85,41 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        {/* Additional SEO Meta Tags */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <meta name="theme-color" content="#000000" />       
+        <link rel="icon" href="/logo.png" sizes="any" />              
+        
+        {/* Structured Data for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Event",
+              "name": "GHR Hack 2.0 - Code to Career",
+              "description": "30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon",          
+              "location": {
+                "@type": "Place",
+                "name": "G H Raisoni College of Engineering and Management",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Jalgaon",
+                  "addressLocality": "Jalgaon",
+                  "addressRegion": "Maharashtra",
+                  "addressCountry": "IN"
+                }
+              },
+              "organizer": {
+                "@type": "Organization",
+                "name": "GHRCEM Jalgaon",
+                "url": "https://www.ghrhack.tech/"
+              },             
+            })
+          }}
+        />
+      </head>
       <body
         className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} overflow-hidden`}
         suppressHydrationWarning
