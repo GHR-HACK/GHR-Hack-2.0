@@ -24,7 +24,7 @@ export default React.forwardRef<HTMLElement, TitleProps>(function Title({
   const variants = {
     default: 'text-white',
     gradient: 'gradient-text',
-    outline: 'text-transparent bg-clip-text bg-gradient-to-r from-primary-purple to-primary-orange',
+    outline: 'text-transparent bg-clip-text bg-gradient-to-r from-primary-orange to-primary-purple',
     glow: 'text-white drop-shadow-[0_0_20px_rgba(139,92,246,0.5)]',
   };
 

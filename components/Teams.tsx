@@ -52,17 +52,18 @@ export default function Contact() {
         ease: 'back.out(1.7)',
       });
 
-      // Animate form
+      // Animate form - from right like timeline
       gsap.from('.contact-form', {
         scrollTrigger: {
           trigger: '.contact-form',
-          start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          start: 'top 85%',
+          toggleActions: 'play none none none',
+          once: true,
         },
-        x: 50,
-        opacity: 0,
-        duration: 1,
-        delay: 0.3,
+        x: 40,
+        autoAlpha: 0,
+        duration: 0.8,
+        delay: 0.1,
         ease: 'power3.out',
       });
     }, sectionRef);
@@ -127,11 +128,11 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-b from-gray-900 via-black to-gray-900"
+      className="pt-20 pb-8 md:pt-24 md:pb-12 bg-gradient-to-b from-gray-900 via-black to-gray-900"
     >
       <Container>
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-        <div className="text-center mb-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="text-center mb-12 md:mb-16">
           <Title level={2} variant="gradient" size="xl" className="contact-title mb-8">
             Get In Touch
           </Title>
@@ -140,13 +141,13 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-0">
           {/* Contact Information */}
           <div className="contact-grid space-y-8">
             {/* Registration Card */}
             <Card variant="elevated" className="contact-card p-8">
               <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-purple to-primary-orange rounded-full flex items-center justify-center">
+                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-orange to-primary-purple rounded-full flex items-center justify-center">
                   <span className="text-2xl">📱</span>
                 </div>
                 <Title level={3} variant="default" size="md" className="mb-4">
@@ -232,12 +233,12 @@ export default function Contact() {
           </div>
 
           {/* Contact Form */}
-          <Card variant="elevated" className="contact-form p-8">
+          <Card variant="elevated" className="contact-form p-6 md:p-8 h-auto mb-0">
             <Title level={3} variant="gradient" size="md" className="mb-6 text-center">
               Send us a Message
             </Title>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form onSubmit={handleSubmit} className="space-y-6 w-full">
               <div>
                 <label className="block text-white font-red-hat-display font-medium mb-2">
                   Full Name *

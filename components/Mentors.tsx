@@ -54,7 +54,7 @@ export default function Mentors() {
       className={`mentor-card group ${cardClass}`}
     >
       <div className="p-6 text-center">
-        <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-primary-purple to-primary-orange rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+        <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-primary-orange to-primary-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
           <span className="text-2xl font-red-hat-display font-bold text-white">
             {mentor.name.charAt(0)}
           </span>

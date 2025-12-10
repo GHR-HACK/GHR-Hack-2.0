@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Orbitron, Rajdhani, JetBrains_Mono, Red_Hat_Display } from "next/font/google";
 import "./globals.css";
-//import GSAPSetup from "../components/GSAPSetup";
+import GSAPSetup from "../components/GSAPSetup";
 import OptimizedSnakeCursor from "@/components/ui/custom-cursor";
-//import NavigationBar from "../components/NavigationBar";
+import NavigationBar from "../components/NavigationBar";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -119,7 +119,7 @@ export default function RootLayout({
               },
               "organizer": {
                 "@type": "Organization",
-                "name": "GHRCEM Jalgaon",
+                "name": "G H Raisoni College of Engineering and Management, Jalgaon",
                 "url": "https://www.ghrhack.tech/"
               },             
             })
@@ -130,15 +130,16 @@ export default function RootLayout({
         className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatDisplay.variable} overflow-hidden`}
         suppressHydrationWarning
       >
-        {/* <GSAPSetup /> */}
+         <GSAPSetup />
         <OptimizedSnakeCursor />
-        {/* <NavigationBar /> */}
-        {/* <div id="smooth-wrapper">
+         <NavigationBar />
+         <div id="smooth-wrapper">
           <div id="smooth-content">
             {children}
           </div>
-        </div> */}
-        {children}
+        </div>
+       
+        {/* {children} */}
       </body>
     </html>
   );

@@ -15,35 +15,26 @@ export default function AboutEventDetails() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Title
-      gsap.from('.about-title', {
-        scrollTrigger: {
-          trigger: '.about-title',
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-          once: true,
+      // Batch animation for about items - alternating left/right
+      ScrollTrigger.batch('.about-item', {
+        interval: 0.1,
+        batchMax: 2,
+        start: 'top 85%',
+        once: true,
+        onEnter: (batch) => {
+          (batch as HTMLElement[]).forEach((el, idx) => {
+            const side = el.getAttribute('data-side');
+            const fromX = side === 'left' ? -40 : 40;
+            gsap.from(el, {
+              x: fromX,
+              autoAlpha: 0,
+              duration: 0.8,
+              ease: 'power3.out',
+              delay: idx * 0.05,
+            });
+          });
         },
-        y: 40,
-        autoAlpha: 0,
-        duration: 0.9,
-        ease: 'power3.out',
       });
-
-      // Description
-      gsap.from('.about-description', {
-        scrollTrigger: {
-          trigger: '.about-description',
-          start: 'top 90%',
-          toggleActions: 'play none none none',
-          once: true,
-        },
-        y: 30,
-        autoAlpha: 0,
-        duration: 0.9,
-        delay: 0.1,
-        ease: 'power3.out',
-      });
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -57,12 +48,12 @@ export default function AboutEventDetails() {
     >
       <Container>
         {/* About Section */}
-        <div className="text-center mb-8 md:mb-12 max-w-5xl mx-auto px-4">
-          <Title level={2} variant="gradient" size="xl" className="about-title mb-6 md:mb-8">
+        <div className="text-center mb-8 md:mb-12 max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
+          <Title level={2} variant="gradient" size="xl" className="about-item mb-6 md:mb-8" data-side="left">
             {aboutEvent.title}
           </Title>
           <div className="max-w-4xl mx-auto">
-            <p className="about-description text-lg md:text-xl text-white/80 font-red-hat-display leading-relaxed">
+            <p className="about-item text-lg md:text-xl text-white/80 font-red-hat-display leading-relaxed" data-side="right">
               {aboutEvent.description}
             </p>
           </div>

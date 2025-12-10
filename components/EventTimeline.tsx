@@ -38,7 +38,7 @@ export default function EventTimelineSection() {
                 { scale: 0.7, background: 'linear-gradient(180deg, #1f2937, #111827)' },
                 {
                   scale: 1.5,
-                  background: 'linear-gradient(135deg, #FB923C, #8B5CF6)',
+                  background: 'linear-gradient(135deg, #e9552b, #680b7d)',
                   duration: 0.6,
                   ease: 'back.out(1.7)',
                   delay: 0.1 + idx * 0.05,
@@ -104,7 +104,7 @@ export default function EventTimelineSection() {
       className="py-16 md:py-24 bg-gradient-to-b from-black via-gray-900 to-black"
     >
       <Container>
-        <div className="max-w-4xl mx-auto px-4">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
           <Title level={3} variant="gradient" size="lg" className="text-center mb-12">
             Event Timeline
           </Title>
@@ -112,7 +112,7 @@ export default function EventTimelineSection() {
             <div className="relative timeline-container">
               <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[6px] bg-white/20 rounded-full" />
               <div
-                className="absolute left-1/2 -translate-x-1/2 top-0 w-[6px] rounded-full bg-gradient-to-b from-primary-orange via-primary-purple to-primary-purple shadow-[0_0_16px_rgba(139,92,246,0.35)] timeline-progress"
+                className="absolute left-1/2 -translate-x-1/2 top-0 w-[6px] rounded-full bg-gradient-to-b from-primary-orange to-primary-purple shadow-[0_0_16px_rgba(104,11,125,0.35)] timeline-progress"
                 style={{ height: 0 }}
               />
               <div className="space-y-10 md:space-y-8">

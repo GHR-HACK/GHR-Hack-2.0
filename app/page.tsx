@@ -1,3 +1,6 @@
+
+/*
+
 "use client"
 
 import dynamic from "next/dynamic"
@@ -10,10 +13,9 @@ const FireAnimation = dynamic(() => import("../components/fire-animation"), {
 export default function Home() {
   return <FireAnimation />
 }
+  */
 
 
-
-/*
 
 import HeroSection from "../components/HeroSection";
 import AboutEventDetails from "../components/AboutEventDetails";
@@ -46,4 +48,3 @@ export default function Home() {
     </div>
   );
 }
-  */

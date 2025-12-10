@@ -113,10 +113,10 @@ export default function FAQs() {
     <section
       id="faq"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-b from-black via-gray-900 to-black"
+      className="pt-12 pb-20 md:pt-16 md:py-32 bg-gradient-to-b from-black via-gray-900 to-black"
     >
       <Container>
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="text-center mb-16">
           <Title level={2} variant="gradient" size="xl" className="faqs-title mb-8">
             Frequently Asked Questions
@@ -158,23 +158,6 @@ export default function FAQs() {
           ))}
         </div>
 
-        {/* Contact CTA */}
-        <div className="text-center mt-12">
-          <Card variant="gradient" className="p-8 max-w-2xl mx-auto">
-            <Title level={3} variant="default" size="md" className="mb-4">
-              Still Have Questions?
-            </Title>
-            <p className="text-white/70 font-red-hat-display mb-6">
-              Can't find the answer you're looking for? Reach out to our team directly.
-            </p>
-            <a
-              href="#contact"
-              className="inline-block px-6 py-3 bg-gradient-to-r from-primary-purple to-primary-orange text-white font-red-hat-display font-bold rounded-lg hover:shadow-lg hover:shadow-primary-purple/25 transition-all duration-300 transform hover:scale-105"
-            >
-              Contact Us
-            </a>
-          </Card>
-        </div>
         </div>
       </Container>
     </section>
