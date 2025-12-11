@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Orbitron, Rajdhani, JetBrains_Mono } from "next/font/google";
+import { Orbitron, Rajdhani, JetBrains_Mono, Red_Hat_Text } from "next/font/google";
 import "./globals.css";
 import GSAPSetup from "../components/GSAPSetup";
 import OptimizedSnakeCursor from "@/components/ui/custom-cursor";
@@ -23,6 +23,12 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600", "700"],
 });
 
+const redHatText = Red_Hat_Text({
+  variable: "--font-redhat",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
 export const metadata: Metadata = {
   title: "GHR Hack 2.0 - Code the Unexplored",
   description: "GHR-HACK, a groundbreaking hackathon by GHRCEM JALGAON, redefines creativity and technology. Join us in the pursuit of innovation, transcending traditional hackathons.",
@@ -43,7 +49,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} overflow-hidden`}
+        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatText.variable} overflow-hidden`}
         suppressHydrationWarning
       >
         <GSAPSetup />
