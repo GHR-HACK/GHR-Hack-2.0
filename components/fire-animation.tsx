@@ -57,7 +57,7 @@ export default function FireAnimation() {
         <a href="https://ghrhack2.devfolio.co/">
           <div className="text-white apply-button rounded w-full max-w-xs h-10 md:h-12 flex items-center justify-center">
             <div className="relative w-6 h-6 md:w-8 md:h-8 mr-2">
-              <Image src="/Dev.png" alt="" fill className="object-contain" />
+              <Image src="/Dev.png" alt="DEVFOLIO LOGO" fill className="object-contain" />
             </div>
             <span className="text-md md:text-lg">Register Here</span>
           </div>
@@ -70,7 +70,7 @@ export default function FireAnimation() {
             <div className="relative w-32 h-16 md:w-40 md:h-20">
               <Image 
                 src="/DEVFOLIO.jpg" 
-                alt="Devfolio" 
+                alt="DEVFOLIO LOGO" 
                 fill 
                 className="object-contain"
               />
@@ -78,7 +78,7 @@ export default function FireAnimation() {
             <div className="relative w-32 h-16 md:w-40 md:h-20">
               <Image 
                 src="/ETHindia.jpg" 
-                alt="ETHIndia" 
+                alt="ETHINDIA LOGO" 
                 fill 
                 className="object-contain"
               />
