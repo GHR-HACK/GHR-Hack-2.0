@@ -5,6 +5,7 @@ import { useEffect } from "react"
 import { useState } from "react"
 import Image from "next/image"
 import ParticlesWeb from "@/components/particles-web"
+import DevfolioButton from "@/components/DevfolioButton"
 
 export default function FireAnimation() {
   const [mounted, setMounted] = useState(false)
@@ -52,17 +53,8 @@ export default function FireAnimation() {
         >
           With More Bigger Opportunities
         </h4>
-
         
-        <a href="https://ghrhack2.devfolio.co/">
-          <div className="bg-[#3770ff] text-white w-full max-w-xs h-10 md:h-12 flex items-center justify-center px-4">
-            <div className="relative w-6 h-6 md:w-8 md:h-8 mr-2">
-              <img src="/Dev.png" alt="DEVFOLIO LOGO" className="w-full h-full object-contain" />
-            </div>
-            <span className="text-base">Apply with Devfolio</span>
-          </div>
-        </a>       
-
+        <DevfolioButton hackathonSlug="ghrhack2" />
         <div className="mt-8 flex flex-col items-center gap-4">
           <h3 className="text-white/60 text-lg font-medium font-red-hat-display">Powered By</h3>
           <div className="flex items-center justify-center gap-8 flex-wrap">
