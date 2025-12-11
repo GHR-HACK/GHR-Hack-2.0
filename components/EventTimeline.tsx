@@ -101,7 +101,7 @@ export default function EventTimelineSection() {
     <section
       id="schedule"
       ref={sectionRef}
-      className="py-16 md:py-24 bg-gradient-to-b from-black via-gray-900 to-black"
+      className="py-16 md:py-24 bg-linear-to-b from-black via-gray-900 to-black"
     >
       <Container>
         <div className="max-w-4xl mx-auto px-4 sm:px-6 md:px-8">
@@ -112,7 +112,7 @@ export default function EventTimelineSection() {
             <div className="relative timeline-container">
               <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[6px] bg-white/20 rounded-full" />
               <div
-                className="absolute left-1/2 -translate-x-1/2 top-0 w-[6px] rounded-full bg-gradient-to-b from-primary-orange to-primary-purple shadow-[0_0_16px_rgba(104,11,125,0.35)] timeline-progress"
+                className="absolute left-1/2 -translate-x-1/2 top-0 w-[6px] rounded-full bg-linear-to-b from-primary-orange to-primary-purple shadow-[0_0_16px_rgba(104,11,125,0.35)] timeline-progress"
                 style={{ height: 0 }}
               />
               <div className="space-y-10 md:space-y-8">
