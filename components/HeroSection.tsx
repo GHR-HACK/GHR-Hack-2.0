@@ -202,6 +202,8 @@ export default function HeroSection() {
 
           {/* Action Buttons */}
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+             <DevfolioButton hackathonSlug="ghrhack2" />
+     
             <Button
               variant="primary"
               size="lg"
