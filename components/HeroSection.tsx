@@ -38,7 +38,7 @@ export default function HeroSection() {
       // SplitText animation for subtitle
       let subtitleSplit:  SplitText | null = null;
       if (subtitleRef.current) {
-        subtitleSplit = new SplitText(subtitleRef.current, { type: 'chars' });
+        subtitleSplit = new SplitText(subtitleRef. current, { type: 'chars' });
         gsap.from(subtitleSplit.chars, {
           duration: 1.2,
           y: 30,
@@ -51,9 +51,9 @@ export default function HeroSection() {
 
       // SplitText animation for tagline
       let taglineSplit: SplitText | null = null;
-      if (taglineRef.current) {
+      if (taglineRef. current) {
         taglineSplit = new SplitText(taglineRef.current, { type: 'chars' });
-        gsap.from(taglineSplit. chars, {
+        gsap.from(taglineSplit.chars, {
           duration: 1.4,
           y: 30,
           opacity: 0,
@@ -64,7 +64,7 @@ export default function HeroSection() {
       }
 
       // Button animations
-      const buttonTextSplits:  SplitText[] = [];
+      const buttonTextSplits: SplitText[] = [];
       if (buttonsRef.current) {
         const btnTexts = buttonsRef.current.querySelectorAll('. split-btn-text');
         btnTexts.forEach((el, idx) => {
@@ -109,20 +109,37 @@ export default function HeroSection() {
   return (
     <div ref={heroRef} className="min-h-screen flex items-center justify-center relative">
       <div className="text-center z-10">
-        <Title ref={titleRef} />
+        {/* ✅ FIX: Add children prop to Title component */}
+        <Title 
+          ref={titleRef}
+          level={1}
+          variant="gradient"
+          size="3xl"
+          className="mb-6"
+        >
+          GHR Hack 2.0
+        </Title>
         
-        <p ref={subtitleRef} className="text-xl md:text-2xl text-gray-300 mt-4">
+        <p 
+          ref={subtitleRef} 
+          className="text-xl md:text-2xl text-gray-300 mt-4"
+        >
           Join the Ultimate 30-Hour Hackathon Experience
         </p>
         
-        <p ref={taglineRef} className="text-lg text-gray-400 mt-2">
+        <p 
+          ref={taglineRef} 
+          className="text-lg text-gray-400 mt-2"
+        >
           Code to Career
         </p>
 
         {/* Action Buttons */}
         <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center mt-8">
+          {/* ✅ Devfolio Button */}
           <DevfolioButton hackathonSlug="ghrhack2" />
           
+          {/* Register Button */}
           <Button
             variant="primary"
             className="split-btn-text"
