@@ -114,6 +114,25 @@ export default function Sponsors() {
             'gold-tier',
             'text-yellow-400'
           )}
+             <div className="mt-8 flex flex-col items-center gap-4">
+          <h3 className="text-white/60 text-lg font-medium font-red-hat-display">Powered By</h3>
+          <div className="flex items-center justify-center gap-8 flex-wrap">
+          <div className="relative w-32 h-16 md:w-40 md:h-20">
+              <img 
+                src="/DEVFOLIO.jpg" 
+                alt="DEVFOLIO LOGO" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="relative w-32 h-16 md:w-40 md:h-20">
+              <img 
+                src="/ETHindia.jpg" 
+                alt="ETHINDIA LOGO" 
+                className="w-full h-full object-contain"
+              />
+            </div>
+          </div>
+        </div>
 
           {/* Silver Sponsors */}
           {renderSponsorTier(
