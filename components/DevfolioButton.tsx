@@ -17,7 +17,7 @@ export default function DevfolioButton({ hackathonSlug = "ghrhack2" }:  Devfolio
 
     // Cleanup:  remove script when component unmounts
     return () => {
-      if (document.body. contains(script)) {
+      if (document.body.contains(script)) {  // ✅ NO SPACE
         document.body.removeChild(script);
       }
     };
