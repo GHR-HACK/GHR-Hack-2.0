@@ -52,6 +52,39 @@ export default function FireAnimation() {
         >
           With More Bigger Opportunities
         </h4>
+
+        <button className="bg-[#3770ff] p-1 px-4 rounded-md">
+        <a href="https://ghrhack2.devfolio.co/">
+          <div className="text-white apply-button rounded w-full max-w-xs h-10 md:h-12 flex items-center justify-center">
+            <div className="relative w-6 h-6 md:w-8 md:h-8 mr-2">
+              <Image src="/Dev.png" alt="" fill className="object-contain" />
+            </div>
+            <span className="text-md md:text-lg">Register Here</span>
+          </div>
+        </a>
+        </button>
+
+        <div className="mt-8 flex flex-col items-center gap-4">
+          <h3 className="text-white/60 text-lg font-medium font-red-hat-display">Powered By</h3>
+          <div className="flex items-center justify-center gap-8 flex-wrap">
+            <div className="relative w-32 h-16 md:w-40 md:h-20">
+              <Image 
+                src="/DEVFOLIO.jpg" 
+                alt="Devfolio" 
+                fill 
+                className="object-contain"
+              />
+            </div>
+            <div className="relative w-32 h-16 md:w-40 md:h-20">
+              <Image 
+                src="/ETHindia.jpg" 
+                alt="ETHIndia" 
+                fill 
+                className="object-contain"
+              />
+            </div>
+          </div>
+        </div>
       </div>
 
       <style>{`
