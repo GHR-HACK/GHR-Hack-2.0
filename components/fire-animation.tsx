@@ -24,7 +24,7 @@ export default function FireAnimation() {
 
       <div className="text-center relative z-10 flex flex-col items-center justify-center gap-4">
         <div className="w-56 h-56 md:w-64 md:h-64 relative">
-          <Image src="/logo.png" alt="GHR Hack 2.0 Logo" fill className="object-contain" priority />
+          <Image src="/newlogo.png" alt="GHR Hack 2.0 Logo" fill className="object-contain" priority />
         </div>
 
         <h2
