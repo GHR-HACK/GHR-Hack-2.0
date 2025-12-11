@@ -7,6 +7,7 @@ import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import { SplitText } from 'gsap/SplitText';
 import Button from './ui/Button';
 import Title from './ui/Title';
+import DevfolioButton from './DevfolioButton';
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, SplitText);
 
