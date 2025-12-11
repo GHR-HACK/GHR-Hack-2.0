@@ -1,9 +1,12 @@
-
 'use client';
 
 import { useEffect } from 'react';
 
-export default function DevfolioButton({ hackathonSlug = "ghrhack2" }) {
+interface DevfolioButtonProps {
+  hackathonSlug?:  string;
+}
+
+export default function DevfolioButton({ hackathonSlug = "ghrhack2" }: DevfolioButtonProps) {
   useEffect(() => {
     // Load the Devfolio SDK script
     const script = document.createElement('script');
@@ -12,9 +15,11 @@ export default function DevfolioButton({ hackathonSlug = "ghrhack2" }) {
     script.defer = true;
     document.body.appendChild(script);
 
-    // Cleanup: remove script when component unmounts
+    // Cleanup:  remove script when component unmounts
     return () => {
-      document.body.removeChild(script);
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
 
