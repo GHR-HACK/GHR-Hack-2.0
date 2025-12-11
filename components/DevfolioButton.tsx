@@ -6,7 +6,7 @@ interface DevfolioButtonProps {
   hackathonSlug?:  string;
 }
 
-export default function DevfolioButton({ hackathonSlug = "ghrhack2" }: DevfolioButtonProps) {
+export default function DevfolioButton({ hackathonSlug = "ghrhack2" }:  DevfolioButtonProps) {
   useEffect(() => {
     // Load the Devfolio SDK script
     const script = document.createElement('script');
@@ -17,7 +17,7 @@ export default function DevfolioButton({ hackathonSlug = "ghrhack2" }: DevfolioB
 
     // Cleanup:  remove script when component unmounts
     return () => {
-      if (document.body.contains(script)) {
+      if (document.body. contains(script)) {
         document.body.removeChild(script);
       }
     };
