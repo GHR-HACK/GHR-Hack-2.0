@@ -123,14 +123,7 @@ export default function Sponsors() {
                 alt="DEVFOLIO LOGO" 
                 className="w-full h-full object-contain"
               />
-            </div>
-            <div className="relative w-32 h-16 md:w-40 md:h-20">
-              <img 
-                src="/ETHindia.jpg" 
-                alt="ETHINDIA LOGO" 
-                className="w-full h-full object-contain"
-              />
-            </div>
+            </div>           
           </div>
         </div>
 
@@ -141,6 +134,13 @@ export default function Sponsors() {
             'silver-tier',
             'text-gray-300'
           )}
+           <div className="relative w-32 h-16 md:w-40 md:h-20">
+              <img 
+                src="/ETHindia.jpg" 
+                alt="ETHINDIA LOGO" 
+                className="w-full h-full object-contain"
+              />
+            </div>
 
           {/* Education Partners */}
           <div className="sponsor-tier mb-12 education-partners">
