@@ -41,7 +41,7 @@ export default function Section({
         {children}
       </div>
       {background === 'gradient' && (
-        <div className="absolute inset-0 bg-gradient-to-r from-primary-purple/5 via-transparent to-primary-orange/5 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-orange/5 via-transparent to-primary-purple/5 pointer-events-none" />
       )}
     </section>
   );

@@ -187,7 +187,7 @@ export default function HeroSection() {
           {/* Subtitle */}
           <p
             ref={subtitleRef}
-            className="text-xl md:text-2xl text-white/80 font-rajdhani font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle"
+            className="text-xl md:text-2xl text-white/80 font-red-hat-display font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle"
           >
             Code the Unexplored • 28 Hours of Innovation • March 8-9, 2025
           </p>
@@ -195,7 +195,7 @@ export default function HeroSection() {
           {/* Tagline */}
           <p
             ref={taglineRef}
-            className="text-lg md:text-xl text-primary-orange font-rajdhani font-medium mb-12 italic split-tagline"
+            className="text-lg md:text-xl text-primary-orange font-red-hat-display font-medium mb-12 italic split-tagline"
           >
             "GHR-HACK, a groundbreaking hackathon by GHRCEM JALGAON, redefines creativity and technology. Join us in the pursuit of innovation, transcending traditional hackathons."
           </p>
@@ -215,7 +215,7 @@ export default function HeroSection() {
                   });
                 }
               }}
-              className="font-orbitron text-lg px-8 py-4 min-w-[200px]"
+              className="font-red-hat-display text-lg px-8 py-4 min-w-[200px]"
             >
               <span className="split-btn-text">Register Now</span>
             </Button>
@@ -232,30 +232,12 @@ export default function HeroSection() {
                   });
                 }
               }}
-              className="font-orbitron text-lg px-8 py-4 min-w-[200px] border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-black"
+              className="font-red-hat-display text-lg px-8 py-4 min-w-[200px] border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-black"
             >
               <span className="split-btn-text">Learn More</span>
             </Button>
           </div>
 
-          {/* Stats */}
-          <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto">
-            {[
-              { number: '28', label: 'Hours' },
-              { number: '8', label: 'Themes' },
-              { number: '₹80k+', label: 'Prizes' },
-              { number: '100+', label: 'Participants' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center group">
-                <div className="text-3xl md:text-4xl font-orbitron font-bold gradient-text mb-2 group-hover:scale-110 transition-transform duration-300">
-                  {stat.number}
-                </div>
-                <div className="text-white/60 font-rajdhani text-sm uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 

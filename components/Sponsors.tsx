@@ -74,12 +74,12 @@ export default function Sponsors() {
             className="sponsor-card group"
           >
             <div className="p-8 text-center">
-              <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-r from-primary-purple/20 to-primary-orange/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <span className="text-4xl font-orbitron font-bold text-white">
+              <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-r from-primary-orange/20 to-primary-purple/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <span className="text-4xl font-red-hat-display font-bold text-white">
                   {sponsor.name.charAt(0)}
                 </span>
               </div>
-              <h5 className="text-xl font-orbitron font-bold text-white group-hover:gradient-text transition-all duration-300">
+              <h5 className="text-xl font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300">
                 {sponsor.name}
               </h5>
             </div>
@@ -96,12 +96,12 @@ export default function Sponsors() {
       className="py-20 md:py-32 bg-gradient-to-b from-gray-900 via-black to-gray-900"
     >
       <Container>
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="text-center mb-16">
           <Title level={2} variant="gradient" size="xl" className="sponsors-title mb-8">
             Our Sponsors
           </Title>
-          <p className="text-lg text-white/70 font-rajdhani max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 font-red-hat-display max-w-2xl mx-auto">
             Proudly supported by industry leaders and organizations that believe in fostering innovation and creativity.
           </p>
         </div>
@@ -137,10 +137,10 @@ export default function Sponsors() {
                   className="sponsor-card group"
                 >
                   <div className="p-6 text-center">
-                    <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-primary-purple/30 to-primary-orange/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-primary-orange/30 to-primary-purple/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <span className="text-2xl">🎓</span>
                     </div>
-                    <h5 className="text-lg font-orbitron font-bold text-white group-hover:gradient-text transition-all duration-300">
+                    <h5 className="text-lg font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300">
                       {partner.name}
                     </h5>
                   </div>
@@ -166,7 +166,7 @@ export default function Sponsors() {
                     <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-r from-primary-orange/30 to-primary-purple/30 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <span className="text-2xl">🍕</span>
                     </div>
-                    <h5 className="text-lg font-orbitron font-bold text-white group-hover:gradient-text transition-all duration-300">
+                    <h5 className="text-lg font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300">
                       {partner.name}
                     </h5>
                   </div>
@@ -176,31 +176,6 @@ export default function Sponsors() {
           </div>
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <Card variant="gradient" className="p-8 max-w-2xl mx-auto">
-            <Title level={3} variant="default" size="md" className="mb-4">
-              Interested in Sponsoring?
-            </Title>
-            <p className="text-white/70 font-rajdhani mb-6">
-              Join us in supporting the next generation of innovators and technologists.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#contact"
-                className="inline-block px-6 py-3 bg-gradient-to-r from-primary-purple to-primary-orange text-white font-orbitron font-bold rounded-lg hover:shadow-lg hover:shadow-primary-purple/25 transition-all duration-300 transform hover:scale-105"
-              >
-                Become a Sponsor
-              </a>
-              <a
-                href="#contact"
-                className="inline-block px-6 py-3 border-2 border-primary-purple text-primary-purple font-orbitron font-bold rounded-lg hover:bg-primary-purple hover:text-white transition-all duration-300"
-              >
-                Contact Us
-              </a>
-            </div>
-          </Card>
-        </div>
         </div>
       </Container>
     </section>

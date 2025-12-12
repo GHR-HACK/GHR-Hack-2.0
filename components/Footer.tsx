@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 import Title from './ui/Title';
 import Container from './ui/Container';
 import { eventData, contact, socialLinks } from '../lib/data';
@@ -108,10 +109,15 @@ export default function Footer() {
         <div className="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
-            <Title variant="gradient" size="lg" className="mb-4 !p-0 !m-0">
-              {eventData.name}
-            </Title>
-            <p className="text-white/70 font-rajdhani mb-6 max-w-md">
+            <div className="relative h-16 w-48 mb-4">
+              <Image
+                src="/logo.png"
+                alt="GHR Hack 2.0 Logo"
+                fill
+                className="object-contain"
+              />
+            </div>
+            <p className="text-white/70 font-red-hat-display mb-6 max-w-md">
               {eventData.tagline}
             </p>
             <div className="flex space-x-4">
@@ -131,7 +137,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-white font-orbitron font-bold text-lg mb-6">Quick Links</h4>
+            <h4 className="text-white font-red-hat-display font-bold text-lg mb-6">Quick Links</h4>
             <ul className="space-y-3">
               {[
                 { name: 'Home', href: '#home' },
@@ -143,7 +149,7 @@ export default function Footer() {
                 <li key={link.name}>
                   <button
                     onClick={() => scrollToSection(link.href)}
-                    className="footer-links text-white/70 hover:text-primary-purple font-rajdhani transition-colors duration-300 text-left"
+                    className="footer-links text-white/70 hover:text-primary-purple font-red-hat-display transition-colors duration-300 text-left"
                   >
                     {link.name}
                   </button>
@@ -154,15 +160,15 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-white font-orbitron font-bold text-lg mb-6">Contact</h4>
+            <h4 className="text-white font-red-hat-display font-bold text-lg mb-6">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <span className="text-primary-purple">📧</span>
-                <span className="text-white/70 font-rajdhani text-sm">{contact.email}</span>
+                <span className="text-white/70 font-red-hat-display text-sm">{contact.email}</span>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-primary-orange">📞</span>
-                <div className="text-white/70 font-rajdhani text-sm">
+                <div className="text-white/70 font-red-hat-display text-sm">
                   {contact.phones.map((phone, index) => (
                     <div key={index}>{phone}</div>
                   ))}
@@ -170,7 +176,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start space-x-3">
                 <span className="text-primary-purple mt-0.5">📍</span>
-                <span className="text-white/70 font-rajdhani text-sm">{contact.address}</span>
+                <span className="text-white/70 font-red-hat-display text-sm">{contact.address}</span>
               </div>
             </div>
           </div>
@@ -179,19 +185,19 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-white/60 font-rajdhani text-sm mb-4 md:mb-0">
+            <p className="text-white/60 font-red-hat-display text-sm mb-4 md:mb-0">
               © 2025 {eventData.name}. All rights reserved.
             </p>
             <div className="flex space-x-6 text-sm">
               <button
                 onClick={() => scrollToSection('#contact')}
-                className="text-white/60 hover:text-primary-purple font-rajdhani transition-colors duration-300"
+                className="text-white/60 hover:text-primary-purple font-red-hat-display transition-colors duration-300"
               >
                 Privacy Policy
               </button>
               <button
                 onClick={() => scrollToSection('#contact')}
-                className="text-white/60 hover:text-primary-purple font-rajdhani transition-colors duration-300"
+                className="text-white/60 hover:text-primary-purple font-red-hat-display transition-colors duration-300"
               >
                 Terms of Service
               </button>

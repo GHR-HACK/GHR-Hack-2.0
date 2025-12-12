@@ -54,22 +54,22 @@ export default function Mentors() {
       className={`mentor-card group ${cardClass}`}
     >
       <div className="p-6 text-center">
-        <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-primary-purple to-primary-orange rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-          <span className="text-2xl font-orbitron font-bold text-white">
+        <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-r from-primary-orange to-primary-purple rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+          <span className="text-2xl font-red-hat-display font-bold text-white">
             {mentor.name.charAt(0)}
           </span>
         </div>
-        <h4 className="text-xl font-orbitron font-bold text-white mb-1 group-hover:gradient-text transition-all duration-300">
+        <h4 className="text-xl font-red-hat-display font-bold text-white mb-1 group-hover:gradient-text transition-all duration-300">
           {mentor.name}
         </h4>
-        <p className="text-primary-orange font-rajdhani font-medium mb-1">
+        <p className="text-primary-orange font-red-hat-display font-medium mb-1">
           {mentor.title}
         </p>
-        <p className="text-white/70 font-rajdhani text-sm">
+        <p className="text-white/70 font-red-hat-display text-sm">
           {mentor.role}
         </p>
         {mentor.phone && (
-          <p className="text-primary-purple font-rajdhani text-sm mt-2">
+          <p className="text-primary-purple font-red-hat-display text-sm mt-2">
             📞 {mentor.phone}
           </p>
         )}
@@ -89,7 +89,7 @@ export default function Mentors() {
           <Title level={2} variant="gradient" size="xl" className="mentors-title mb-8">
             Meet Our Mentors
           </Title>
-          <p className="text-lg text-white/70 font-rajdhani max-w-2xl mx-auto">
+          <p className="text-lg text-white/70 font-red-hat-display max-w-2xl mx-auto">
             Guided by visionary leaders and distinguished faculty who inspire innovation and excellence.
           </p>
         </div>
