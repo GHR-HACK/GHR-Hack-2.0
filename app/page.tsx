@@ -1,49 +1,33 @@
-"use client"
+'use client';
 
-import dynamic from "next/dynamic"
-
-const FireAnimation = dynamic(() => import("../components/fire-animation"), {
-  loading: () => <div className="w-full h-screen bg-neutral-950" />,
-  ssr: false,
-})
-
-export default function Home() {
-  return <FireAnimation />
-}
-
-
-
-/*
-
-import HeroSection from "../components/HeroSection";
-import AboutEventDetails from "../components/AboutEventDetails";
-import EventHighlightsSection from "../components/EventHighlights";
-import HackathonThemesSection from "../components/HackathonThemes";
-import EventTimelineSection from "../components/EventTimeline";
-import PrizeSection from "../components/PrizeSection";
-import Sponsors from "../components/Sponsors";
-import Mentors from "../components/Mentors";
-import Organizers from "../components/Organizers";
-import Contact from "../components/Teams";
-import FAQs from "../components/FAQs";
-import Footer from "../components/Footer";
+import HeroSection from '@/components/HeroSection';
+import AboutEventDetails from '@/components/AboutEventDetails';
+import EventHighlights from '@/components/EventHighlights';
+import HackathonThemes from '@/components/HackathonThemes';
+import EventTimeline from '@/components/EventTimeline';
+import PrizeSection from '@/components/PrizeSection';
+import Sponsors from '@/components/Sponsors';
+import Mentors from '@/components/Mentors';
+import Organizers from '@/components/Organizers';
+import Teams from '@/components/Teams';
+import FAQs from '@/components/FAQs';
+import FooterCurrent from '@/components/FooterCurrent';
 
 export default function Home() {
   return (
-    <div>
+    <main className="min-h-screen bg-black text-white">
       <HeroSection />
       <AboutEventDetails />
-      <EventHighlightsSection />
-      <HackathonThemesSection />
-      <EventTimelineSection />
+      <EventHighlights />
+      <HackathonThemes />
+      <EventTimeline />
       <PrizeSection />
       <Sponsors />
       <Mentors />
       <Organizers />
-      <Contact />
+      <Teams />
       <FAQs />
-      <Footer />
-    </div>
+      <FooterCurrent />
+    </main>
   );
 }
-  */
