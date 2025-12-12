@@ -1,0 +1,109 @@
+.App {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+}
+
+.container {
+  text-align: center;
+  max-width: 1200px;
+  padding: 2rem;
+}
+
+.logo-section {
+  margin-bottom: 2rem;
+}
+
+.logo {
+  max-width: 300px;
+  height: auto;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  background: linear-gradient(135deg, #e9552b, #680b7d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: #e9552b;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin: 2rem 0;
+  opacity: 0.8;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.partners-section {
+  margin-top: 4rem;
+}
+
+.partners-section h2 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #e9552b;
+}
+
+.partners-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.partner-logo {
+  height: 80px;
+  object-fit: contain;
+}
+
+.devfolio-logo {
+  /* Devfolio logo maintains its original colors */
+}
+
+.ethindia-logo {
+  /* ETHIndia logo maintains its original colors */
+}
+
+.apply-button {
+  margin-top: 2rem;
+  display: inline-block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .subtitle {
+    font-size: 1.5rem;
+  }
+
+  .partners-logos {
+    gap: 2rem;
+  }
+
+  .partner-logo {
+    height: 60px;
+  }
+
+  .logo {
+    max-width: 250px;
+  }
+}
