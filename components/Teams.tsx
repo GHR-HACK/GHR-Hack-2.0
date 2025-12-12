@@ -140,214 +140,144 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="contact-grid space-y-8">
-            {/* Registration Card */}
-            <Card variant="elevated" className="contact-card p-8">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-purple to-primary-orange rounded-full flex items-center justify-center">
-                  <span className="text-2xl">📱</span>
-                </div>
-                <Title level={3} variant="default" size="md" className="mb-4">
-                  How to Register
-                </Title>
-                <p className="text-white/70 font-rajdhani mb-6">
-                  Scan the QR code to register for GHR Hack 2.0
-                </p>
-                <div className="w-32 h-32 mx-auto mb-4 bg-white/10 rounded-lg flex items-center justify-center">
-                  <span className="text-4xl">📱</span>
-                  {/* QR Code placeholder - replace with actual QR code */}
-                </div>
-                <div className="space-y-2 text-sm text-white/60">
-                  <p>📧 No Registration Fees</p>
-                  <p>🎯 Free registration for all participants</p>
-                  <p>👥 Open to students and professionals nationwide</p>
-                </div>
-              </div>
-            </Card>
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
 
-            {/* Contact Details */}
-            <Card variant="glass" className="contact-card p-8">
-              <div className="space-y-6">
-                <Title level={3} variant="default" size="md" className="text-center mb-6">
-                  Contact Information
-                </Title>
+{/* LEFT — IMAGE CARD */}
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-primary-purple/20 rounded-full flex items-center justify-center">
-                    <span className="text-primary-purple">📧</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-rajdhani font-medium">Email</p>
-                    <p className="text-white/70">{contact.email}</p>
-                  </div>
-                </div>
+<div className="hidden lg:flex items-center justify-center h-full">
+  <div className="w-full max-w-lg flex items-center justify-center">
+    <div className="p-4 rounded-3xl shadow-[0_0_40px_rgba(128,0,255,0.3)] bg-gradient-to-br from-purple-800/40 to-orange-600/40 border border-white/10">
+      <img
+        src="/contact-img2.png"
+        alt="Contact Illustration"
+        className="w-full h-full object-contain rounded-2xl opacity-95"
+        style={{ maxHeight: "500px" }}   // Adjust based on form height
+      />
+    </div>
+  </div>
+</div>
 
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-primary-orange/20 rounded-full flex items-center justify-center">
-                    <span className="text-primary-orange">📞</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-rajdhani font-medium">Phone</p>
-                    {contact.phones.map((phone, index) => (
-                      <p key={index} className="text-white/70">{phone}</p>
-                    ))}
-                  </div>
-                </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-primary-purple/20 rounded-full flex items-center justify-center mt-1">
-                    <span className="text-primary-purple">📍</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-rajdhani font-medium">Address</p>
-                    <p className="text-white/70">{contact.address}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
 
-            {/* Social Links */}
-            <Card variant="gradient" className="contact-card p-8">
-              <div className="text-center">
-                <Title level={3} variant="default" size="md" className="mb-6">
-                  Follow Us
-                </Title>
-                <div className="flex justify-center space-x-6">
-                  {Object.entries(socialLinks).map(([platform, link]) => (
-                    <a
-                      key={platform}
-                      href={link || '#'}
-                      className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-purple/20 transition-all duration-300 hover:scale-110"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {socialIcons[platform as keyof typeof socialIcons]}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          </div>
 
-          {/* Contact Form */}
-          <Card variant="elevated" className="contact-form p-8">
-            <Title level={3} variant="gradient" size="md" className="mb-6 text-center">
-              Send us a Message
-            </Title>
+  {/* RIGHT — FORM */}
+  <Card variant="elevated" className="contact-form p-8">
+    <Title level={3} variant="gradient" size="md" className="mb-6 text-center">
+      Send us a Message
+    </Title>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
-                  Full Name *
-                </label>
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
-                  placeholder="Enter your full name"
-                />
-              </div>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div>
+        <label className="block text-white font-rajdhani font-medium mb-2">
+          Full Name *
+        </label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          required
+          className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
+          placeholder="Enter your full name"
+        />
+      </div>
 
-              <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
-                  placeholder="Enter your email"
-                />
-              </div>
+      <div>
+        <label className="block text-white font-rajdhani font-medium mb-2">
+          Email *
+        </label>
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleInputChange}
+          required
+          className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
+          placeholder="Enter your email"
+        />
+      </div>
 
-              <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
-                  Phone Number *
-                </label>
-                <div className="flex">
-                  <span className="inline-flex items-center px-3 py-3 bg-black/20 border border-r-0 border-white/20 rounded-l-lg text-white">
-                    🇮🇳 +91
-                  </span>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
-                    className="flex-1 px-4 py-3 bg-black/20 border border-white/20 rounded-r-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
-                    placeholder="Enter your phone number"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
-                  I AM INTERESTED IN:
-                </label>
-                <select
-                  name="interest"
-                  value={formData.interest}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary-purple transition-colors"
-                >
-                  <option value="">Select an option</option>
-                  <option value="participating">Participating</option>
-                  <option value="collaboration">Collaboration</option>
-                  <option value="sponsorship">Sponsorship</option>
-                  <option value="helping">Helping</option>
-                  <option value="event">Event Information</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-white font-rajdhani font-medium mb-2">
-                  Leave us a message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors resize-none"
-                  placeholder="Tell us more about your interest..."
-                />
-              </div>
-
-              <div className="flex items-start space-x-3">
-                <input
-                  type="checkbox"
-                  name="agree"
-                  checked={formData.agree}
-                  onChange={handleInputChange}
-                  required
-                  className="mt-1 w-4 h-4 text-primary-purple bg-black/20 border-white/20 rounded focus:ring-primary-purple"
-                />
-                <label className="text-white/70 font-rajdhani text-sm">
-                  I have read & I agree to the privacy policy.
-                </label>
-              </div>
-
-              <Button
-                type="submit"
-                variant="primary"
-                size="lg"
-                className="w-full font-orbitron"
-              >
-                Submit
-              </Button>
-            </form>
-          </Card>
+      <div>
+        <label className="block text-white font-rajdhani font-medium mb-2">
+          Phone Number *
+        </label>
+        <div className="flex">
+          <span className="inline-flex items-center px-3 py-3 bg-black/20 border border-r-0 border-white/20 rounded-l-lg text-white">
+            🇮🇳 +91
+          </span>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleInputChange}
+            required
+            className="flex-1 px-4 py-3 bg-black/20 border border-white/20 rounded-r-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
+            placeholder="Enter your phone number"
+          />
         </div>
-        </div>
-      </Container>
+      </div>
+
+      <div>
+        <label className="block text-white font-rajdhani font-medium mb-2">
+          I AM INTERESTED IN:
+        </label>
+        <select
+          name="interest"
+          value={formData.interest}
+          onChange={handleInputChange}
+          className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary-purple transition-colors"
+        >
+          <option value="">Select an option</option>
+          <option value="participating">Participating</option>
+          <option value="collaboration">Collaboration</option>
+          <option value="sponsorship">Sponsorship</option>
+          <option value="helping">Helping</option>
+          <option value="event">Event Information</option>
+        </select>
+      </div>
+
+      <div>
+        <label className="block text-white font-rajdhani font-medium mb-2">
+          Leave us a message
+        </label>
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleInputChange}
+          rows={4}
+          className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors resize-none"
+          placeholder="Tell us more about your interest..."
+        />
+      </div>
+
+      <div className="flex items-start space-x-3">
+        <input
+          type="checkbox"
+          name="agree"
+          checked={formData.agree}
+          onChange={handleInputChange}
+          required
+          className="mt-1 w-4 h-4 text-primary-purple bg-black/20 border-white/20 rounded focus:ring-primary-purple"
+        />
+        <label className="text-white/70 font-rajdhani text-sm">
+          I have read & I agree to the privacy policy.
+        </label>
+      </div>
+
+      <Button
+        type="submit"
+        variant="primary"
+        size="lg"
+        className="w-full font-orbitron"
+      >
+        Submit
+      </Button>
+    </form>
+  </Card>
+
+</div>
+ </div>
+        </Container>
     </section>
   );
 }
