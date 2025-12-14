@@ -3,11 +3,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 import Card from './ui/Card';
 import Title from './ui/Title';
 import Container from './ui/Container';
 import Button from './ui/Button';
 import { contact, socialLinks } from '../lib/data';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -38,21 +40,33 @@ export default function Contact() {
         ease: 'power3.out',
       });
 
+      // Animate image - from left
+      gsap.from('.contact-image', {
+        scrollTrigger: {
+          trigger: '.contact-image',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+        x: -50,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+      });
+
       // Animate contact cards
       gsap.from('.contact-card', {
         scrollTrigger: {
-          trigger: '.contact-grid',
+          trigger: '.contact-card',
           start: 'top 80%',
           toggleActions: 'play none none reverse',
         },
         y: 50,
         opacity: 0,
         duration: 0.8,
-        stagger: 0.2,
         ease: 'back.out(1.7)',
       });
 
-      // Animate form - from right like timeline
+      // Animate form - from right
       gsap.from('.contact-form', {
         scrollTrigger: {
           trigger: '.contact-form',
@@ -128,119 +142,40 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="pt-20 pb-8 md:pt-24 md:pb-12 bg-gradient-to-b from-gray-900 via-black to-gray-900"
+      className="pt-6 bg-white"
     >
       <Container>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="text-center mb-12 md:mb-16">
-          <Title level={2} variant="gradient" size="xl" className="contact-title mb-8">
+        <div className="text-center">
+          <Title level={2} variant="gradient" size="xl" className="contact-title">
             Get In Touch
-          </Title>
-          <p className="text-lg text-white/70 font-red-hat-display max-w-2xl mx-auto">
-            Ready to join the revolution? Connect with us and be part of GHR Hack 2.0.
-          </p>
+          </Title>         
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-0">
-          {/* Contact Information */}
-          <div className="contact-grid space-y-8">
-            {/* Registration Card */}
-            <Card variant="elevated" className="contact-card p-8">
-              <div className="text-center">
-                <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-primary-orange to-primary-purple rounded-full flex items-center justify-center">
-                  <span className="text-2xl">📱</span>
-                </div>
-                <Title level={3} variant="default" size="md" className="mb-4">
-                  How to Register
-                </Title>
-                <p className="text-white/70 font-red-hat-display mb-6">
-                  Scan the QR code to register for GHR Hack 2.0
-                </p>
-                <div className="w-32 h-32 mx-auto mb-4 bg-white/10 rounded-lg flex items-center justify-center">
-                  <span className="text-4xl">📱</span>
-                  {/* QR Code placeholder - replace with actual QR code */}
-                </div>
-                <div className="space-y-2 text-sm text-white/60">
-                  <p>📧 No Registration Fees</p>
-                  <p>🎯 Free registration for all participants</p>
-                  <p>👥 Open to students and professionals nationwide</p>
-                </div>
-              </div>
-            </Card>
-
-            {/* Contact Details */}
-            <Card variant="glass" className="contact-card p-8">
-              <div className="space-y-6">
-                <Title level={3} variant="default" size="md" className="text-center mb-6">
-                  Contact Information
-                </Title>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-primary-purple/20 rounded-full flex items-center justify-center">
-                    <span className="text-primary-purple">📧</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-red-hat-display font-medium">Email</p>
-                    <p className="text-white/70">{contact.email}</p>
-                  </div>
-                </div>
-
-                <div className="flex items-center space-x-4">
-                  <div className="w-10 h-10 bg-primary-orange/20 rounded-full flex items-center justify-center">
-                    <span className="text-primary-orange">📞</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-red-hat-display font-medium">Phone</p>
-                    {contact.phones.map((phone, index) => (
-                      <p key={index} className="text-white/70">{phone}</p>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="w-10 h-10 bg-primary-purple/20 rounded-full flex items-center justify-center mt-1">
-                    <span className="text-primary-purple">📍</span>
-                  </div>
-                  <div>
-                    <p className="text-white font-red-hat-display font-medium">Address</p>
-                    <p className="text-white/70">{contact.address}</p>
-                  </div>
-                </div>
-              </div>
-            </Card>
-
-            {/* Social Links */}
-            <Card variant="gradient" className="contact-card p-8">
-              <div className="text-center">
-                <Title level={3} variant="default" size="md" className="mb-6">
-                  Follow Us
-                </Title>
-                <div className="flex justify-center space-x-6">
-                  {Object.entries(socialLinks).map(([platform, link]) => (
-                    <a
-                      key={platform}
-                      href={link || '#'}
-                      className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center hover:bg-primary-purple/20 transition-all duration-300 hover:scale-110"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {socialIcons[platform as keyof typeof socialIcons]}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </Card>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-0">
+          {/* Image on Left */}
+          <div className="contact-image">
+            <img
+              src="/contact-img.png"
+              alt="Contact us"
+              className="w-full h-auto object-contain rounded-lg"
+            />
           </div>
 
-          {/* Contact Form */}
-          <Card variant="elevated" className="contact-form p-6 md:p-8 h-auto mb-0">
-            <Title level={3} variant="gradient" size="md" className="mb-6 text-center">
+          {/* Contact Information and Form on Right */}
+          <div className="">
+            {/* Contact Details */}
+             
+
+            {/* Contact Form */}
+            <Card variant="elevated" className="contact-form p-5 md:p-6 h-auto mb-0">
+            <Title level={3} variant="gradient" size="md" className="mb-4 text-center">
               Send us a Message
             </Title>
 
-            <form onSubmit={handleSubmit} className="space-y-6 w-full">
+            <form onSubmit={handleSubmit} className="space-y-4 w-full">
               <div>
-                <label className="block text-white font-red-hat-display font-medium mb-2">
+                <label className="block text-black font-red-hat-display font-medium mb-1.5 text-sm">
                   Full Name *
                 </label>
                 <input
@@ -249,13 +184,13 @@ export default function Contact() {
                   value={formData.name}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
+                  className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                   placeholder="Enter your full name"
                 />
               </div>
 
               <div>
-                <label className="block text-white font-red-hat-display font-medium mb-2">
+                <label className="block text-black font-red-hat-display font-medium mb-1.5 text-sm">
                   Email *
                 </label>
                 <input
@@ -264,17 +199,17 @@ export default function Contact() {
                   value={formData.email}
                   onChange={handleInputChange}
                   required
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
+                  className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                   placeholder="Enter your email"
                 />
               </div>
 
               <div>
-                <label className="block text-white font-red-hat-display font-medium mb-2">
+                <label className="block text-black font-red-hat-display font-medium mb-1.5 text-sm">
                   Phone Number *
                 </label>
                 <div className="flex">
-                  <span className="inline-flex items-center px-3 py-3 bg-black/20 border border-r-0 border-white/20 rounded-l-lg text-white">
+                  <span className="inline-flex items-center px-2.5 py-2.5 bg-black/5 border border-r-0 border-black/20 rounded-l-lg text-black text-sm">
                     🇮🇳 +91
                   </span>
                   <input
@@ -283,21 +218,21 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    className="flex-1 px-4 py-3 bg-black/20 border border-white/20 rounded-r-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors"
+                    className="flex-1 px-3 py-2.5 bg-white border border-black/20 rounded-r-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                     placeholder="Enter your phone number"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-white font-red-hat-display font-medium mb-2">
+                <label className="block text-black font-red-hat-display font-medium mb-1.5 text-sm">
                   I AM INTERESTED IN:
                 </label>
                 <select
                   name="interest"
                   value={formData.interest}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white focus:outline-none focus:border-primary-purple transition-colors"
+                  className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                 >
                   <option value="">Select an option</option>
                   <option value="participating">Participating</option>
@@ -309,43 +244,45 @@ export default function Contact() {
               </div>
 
               <div>
-                <label className="block text-white font-red-hat-display font-medium mb-2">
+                <label className="block text-black font-red-hat-display font-medium mb-1.5 text-sm">
                   Leave us a message
                 </label>
                 <textarea
                   name="message"
                   value={formData.message}
                   onChange={handleInputChange}
-                  rows={4}
-                  className="w-full px-4 py-3 bg-black/20 border border-white/20 rounded-lg text-white placeholder-white/50 focus:outline-none focus:border-primary-purple transition-colors resize-none"
+                  rows={3}
+                  className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 resize-none text-sm"
                   placeholder="Tell us more about your interest..."
                 />
               </div>
 
-              <div className="flex items-start space-x-3">
+              <div className="flex items-start space-x-2">
                 <input
                   type="checkbox"
                   name="agree"
                   checked={formData.agree}
                   onChange={handleInputChange}
                   required
-                  className="mt-1 w-4 h-4 text-primary-purple bg-black/20 border-white/20 rounded focus:ring-primary-purple"
+                  className="mt-0.5 w-4 h-4 text-primary-purple bg-white border-black/20 rounded focus:ring-primary-purple"
                 />
-                <label className="text-white/70 font-red-hat-display text-sm">
+                <label className="text-black/60 font-red-hat-display text-xs group-hover:text-black/80 transition-colors duration-300">
                   I have read & I agree to the privacy policy.
                 </label>
               </div>
 
-              <Button
+              <button
                 type="submit"
-                variant="primary"
-                size="lg"
-                className="w-full font-red-hat-display"
+                className="w-full px-4 py-2.5 rounded-lg font-red-hat-display font-semibold text-white text-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                style={{
+                  background: 'linear-gradient(144deg, #5c0f8b 50%, #ff5100 100%)'
+                }}
               >
                 Submit
-              </Button>
+              </button>
             </form>
           </Card>
+          </div>
         </div>
         </div>
       </Container>

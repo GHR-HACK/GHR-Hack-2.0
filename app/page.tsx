@@ -37,7 +37,7 @@ export default function Home() {
       <AboutEventDetails />
       <EventHighlightsSection />
       <HackathonThemesSection />
-      <EventTimelineSection />
+      {/*<EventTimelineSection /> */}
       <PrizeSection />
       <Sponsors />
       <Mentors />

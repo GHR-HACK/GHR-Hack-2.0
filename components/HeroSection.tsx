@@ -7,6 +7,8 @@ import { ScrambleTextPlugin } from 'gsap/ScrambleTextPlugin';
 import { SplitText } from 'gsap/SplitText';
 import Button from './ui/Button';
 import Title from './ui/Title';
+import ParticlesWeb from './particles-web';
+import OptimizedSnakeCursor from './ui/custom-cursor';
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, SplitText);
 
@@ -14,9 +16,23 @@ export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const taglineRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const backgroundRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Load Devfolio script
+    const script = document.createElement('script');
+    script.src = 'https://apply.devfolio.co/v2/sdk.js';
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+
+    return () => {
+      if (document.body.contains(script)) {
+        document.body.removeChild(script);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -28,8 +44,8 @@ export default function HeroSection() {
         gsap.to(titleRef.current, {
           duration: 2,
           scrambleText: {
-            text: "GHR Hack 2.0",
-            chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz",
+            text: "GHRhack 2.0",
+            chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnz",
             revealDelay: 0.4,
             speed: 0.15
           }
@@ -50,19 +66,6 @@ export default function HeroSection() {
         });
       }
 
-      // SplitText animation for tagline (chars)
-      let taglineSplit: SplitText | null = null;
-      if (taglineRef.current) {
-        taglineSplit = new SplitText(taglineRef.current, { type: 'chars' });
-        gsap.from(taglineSplit.chars, {
-          duration: 1.4,
-          y: 30,
-          opacity: 0,
-          stagger: 0.03,
-          ease: 'power3.out',
-          delay: 0.6,
-        });
-      }
 
       // SplitText for button texts (chars)
       const buttonTextSplits: SplitText[] = [];
@@ -93,18 +96,6 @@ export default function HeroSection() {
         });
       }
 
-      // Floating background elements
-      gsap.to('.floating-element', {
-        y: 'random(-20, 20)',
-        x: 'random(-10, 10)',
-        rotation: 'random(-5, 5)',
-        duration: 'random(3, 6)',
-        ease: 'none',
-        repeat: -1,
-        yoyo: true,
-        stagger: 0.5,
-      });
-
       // 3D parallax effect on scroll
       ScrollTrigger.create({
         trigger: heroRef.current,
@@ -121,29 +112,9 @@ export default function HeroSection() {
         },
       });
 
-      // Mouse movement parallax
-      const handleMouseMove = (e: MouseEvent) => {
-        const { clientX, clientY } = e;
-        const centerX = window.innerWidth / 2;
-        const centerY = window.innerHeight / 2;
-
-        const moveX = (clientX - centerX) / centerX;
-        const moveY = (clientY - centerY) / centerY;
-
-        gsap.to('.parallax-element', {
-          x: moveX * 20,
-          y: moveY * 20,
-          duration: 0.5,
-          ease: 'power2.out',
-        });
-      };
-
-      window.addEventListener('mousemove', handleMouseMove);
 
       return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
         if (subtitleSplit) subtitleSplit.revert();
-        if (taglineSplit) taglineSplit.revert();
         buttonTextSplits.forEach((split) => split.revert());
       };
     }, heroRef);
@@ -152,24 +123,26 @@ export default function HeroSection() {
   }, []);
 
   return (
+<>  
+    {/* Mouse Animation - Only for Hero Section */}
+    <OptimizedSnakeCursor />
+
     <section
       id="home"
       ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-black via-gray-900 to-black pt-32 md:pt-40"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 md:pt-40"
     >
       {/* Animated Background */}
       
       <div ref={backgroundRef} className="absolute inset-0">
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)]" />
-
-        {/* Floating geometric shapes */}
-        <div className="floating-element absolute top-20 left-20 w-32 h-32 border border-primary-purple/30 rounded-full parallax-element" />
-        <div className="floating-element absolute top-40 right-32 w-24 h-24 bg-primary-orange/10 rounded-lg parallax-element" />
-        <div className="floating-element absolute bottom-32 left-32 w-20 h-20 border border-primary-orange/30 rotate-45 parallax-element" />
-        <div className="floating-element absolute bottom-20 right-20 w-28 h-28 bg-primary-purple/10 rounded-full parallax-element" />
       </div>
 
+      {/* Particles Background */}
+      <ParticlesWeb />
+
+      
       {/* Main Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center hero-3d">
         <div className="max-w-5xl mx-auto">
@@ -181,24 +154,17 @@ export default function HeroSection() {
             size="3xl"
             className="mb-6 leading-tight text-6xl md:text-7xl lg:text-8xl"
           >
-            GHR Hack 2.0
+            GHRhack 2.0
           </Title>
 
           {/* Subtitle */}
-          <p
+          <div
             ref={subtitleRef}
-            className="text-xl md:text-2xl text-white/80 font-red-hat-display font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle"
+            className="text-xl md:text-2xl text-white/80 font-red-hat-display font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle text-center"
           >
-            Code the Unexplored • 28 Hours of Innovation • March 8-9, 2025
-          </p>
-
-          {/* Tagline */}
-          <p
-            ref={taglineRef}
-            className="text-lg md:text-xl text-primary-orange font-red-hat-display font-medium mb-12 italic split-tagline"
-          >
-            "GHR-HACK, a groundbreaking hackathon by GHRCEM JALGAON, redefines creativity and technology. Join us in the pursuit of innovation, transcending traditional hackathons."
-          </p>
+            <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the career</p>
+            <p>28 Feb - 1 March 2026</p>
+          </div>
 
           {/* Action Buttons */}
           <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
@@ -219,23 +185,16 @@ export default function HeroSection() {
             >
               <span className="split-btn-text">Register Now</span>
             </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => {
-                const element = document.querySelector('#about');
-                if (element) {
-                  gsap.to(window, {
-                    duration: 1,
-                    scrollTo: { y: element, offsetY: 80 },
-                    ease: 'power2.inOut',
-                  });
-                }
-              }}
-              className="font-red-hat-display text-lg px-8 py-4 min-w-[200px] border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-black"
-            >
-              <span className="split-btn-text">Learn More</span>
-            </Button>
+          </div>
+
+          {/* Devfolio Apply Button */}
+          <div className="flex justify-center py-8">
+            <div
+              className="apply-button"
+              data-hackathon-slug="ghrhack2"
+              data-button-theme="light"
+              style={{ height: '44px', width: '312px' }}
+            ></div>
           </div>
 
         </div>
@@ -245,5 +204,6 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent" />
       <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent" />
     </section>
+    </>
   );
 }

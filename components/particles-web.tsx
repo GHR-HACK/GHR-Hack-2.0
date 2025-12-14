@@ -22,7 +22,7 @@ export default function ParticlesWeb() {
               value: 60,
               density: {
                 enable: true,
-                value_area: 500,
+                value_area: 800,
               },
             },
             color: {
@@ -138,7 +138,7 @@ export default function ParticlesWeb() {
   return (
     <div
       id="particles-js"
-      className="fixed top-0 left-0 w-full h-full z-0 pointer-events-none"
+      className="absolute inset-0 w-full h-full z-0 pointer-events-none"
       style={{
         pointerEvents: "auto",
       }}

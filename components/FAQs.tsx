@@ -113,17 +113,15 @@ export default function FAQs() {
     <section
       id="faq"
       ref={sectionRef}
-      className="pt-12 pb-20 md:pt-16 md:py-32 bg-gradient-to-b from-black via-gray-900 to-black"
+      className="pt-12 pb-20 md:pt-16 md:py-16 bg-white"
     >
       <Container>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="text-center mb-16">
+        <div className="text-center ">
           <Title level={2} variant="gradient" size="xl" className="faqs-title mb-8">
             Frequently Asked Questions
           </Title>
-          <p className="text-lg text-white/70 font-red-hat-display max-w-2xl mx-auto">
-            Got questions? We've got answers. Find everything you need to know about GHR Hack 2.0.
-          </p>
+          
         </div>
 
         <div className="faqs-grid max-w-4xl mx-auto">
@@ -139,7 +137,7 @@ export default function FAQs() {
             >
               <div className="p-6">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-red-hat-display font-bold text-white group-hover:gradient-text transition-all duration-300 pr-4">
+                  <h3 className="text-lg font-red-hat-display font-bold text-black group-hover:gradient-text transition-all duration-300 pr-4">
                     {faq.question}
                   </h3>
                   <div className="faq-icon flex-shrink-0 w-6 h-6 text-primary-orange transition-transform duration-300">
@@ -149,7 +147,7 @@ export default function FAQs() {
                   </div>
                 </div>
                 <div className="faq-answer overflow-hidden" style={{ height: 0, opacity: 0 }}>
-                  <p className="text-white/70 font-red-hat-display mt-4 pt-4 border-t border-white/10">
+                  <p className="text-black/70 font-red-hat-display mt-4 pt-4 border-t border-black/10 group-hover:text-black/90 transition-colors duration-300">
                     {faq.answer || "We're working on providing detailed answers for all your questions. Stay tuned for updates!"}
                   </p>
                 </div>

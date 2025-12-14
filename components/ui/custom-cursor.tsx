@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 const SEGMENTS = 20; // Increased for longer snake
@@ -8,12 +8,11 @@ const BASE_SIZE = 16;
 const COLOR_START = '#e9552b'; // orange
 const COLOR_END = '#680b7d';   // purple
 const HEAD_SIZE = 22;
-const TRAIL_LENGTH = 120;
 const SPARKS = 8;
 
 export default function SnakeCursor() {
+  const [shouldRender, setShouldRender] = useState(false);
   const segmentsRef = useRef<HTMLDivElement[]>([]);
-  const trailRef = useRef<HTMLDivElement>(null);
   const sparkRefs = useRef<HTMLDivElement[]>([]);
   const positionsRef = useRef<Array<{x: number, y: number, rotation: number}>>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -21,6 +20,17 @@ export default function SnakeCursor() {
   const animationIdRef = useRef<number>(0);
 
   useEffect(() => {
+    // Check if mobile/tablet and set render state
+    const checkDevice = () => {
+      const isMobileOrTablet =
+        window.matchMedia('(pointer: coarse)').matches ||
+        window.innerWidth <= 1024 ||
+        /Mobi|Android/i.test(navigator.userAgent);
+      setShouldRender(!isMobileOrTablet);
+    };
+
+    checkDevice();
+
     // Hide on mobile and tablet
     const isMobileOrTablet = () => {
       return window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 1024;
@@ -60,7 +70,7 @@ export default function SnakeCursor() {
       const speed = Math.sqrt(velX * velX + velY * velY);
       
       // Update head with snake-like movement
-      const headLerp = 0.15 + Math.min(speed * 0.005, 0.1);
+      const headLerp = 0.25 + Math.min(speed * 0.008, 0.15);
       positionsRef.current[0].x = lerp(
         positionsRef.current[0].x, 
         mouseRef.current.x, 
@@ -79,7 +89,7 @@ export default function SnakeCursor() {
 
       // Update body segments with diminishing lerp for snake effect
       for (let i = 1; i < SEGMENTS; i++) {
-        const lerpAmount = 0.25 * (1 - i / (SEGMENTS * 2));
+        const lerpAmount = 0.35 * (1 - i / (SEGMENTS * 2));
         
         positionsRef.current[i].x = lerp(
           positionsRef.current[i].x,
@@ -104,14 +114,22 @@ export default function SnakeCursor() {
       positionsRef.current.forEach((pos, i) => {
         const segment = segmentsRef.current[i];
         if (segment) {
-          // Snake-like sizing - larger head, gradually smaller body
-          const sizeProgress = i / SEGMENTS;
+          // Skip head segment (index 0) - use real mouse cursor instead
+          if (i === 0) {
+            gsap.set(segment, {
+              opacity: 0, // Hide the custom head, use real cursor
+            });
+            return;
+          }
+
+          // Snake-like sizing - gradually smaller body
+          const sizeProgress = (i - 1) / (SEGMENTS - 1); // Adjust for skipping head
           const size = BASE_SIZE * (1 - sizeProgress * 0.7);
           const opacity = 0.2 + (1 - sizeProgress) * 0.8;
-          
+
           // Calculate color based on position in snake
           // Simple transition from orange to purple
-          const colorProgress = i / SEGMENTS;
+          const colorProgress = (i - 1) / (SEGMENTS - 1); // Adjust for skipping head
           const segmentColor = colorProgress < 0.5 ? COLOR_START : COLOR_END;
 
           gsap.set(segment, {
@@ -125,8 +143,8 @@ export default function SnakeCursor() {
             backgroundImage: 'none',
           });
 
-          // Add scale pattern to body segments (not head)
-          if (i > 0 && i < SEGMENTS - 2) {
+          // Add scale pattern to body segments (skip first segment)
+          if (i > 1 && i < SEGMENTS - 2) {
             segment.style.backgroundImage = 'radial-gradient(circle at 50% 30%, rgba(255,255,255,0.2) 2px, transparent 3px)';
             segment.style.backgroundSize = '8px 8px';
           }
@@ -134,20 +152,6 @@ export default function SnakeCursor() {
       });
 
       // No head (hidden per request)
-
-      // Update trail/snake tongue effect
-      if (trailRef.current) {
-        const trailOpacity = Math.min(0.7, 0.1 + speed * 0.01);
-        
-        gsap.set(trailRef.current, {
-          x: positionsRef.current[0].x,
-          y: positionsRef.current[0].y,
-          rotation: positionsRef.current[0].rotation,
-          opacity: trailOpacity,
-          backgroundColor: COLOR_START,
-          backgroundImage: 'none',
-        });
-      }
 
       // Spark effects when moving quickly
       if (speed > 8 && Math.random() < 0.25) {
@@ -190,9 +194,9 @@ export default function SnakeCursor() {
     // Start animation
     animationIdRef.current = requestAnimationFrame(animate);
 
-    // Hide default cursor
+    // Keep default cursor visible (it's the snake head now)
     const originalCursor = document.body.style.cursor;
-    document.body.style.cursor = 'none';
+    // document.body.style.cursor = 'none'; // Commented out to keep real cursor
 
     // Hover effects removed (no head)
     const handleElementMouseEnter = () => {};
@@ -232,33 +236,13 @@ export default function SnakeCursor() {
   }, []);
 
   // Don't render on mobile/tablet
-  if (typeof window !== 'undefined') {
-    const isMobileOrTablet =
-      window.matchMedia('(pointer: coarse)').matches ||
-      window.innerWidth <= 1024 ||
-      /Mobi|Android/i.test(navigator.userAgent);
-    if (isMobileOrTablet) {
-      return null;
-    }
-  }
+  // Temporarily always render for debugging
+  // if (!shouldRender) {
+  //   return null;
+  // }
 
   return (
     <>
-      {/* Snake Tongue/Trail */}
-      <div
-        ref={trailRef}
-        className="fixed pointer-events-none z-[9999]"
-        style={{
-          width: TRAIL_LENGTH,
-          height: 4,
-          borderRadius: '2px',
-          filter: 'blur(2px)',
-          opacity: 0,
-          transformOrigin: '0% 50%',
-          backgroundColor: COLOR_START,
-        }}
-      />
-
       {/* Snake Body Segments */}
       {Array.from({ length: SEGMENTS }).map((_, index) => (
         <div
@@ -266,7 +250,7 @@ export default function SnakeCursor() {
           ref={(el) => {
             if (el) segmentsRef.current[index] = el;
           }}
-          className="fixed pointer-events-none z-[9998]"
+          className="absolute pointer-events-none z-[9998]"
           style={{
             borderRadius: '40%', // Oval shape for snake body
             border: '1px solid rgba(255, 255, 255, 0.1)',
@@ -300,19 +284,21 @@ export default function SnakeCursor() {
 
       {/* Global styles */}
       <style jsx global>{`
+        /* Ensure default cursor shows everywhere, especially on text */
         * {
-          cursor: none !important;
+          cursor: default !important;
         }
-        
-        /* Show cursor on mobile and tablet */
+
+        /* Make sure text elements show default cursor */
+        p, h1, h2, h3, h4, h5, h6, span, div, a, button {
+          cursor: default !important;
+        }
+
+        /* Keep auto cursor on mobile/tablet */
         @media (max-width: 1024px), (pointer: coarse) {
           * {
             cursor: auto !important;
           }
-        }
-        
-        html, body {
-          cursor: none;
         }
         
         /* Hardware acceleration */

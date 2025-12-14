@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Card from './ui/Card';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Title from './ui/Title';
 import Container from './ui/Container';
 import { aboutEvent } from '../lib/data';
@@ -15,25 +15,30 @@ export default function AboutEventDetails() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Batch animation for about items - alternating left/right
-      ScrollTrigger.batch('.about-item', {
-        interval: 0.1,
-        batchMax: 2,
-        start: 'top 85%',
-        once: true,
-        onEnter: (batch) => {
-          (batch as HTMLElement[]).forEach((el, idx) => {
-            const side = el.getAttribute('data-side');
-            const fromX = side === 'left' ? -40 : 40;
-            gsap.from(el, {
-              x: fromX,
-              autoAlpha: 0,
-              duration: 0.8,
-              ease: 'power3.out',
-              delay: idx * 0.05,
-            });
-          });
-        },
+      // Animate sections coming from left and right sides
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        onEnter: () => {
+          const leftItem = document.querySelector('.about-item[data-side="left"]');
+          const rightItem = document.querySelector('.about-item[data-side="right"]');
+
+          // Animate left item from left
+          if (leftItem) {
+            gsap.fromTo(leftItem,
+              { x: -50, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.8, ease: 'power2.out' }
+            );
+          }
+
+          // Animate right item from right
+          if (rightItem) {
+            gsap.fromTo(rightItem,
+              { x: 50, opacity: 0 },
+              { x: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: 0.2 }
+            );
+          }
+        }
       });
     }, sectionRef);
 
@@ -42,20 +47,37 @@ export default function AboutEventDetails() {
 
   return (
     <section
-      id="themes"
+      id="about"
       ref={sectionRef}
-      className="py-20 md:py-32 bg-gradient-to-b from-black via-gray-900 to-black"
+      className="py-16 md:py-24 bg-white"
     >
       <Container>
-        {/* About Section */}
-        <div className="text-center mb-8 md:mb-12 max-w-5xl mx-auto px-4 sm:px-6 md:px-8">
-          <Title level={2} variant="gradient" size="xl" className="about-item mb-6 md:mb-8" data-side="left">
-            {aboutEvent.title}
-          </Title>
-          <div className="max-w-4xl mx-auto">
-            <p className="about-item text-lg md:text-xl text-white/80 font-red-hat-display leading-relaxed" data-side="right">
-              {aboutEvent.description}
-            </p>
+        {/* About Section - 2 Column Layout */}
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 md:px-12 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24 xl:gap-32 items-center">
+            {/* Left Side - Lottie Animation */}
+            <div className="about-item order-2 lg:order-1" data-side="left">
+              <div className="relative w-full h-80 lg:h-96 flex items-center justify-center">
+                <DotLottieReact
+                  src="/AboutEvent.lottie"
+                  loop
+                  autoplay
+                  className="w-full h-full"
+                />
+              </div>
+            </div>
+
+            {/* Right Side - Content */}
+            <div className="about-item order-1 lg:order-2 text-left" data-side="right">
+              <Title level={2} variant="gradient" size="lg" className="mb-6">
+                {aboutEvent.title}
+              </Title>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-black text-lg leading-relaxed text-justify font-red-hat-display group-hover:text-black/90 transition-colors duration-300">
+                  {aboutEvent.description}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </Container>

@@ -2,15 +2,15 @@
 // Eg. Sponsor names , teacher ,guide,mentor ,team member names
 
 export const eventData = {
-  name: "GHR Hack 2.0",
+  name: "GHRhack 2.0",
   tagline: "GHR-HACK, a groundbreaking hackathon by GHRCEM JALGAON, redefines creativity and technology. Join us in the pursuit of innovation, transcending traditional hackathons.",
-  date: "8th and 9th March 2025",
-  duration: "28 hours",
-  theme: "Code the Unexplored"
+  date: "28th February and 1st March 2026",
+  duration: "30 hours",
+  theme: "Code the Career"
 };
 
 export const eventHighlights = {
-  duration: "28 hours of non-stop innovation.",
+  duration: "30 hours of non-stop innovation.",
   themes: [
     "EdTech Evolution",
     "Blockchain Revolution",
@@ -30,16 +30,16 @@ export const eventHighlights = {
 export const hackathonThemes = [
   { name: "EdTech Evolution", image: "/themes/Edtech.png" },
   { name: "Web3/Blockchain", image: "/themes/Blockchain.png" },
-  { name: "AI and Machine Learning", image: "/themes/machineLearning.png" },
+  { name: "AI and ML", image: "/themes/machineLearning.png" },
   { name: "AR/VR Realities", image: "/themes/AR.png" },
-  { name: "HealthTech Innovations", image: "/themes/Healthcare.png" },
+  { name: "HealthTech", image: "/themes/Healthcare.png" },
   { name: "Cyber security", image: "/themes/cyber-security.png" },
   { name: "Agritech", image: "/themes/Agritech-removebg-preview.png" },
   { name: "Social Impact", image: "/themes/Social-impact.png" }
 ];
 
 export const prizes = {
-  cash: "₹80,000+",
+  cash: "₹1,00,000+",
   description: "Exciting Prizes Await!"
 };
 
@@ -66,12 +66,10 @@ export const registration = {
 
 export const sponsors = {
   gold: [
-    { name: "DEVFOLIO", logo: "" }
+    { name: "DEVFOLIO", logo: "/sponsors/Devfolio.png" }
   ],
   silver: [
-    { name: "ETHINDIA", logo: "" },
-    { name: "POLYGON", logo: "" },
-    { name: "Nic enterprises", logo: "" }
+    { name: "ETHINDIA", logo: "/sponsors/ETHIndia.png" },   
   ],
   educationPartners: [
     { name: "Partner 1", logo: "" }
@@ -82,47 +80,59 @@ export const sponsors = {
 };
 
 export const mentors = {
-  chiefPatron: {
-    name: "Sunil Raisoni",
-    title: "Honrable Shri Sunil Raisoni",
-    role: "Chairman, Raisoni Education"
-  },
-  executiveDirector: {
-    name: "Shreyas Raisoni",
-    title: "Honrable Shri Shreyash Raisoni",
-    role: "Executive Director, GHRCEM, Jalgaon"
-  },
-  patron: {
-    name: "Preeti agarwag",
-    title: "Dr Preeti Agarwal",
-    role: "Director, GHRCEM, Jalgaon"
-  },
-  dean: {
-    name: "Sanjay shekhawat",
-    title: "Dr Sanjay Shekhawat",
-    role: "Dean Academics, GHRCEM, Jalgaon"
-  },
-  convener: [
+  chiefPatrons: [
     {
-      name: "Shreyas Raisoni",
-      title: "Dr Sonal Patil",
-      role: "HoD, CSE/IT Department"
+      name: "Honrable Shri Sunil Raisoni",
+      title: "Honrable Shri Sunil Raisoni",
+      role: "Chairman, Raisoni Education",
+      image: "/patrons/Sunil-Raisoni.jpeg"
     },
     {
-      name: "Swati patil",
+      name: "Honrable Shri Shreyash Raisoni",
+      title: "Honrable Shri Shreyash Raisoni",
+      role: "Executive Director, GHRCEM, Jalgaon",
+      image: "/patrons/shreyas-raisoni.jpeg"
+    }
+  ],
+  patrons: [
+    {
+      name: "Dr. Preeti Agarwal",
+      title: "Dr Preeti Agarwal",
+      role: "Director, GHRCEM, Jalgaon",
+      image: "/patrons/Preeti-Agarwal.jpeg"
+    },
+    {
+      name: "Dr. Sanjay Shekhawat",
+      title: "Dr Sanjay Shekhawat",
+      role: "Dean Academics, GHRCEM, Jalgaon",
+      image: "/patrons/Snajay%20Shekhawat.jpeg"
+    }
+  ],
+  convener: [
+    {
+      name: "Dr. Swati Patil",
       title: "Dr Swati Patil",
-      role: "HoD, AI/DS/AIML Department"
+      role: "HoD, AI/DS/AIML Department",
+      image: "/convener/Swati Patil.jpg"
+    },
+    {
+      name: "Dr. Nilesh Ingale",
+      title: "Dr. Nilesh Ingale",
+      role: "Faculty, GHRCEM, Jalgaon",
+      image: "/patrons/Nilesh-Ingale.jpeg"
+    },
+    {
+      name: "Dr. Chetan Chaudhari",
+      title: "Dr. Chetan Chaudhari",
+      role: "Faculty, GHRCEM, Jalgaon",
+      image: "/patrons/Chetan-Chaudhari.jpeg"
     }
   ],
   facultyCoordinator: {
     name: "Dr Nilesh Ingle",
     phone: "8668297264"
   },
-  coordinators: [
-    {
-      name: "Dr Chetan Chaudhari",
-      phone: "8668928098"
-    },
+  coordinators: [   
     {
       name: "Prof Tushar Wagh",
       phone: "9890713565"
@@ -175,23 +185,59 @@ export const organizers = {
   ],
   coordinators: [
     {
-      name: "Kartik Chaudhari",
+      name: "Bhagyesh Chaudhari",
       role: "Overall Coordinator",
+      image: "/images/Bhagyesh-OC.jpg",
       linkedin: ""
     },
     {
-      name: "Kalpesh Borde",
+      name: "Ayush Anupam",
       role: "Overall Coordinator",
+      image: "/images/ayush-OC.jpg",
       linkedin: ""
     },
     {
-      name: "Vidya Baviskar",
+      name: "Avijeet Jha",
       role: "Overall Coordinator",
+      image: "/images/avijeet-OC.png",
+      linkedin: ""
+    }
+  ],
+  leads: [
+    {
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
       linkedin: ""
     },
     {
-      name: "Mrunal Mahajan",
-      role: "Overall Coordinator",
+      name: "Shravan Badgujar",
+      role: "Operations Lead",
+      image: "/images/sharvan-lead-operation.jpg",
+      linkedin: ""
+    },
+    {
+      name: "Purvaja Mahajan",
+      role: "Design Lead",
+      image: "/images/purvaja-design lead.png",
+      linkedin: ""
+    },
+    {
+      name: "Priyal",
+      role: "Marketing Lead",
+      image: "/images/Priyal_marketing.jpg",
+      linkedin: ""
+    },
+    {
+      name: "Nakul",
+      role: "Media Lead",
+      image: "/images/nakul-media lead.jpg",
+      linkedin: ""
+    },
+    {
+      name: "Piyush Salunkhe",
+      role: "Marketing Head",
+      image: "/images/Piyush Salunkhe.jpg",
       linkedin: ""
     }
   ]
@@ -211,7 +257,7 @@ export const faqs = [
     answer: ""
   },
   {
-    question: "Why should I participate in GHRhack 1.0?",
+    question: "Why should I participate in GHRhack 2.0?",
     answer: ""
   },
   {
@@ -233,20 +279,18 @@ export const faqs = [
 ];
 
 export const contact = {
-  email: "dummy@email.com", // Will be updated later
-  phones: ["+91 7972053605", "+91 8411906657"],
+  email: "hackathon@ghrcemj.raisoni.net", 
+  phones: ["+91 7558213669", "+91 8411906657"],
   address: "Gate No 57, Shirsoli Rd, Mohadi, Jalgaon Maharashtra 425002"
 };
 
 export const socialLinks = {
   linkedin: "",
-  devfolio: "",
   instagram: "",
-  whatsapp: "",
   discord: ""
 };
 
 export const aboutEvent = {
   title: "ABOUT THE EVENT",
-  description: "GHRhack 1.0 is the flagship hackathon of G H Raisoni College of Engineering and Management, Jalgaon, aimed at fostering innovation, collaboration, and creativity among tech enthusiasts. Scheduled for 8th and 9th March 2025, this 28-hour offline hackathon provides a platform for students, developers, and innovators from across the country to showcase their technical skills and problem-solving abilities. With the theme Code the Unexplored, GHRhack 1.0 challenges participants to tackle real-world problems, explore cutting-edge technologies, and push the boundaries of innovation. The event promises to be a hub for groundbreaking ideas, networking opportunities and knowledge exchange, all within an environment of healthy competition."
+  description: "GHRhack 2.0 is the flagship hackathon of G H Raisoni College of Engineering and Management, Jalgaon, aimed at fostering innovation, collaboration, and creativity among tech enthusiasts. Scheduled for 28th February and 1st March 2026, this 30-hour offline hackathon provides a platform for students, developers, and innovators from across the country to showcase their technical skills and problem-solving abilities. With the theme Code the Career, GHRhack 2.0 challenges participants to tackle real-world problems, explore cutting-edge technologies, and push the boundaries of innovation. The event promises to be a hub for groundbreaking ideas, networking opportunities and knowledge exchange, all within an environment of healthy competition."
 };
