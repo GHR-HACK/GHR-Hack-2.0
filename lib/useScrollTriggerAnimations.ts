@@ -239,3 +239,46 @@ export const safeRemoveElement = (element: HTMLElement | null | undefined) => {
 export const killAnimations = (target: gsap.TweenTarget) => {
   gsap.killTweensOf(target);
 };
+
+/**
+ * Performance monitoring for scroll animations
+ * @param enable - Whether to enable performance monitoring
+ */
+export const enableScrollPerformanceMonitoring = (enable: boolean = true) => {
+  if (!enable || typeof window === 'undefined') return;
+
+  let frameCount = 0;
+  let lastTime = performance.now();
+  let fps = 60;
+
+  const measureFPS = () => {
+    frameCount++;
+    const currentTime = performance.now();
+
+    if (currentTime - lastTime >= 1000) {
+      fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+      frameCount = 0;
+      lastTime = currentTime;
+
+      // Log low FPS warnings
+      if (fps < 30) {
+        console.warn(`Low FPS detected: ${fps}. Scroll animations may be causing performance issues.`);
+      }
+    }
+
+    requestAnimationFrame(measureFPS);
+  };
+
+  requestAnimationFrame(measureFPS);
+
+  // Monitor ScrollTrigger instances
+  const checkScrollTriggerCount = () => {
+    const triggerCount = ScrollTrigger.getAll().length;
+    if (triggerCount > 20) {
+      console.warn(`High number of ScrollTrigger instances: ${triggerCount}. Consider optimizing animations.`);
+    }
+  };
+
+  // Check every 5 seconds
+  setInterval(checkScrollTriggerCount, 5000);
+};

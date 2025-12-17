@@ -15,34 +15,34 @@ export default function EventTimelineSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate timeline items
+      // Optimized timeline animations
       ScrollTrigger.create({
         trigger: sectionRef.current,
-        start: 'top 80%',
+        start: 'top 85%', // Increased from 80%
         once: true,
         onEnter: () => {
           gsap.fromTo('.timeline-item',
-            { opacity: 0, scale: 0.8 },
+            { opacity: 0, scale: 0.9 }, // Reduced scale change
             {
               opacity: 1,
               scale: 1,
-              duration: 0.6,
-              ease: 'power2.out',
-              stagger: 0.15
+              duration: 0.4, // Reduced from 0.6
+              ease: 'power1.out', // Changed from power2.out for better performance
+              stagger: 0.1 // Reduced from 0.15
             }
           );
 
-          // Animate path drawing
+          // Optimized path drawing animation
           if (pathRef.current) {
             const pathLength = pathRef.current.getTotalLength();
             pathRef.current.style.strokeDasharray = `${pathLength}`;
             pathRef.current.style.strokeDashoffset = `${pathLength}`;
-            
+
             gsap.to(pathRef.current, {
               strokeDashoffset: 0,
-              duration: 2,
-              ease: 'power2.inOut',
-              delay: 0.3
+              duration: 1.5, // Reduced from 2
+              ease: 'power1.inOut', // Changed from power2.inOut
+              delay: 0.2 // Reduced from 0.3
             });
           }
         }

@@ -55,14 +55,16 @@ body {
   display: none;
 }
 
-/* GSAP ScrollSmoother wrapper */
+/* Optimized GSAP ScrollSmoother wrapper */
 #smooth-wrapper {
   height: 100vh;
   overflow: hidden;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
 #smooth-content {
   will-change: transform;
+  contain: layout style paint; /* CSS containment for better performance */
 }
 
 /* Custom scrollbar for smooth scrolling */
@@ -119,4 +121,29 @@ body {
 
 .perspective-2000 {
   perspective: 2000px;
+}
+
+/* Performance optimizations for animations */
+.gsap-animated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .gsap-animated {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  #smooth-content {
+    transform: none !important;
+  }
+}
+
+/* Optimize scrollbar animations */
+.custom-scrollbar-thumb {
+  will-change: transform, height;
+  transform: translateZ(0);
 }

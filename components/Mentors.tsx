@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { Phone } from "lucide-react"
+import { useRef, useState } from "react"
+import { Phone, User } from "lucide-react"
 import Card from "./ui/Card"
 import Title from "./ui/Title"
 import Container from "./ui/Container"
@@ -54,39 +54,39 @@ export default function Mentors() {
     </Card>
   )
 
-  const renderProfileCard = (mentor: any, index: number) => (
-    <div
-      key={index}
-      className="mentor-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] hover:translate-y-[-4px]"
-    >
-      {mentor?.image ? (
-        <>
+  const renderProfileCard = (mentor: any, index: number) => {
+    const [imageError, setImageError] = useState(false);
+    const hasImage = mentor?.image && !imageError;
+    
+    return (
+      <div
+        key={index}
+        className="mentor-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] hover:translate-y-[-4px]"
+      >
+        {hasImage ? (
           <img
-            src={mentor.image || "/placeholder.svg"}
+            src={mentor.image}
             alt={mentor.name}
             className="w-full h-full object-cover rounded-3xl"
+            onError={() => setImageError(true)}
           />
-          {/* Default overlay - visible on mobile, hidden on hover desktop */}
-          <div className="absolute inset-0  rounded-3xl flex flex-col justify-end  md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-            <div className="bg-gradient-to-t from-purple-900/95 via-purple-800/60 to-transparent">
-              <div className="p-8">
-                <h4 className="text-2xl font-bold text-white mb-2">{mentor.name}</h4>
-                <p className="text-white/90 text-base leading-relaxed">{mentor.role}</p>
-              </div>
+        ) : (
+          <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-3xl">
+            <User className="w-32 h-32 text-gray-500" />
+          </div>
+        )}
+        {/* Default overlay - visible on mobile, hidden on hover desktop */}
+        <div className="absolute inset-0  rounded-3xl flex flex-col justify-end  md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+          <div className="bg-gradient-to-t from-purple-900/95 via-purple-800/60 to-transparent">
+            <div className="p-8">
+              <h4 className="text-2xl font-bold text-white mb-2">{mentor.name}</h4>
+              <p className="text-white/90 text-base leading-relaxed">{mentor.role}</p>
             </div>
           </div>
-        </>
-      ) : (
-        <div className="w-full h-full bg-gradient-to-b from-orange-500/30 to-purple-600/30 flex flex-col items-center justify-center p-8 text-center rounded-3xl">
-          <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-            <span className="text-6xl font-bold text-white">{mentor.name.charAt(0)}</span>
-          </div>
-          <h4 className="text-2xl font-bold text-foreground mb-2">{mentor.name}</h4>          
-          <p className="text-muted-foreground text-base leading-relaxed">{mentor.role}</p>
         </div>
-      )}
-    </div>
-  )
+      </div>
+    );
+  }
 
   return (
     <section id="mentors" ref={sectionRef} className="py-20 md:py-32 bg-background">

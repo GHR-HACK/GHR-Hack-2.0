@@ -1,9 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import Card from './ui/Card';
 import Title from './ui/Title';
 import Container from './ui/Container';
 import { organizers } from '../lib/data';
+import { User } from 'lucide-react';
 
 export default function Organizers() {
 
@@ -36,40 +38,83 @@ export default function Organizers() {
               Overall Coordinators
             </Title>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
-              {organizers.coordinators.map((coordinator, index) => (
-                <div
-                  key={index}
-                  className="organizer-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-400/20 hover:scale-[1.02] hover:translate-y-[-4px]"
-                >
-                  {coordinator?.image ? (
-                    <>
+              {organizers.coordinators.map((coordinator, index) => {
+                const [imageError, setImageError] = useState(false);
+                const hasImage = coordinator?.image && !imageError;
+                
+                return (
+                  <div
+                    key={index}
+                    className="organizer-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-400/20 hover:scale-[1.02] hover:translate-y-[-4px]"
+                  >
+                    {hasImage ? (
                       <img
-                        src={coordinator.image || "/placeholder.svg"}
+                        src={coordinator.image}
                         alt={coordinator.name}
                         className="w-full h-full object-cover rounded-3xl"
+                        onError={() => setImageError(true)}
                       />
+                    ) : (
+                      <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-3xl">
+                        <User className="w-32 h-32 text-gray-500" />
+                      </div>
+                    )}
+                    {/* Default overlay - visible on mobile, hidden on hover desktop */}
+                    <div className="absolute inset-0  rounded-3xl flex flex-col justify-end  md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="bg-gradient-to-t from-purple-900/95 via-purple-800/60 to-transparent">
+                        <div className="p-8">
+                          <h4 className="text-2xl font-bold text-white mb-2">{coordinator.name}</h4>
+                          <p className="text-white/90 text-base leading-relaxed">{coordinator.role}</p>
+                        </div></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Co-Leads */}
+          {organizers?.coLeads && organizers.coLeads.length > 0 && (
+            <div>
+              <Title level={4} variant="default" size="lg" className="mb-8 !text-[#ff5100]">
+                Co-Leads
+              </Title>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto justify-items-center">
+                {organizers.coLeads.map((coLead, index) => {
+                  const [imageError, setImageError] = useState(false);
+                  const hasImage = coLead?.image && !imageError;
+                  
+                  return (
+                    <div
+                      key={index}
+                      className="organizer-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-400/20 hover:scale-[1.02] hover:translate-y-[-4px]"
+                    >
+                      {hasImage ? (
+                        <img
+                          src={coLead.image}
+                          alt={coLead.name}
+                          className="w-full h-full object-cover rounded-3xl"
+                          onError={() => setImageError(true)}
+                        />
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-3xl">
+                          <User className="w-32 h-32 text-gray-500" />
+                        </div>
+                      )}
                       {/* Default overlay - visible on mobile, hidden on hover desktop */}
                       <div className="absolute inset-0  rounded-3xl flex flex-col justify-end  md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
                         <div className="bg-gradient-to-t from-purple-900/95 via-purple-800/60 to-transparent">
                           <div className="p-8">
-                            <h4 className="text-2xl font-bold text-white mb-2">{coordinator.name}</h4>
-                            <p className="text-white/90 text-base leading-relaxed">{coordinator.role}</p>
+                            <h4 className="text-2xl font-bold text-white mb-2">{coLead.name}</h4>
+                            <p className="text-white/90 text-base leading-relaxed">{coLead.role}</p>
                           </div></div>
                       </div>
-                    </>
-                  ) : (
-                    <div className="w-full h-full bg-gradient-to-b from-orange-500/30 to-purple-600/30 flex flex-col items-center justify-center p-8 text-center rounded-3xl">
-                      <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                        <span className="text-6xl font-bold text-white">{coordinator.name.charAt(0)}</span>
-                      </div>
-                      <h4 className="text-2xl font-bold text-foreground mb-2">{coordinator.name}</h4>
-                      <p className="text-muted-foreground text-base leading-relaxed">{coordinator.role}</p>
                     </div>
-                  )}
-                </div>
-              ))}
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Leads */}
           {organizers?.leads && organizers.leads.length > 0 && (
@@ -78,39 +123,39 @@ export default function Organizers() {
                 Leads
               </Title>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto justify-items-center">
-                {organizers.leads.map((lead, index) => (
-                  <div
-                    key={index}
-                    className="organizer-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] hover:translate-y-[-4px]"
-                  >
-                    {lead?.image ? (
-                      <>
+                {organizers.leads.map((lead, index) => {
+                  const [imageError, setImageError] = useState(false);
+                  const hasImage = lead?.image && !imageError;
+                  
+                  return (
+                    <div
+                      key={index}
+                      className="organizer-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] hover:translate-y-[-4px]"
+                    >
+                      {hasImage ? (
                         <img
-                          src={lead.image || "/placeholder.svg"}
+                          src={lead.image}
                           alt={lead.name}
                           className="w-full h-full object-cover rounded-3xl"
+                          onError={() => setImageError(true)}
                         />
-                        {/* Default overlay - visible on mobile, hidden on hover desktop */}
-                        <div className="absolute inset-0  rounded-3xl flex flex-col justify-end  md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
-                          <div className="bg-gradient-to-t from-purple-900/95 via-purple-800/60 to-transparent">
-                            <div className="p-8">
-                              <h4 className="text-2xl font-bold text-white mb-2">{lead.name}</h4>
-                              <p className="text-white/90 text-base leading-relaxed">{lead.role}</p>
-                            </div>
+                      ) : (
+                        <div className="w-full h-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center rounded-3xl">
+                          <User className="w-32 h-32 text-gray-500" />
+                        </div>
+                      )}
+                      {/* Default overlay - visible on mobile, hidden on hover desktop */}
+                      <div className="absolute inset-0  rounded-3xl flex flex-col justify-end  md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-300">
+                        <div className="bg-gradient-to-t from-purple-900/95 via-purple-800/60 to-transparent">
+                          <div className="p-8">
+                            <h4 className="text-2xl font-bold text-white mb-2">{lead.name}</h4>
+                            <p className="text-white/90 text-base leading-relaxed">{lead.role}</p>
                           </div>
                         </div>
-                      </>
-                    ) : (
-                      <div className="w-full h-full bg-gradient-to-b from-orange-500/30 to-purple-600/30 flex flex-col items-center justify-center p-8 text-center rounded-3xl">
-                        <div className="w-32 h-32 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-purple-600 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                          <span className="text-6xl font-bold text-white">{lead.name.charAt(0)}</span>
-                        </div>
-                        <h4 className="text-2xl font-bold text-foreground mb-2">{lead.name}</h4>
-                        <p className="text-muted-foreground text-base leading-relaxed">{lead.role}</p>
                       </div>
-                    )}
-                  </div>
-                ))}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           )}

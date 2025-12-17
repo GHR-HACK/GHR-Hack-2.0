@@ -3,6 +3,8 @@ import { Orbitron, Rajdhani, JetBrains_Mono, Red_Hat_Display } from "next/font/g
 import "./globals.css";
 import GSAPSetup from "../components/GSAPSetup";
 import NavigationBar from "../components/NavigationBar";
+import { Providers } from "../lib/providers";
+import { Toaster } from "sonner";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -131,11 +133,14 @@ export default function RootLayout({
       >
          <GSAPSetup />
          <NavigationBar />
-         <div id="smooth-wrapper">
-          <div id="smooth-content">
-            {children}
+         <Providers>
+           <div id="smooth-wrapper">
+            <div id="smooth-content">
+              {children}
+            </div>
           </div>
-        </div>
+         </Providers>
+         <Toaster position="top-right" richColors />
        
         {/* {children} */}
       </body>

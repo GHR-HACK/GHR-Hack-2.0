@@ -36,50 +36,50 @@ export default function HeroSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // ScrambleText animation for title - apply to entire text
+      // Optimized ScrambleText animation for title - reduced complexity
       if (titleRef.current) {
         // Clear and set initial scrambled state
         titleRef.current.textContent = "";
-        // Apply scramble animation to the entire text
+        // Apply scramble animation with reduced speed for better performance
         gsap.to(titleRef.current, {
-          duration: 2,
+          duration: 1.5, // Reduced from 2
           scrambleText: {
             text: "GHRhack 2.0",
             chars: "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnz",
-            revealDelay: 0.4,
-            speed: 0.15
+            revealDelay: 0.3, // Reduced from 0.4
+            speed: 0.2 // Increased from 0.15 for smoother animation
           }
         });
       }
 
-      // SplitText animation for subtitle (chars)
+      // Optimized SplitText animation for subtitle (words instead of chars for better performance)
       let subtitleSplit: SplitText | null = null;
       if (subtitleRef.current) {
-        subtitleSplit = new SplitText(subtitleRef.current, { type: 'chars' });
-        gsap.from(subtitleSplit.chars, {
-          duration: 1.2,
-          y: 30,
+        subtitleSplit = new SplitText(subtitleRef.current, { type: 'words' }); // Changed from 'chars' to 'words'
+        gsap.from(subtitleSplit.words, {
+          duration: 0.8, // Reduced from 1.2
+          y: 20, // Reduced from 30
           opacity: 0,
-          stagger: 0.03,
-          ease: 'power3.out',
+          stagger: 0.1, // Increased from 0.03 for smoother animation
+          ease: 'power2.out', // Changed from power3.out for better performance
           delay: 0.4,
         });
       }
 
 
-      // SplitText for button texts (chars)
+      // Optimized SplitText for button texts (words instead of chars)
       const buttonTextSplits: SplitText[] = [];
       if (buttonsRef.current) {
         const btnTexts = buttonsRef.current.querySelectorAll('.split-btn-text');
         btnTexts.forEach((el, idx) => {
-          const split = new SplitText(el as HTMLElement, { type: 'chars' });
+          const split = new SplitText(el as HTMLElement, { type: 'words' }); // Changed from 'chars' to 'words'
           buttonTextSplits.push(split);
-          gsap.from(split.chars, {
-            duration: 1.1,
-            y: 20,
+          gsap.from(split.words, {
+            duration: 0.7, // Reduced from 1.1
+            y: 15, // Reduced from 20
             opacity: 0,
-            stagger: 0.025,
-            ease: 'power3.out',
+            stagger: 0.05, // Increased from 0.025
+            ease: 'power2.out', // Changed from power3.out
             delay: 0.8 + idx * 0.1,
           });
         });
@@ -96,19 +96,23 @@ export default function HeroSection() {
         });
       }
 
-      // 3D parallax effect on scroll
+      // Optimized 3D parallax effect on scroll - reduced complexity
       ScrollTrigger.create({
         trigger: heroRef.current,
         start: 'top top',
         end: 'bottom top',
-        scrub: 1,
+        scrub: 0.5, // Reduced from 1 for better performance
         onUpdate: (self) => {
           const progress = self.progress;
-          gsap.set('.hero-3d', {
-            rotationY: progress * 10,
-            rotationX: progress * 5,
-            scale: 1 - progress * 0.1,
-          });
+          // Only apply transforms if element is visible to reduce GPU load
+          const hero3d = document.querySelector('.hero-3d') as HTMLElement;
+          if (hero3d && self.isActive) {
+            gsap.set('.hero-3d', {
+              rotationY: progress * 5, // Reduced from 10
+              rotationX: progress * 2, // Reduced from 5
+              scale: 1 - progress * 0.05, // Reduced from 0.1
+            });
+          }
         },
       });
 

@@ -44,14 +44,14 @@ export default function HackathonThemesSection() {
     <section
       id="themes"
       ref={sectionRef}
-      className="py-16 md:py-24 bg-white"
+      className="bg-white"
     >
         
         <div className="themes-section px-4 sm:px-6 md:px-8">
           <Title level={2} variant="gradient" size="lg" className="text-center mb-8 pb-4">
             Hackathon Themes
           </Title>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-10 gap-y-16 md:gap-y-20 max-w-7xl mx-auto mt-20 md:mt-24">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-y-20 max-w-7xl mx-auto mt-10 md:mt-16">
             {hackathonThemes.map((theme, index) => {
               return (
                 <div key={theme.name} className="flex justify-center">

@@ -3,70 +3,85 @@
 import { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 
 import Card from './ui/Card';
 import Title from './ui/Title';
 import Container from './ui/Container';
-import Button from './ui/Button';
+import Button from './ui/custom-button';
 import { contact, socialLinks } from '../lib/data';
 import Image from 'next/image';
+import { contactSchema, type ContactFormData } from '../lib/schemas/contact';
+import { useSubmitContact } from '../lib/hooks/useContact';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    interest: '',
-    message: '',
-    agree: false,
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    reset,
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      phone: '',
+      interest: 'participating' as const,
+      message: '',
+      agree: false,
+    },
   });
 
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const submitContactMutation = useSubmitContact();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate section title
+      // Optimized section title animation
       gsap.from('.contact-title', {
         scrollTrigger: {
           trigger: '.contact-title',
-          start: 'top 80%',
+          start: 'top 85%', // Increased from 80% for better performance
           toggleActions: 'play none none reverse',
         },
-        y: 50,
+        y: 30, // Reduced from 50
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 0.6, // Reduced from 1
+        ease: 'power2.out', // Changed from power3.out
       });
 
-      // Animate image - from left
+      // Optimized image animation
       gsap.from('.contact-image', {
         scrollTrigger: {
           trigger: '.contact-image',
-          start: 'top 80%',
+          start: 'top 85%', // Increased from 80%
           toggleActions: 'play none none reverse',
         },
-        x: -50,
+        x: -30, // Reduced from -50
         opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
+        duration: 0.5, // Reduced from 0.8
+        ease: 'power2.out', // Changed from power3.out
       });
 
-      // Animate contact cards
+      // Optimized contact cards animation
       gsap.from('.contact-card', {
         scrollTrigger: {
           trigger: '.contact-card',
-          start: 'top 80%',
+          start: 'top 85%', // Increased from 80%
           toggleActions: 'play none none reverse',
         },
-        y: 50,
+        y: 30, // Reduced from 50
         opacity: 0,
-        duration: 0.8,
-        ease: 'back.out(1.7)',
+        duration: 0.5, // Reduced from 0.8
+        ease: 'power2.out', // Changed from back.out(1.7)
       });
 
-      // Animate form - from right
+      // Optimized form animation
       gsap.from('.contact-form', {
         scrollTrigger: {
           trigger: '.contact-form',
@@ -74,40 +89,26 @@ export default function Contact() {
           toggleActions: 'play none none none',
           once: true,
         },
-        x: 40,
+        x: 25, // Reduced from 40
         autoAlpha: 0,
-        duration: 0.8,
+        duration: 0.6, // Reduced from 0.8
         delay: 0.1,
-        ease: 'power3.out',
+        ease: 'power2.out', // Changed from power3.out
       });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    const checked = (e.target as HTMLInputElement).checked;
-
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value,
-    }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission here
-    console.log('Form submitted:', formData);
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      interest: '',
-      message: '',
-      agree: false,
-    });
+  const onSubmit: SubmitHandler<ContactFormData> = async (data) => {
+    try {
+      await submitContactMutation.mutateAsync(data);
+      toast.success('Thank you! Your message has been sent successfully.');
+      reset();
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+      console.error('Contact form submission error:', error);
+    }
   };
 
   const socialIcons = {
@@ -173,20 +174,20 @@ export default function Contact() {
               Send us a Message
             </Title>
 
-            <form onSubmit={handleSubmit} className="space-y-4 w-full">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full">
               <div>
                 <label className="block text-black font-red-hat-display font-medium mb-1.5 text-sm">
                   Full Name *
                 </label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
+                  {...register('name')}
                   className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                   placeholder="Enter your full name"
                 />
+                {errors.name && (
+                  <p className="mt-1 text-red-600 text-xs">{errors.name.message}</p>
+                )}
               </div>
 
               <div>
@@ -195,13 +196,13 @@ export default function Contact() {
                 </label>
                 <input
                   type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleInputChange}
-                  required
+                  {...register('email')}
                   className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                   placeholder="Enter your email"
                 />
+                {errors.email && (
+                  <p className="mt-1 text-red-600 text-xs">{errors.email.message}</p>
+                )}
               </div>
 
               <div>
@@ -214,14 +215,14 @@ export default function Contact() {
                   </span>
                   <input
                     type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    required
+                    {...register('phone')}
                     className="flex-1 px-3 py-2.5 bg-white border border-black/20 rounded-r-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                     placeholder="Enter your phone number"
                   />
                 </div>
+                {errors.phone && (
+                  <p className="mt-1 text-red-600 text-xs">{errors.phone.message}</p>
+                )}
               </div>
 
               <div>
@@ -229,9 +230,7 @@ export default function Contact() {
                   I AM INTERESTED IN:
                 </label>
                 <select
-                  name="interest"
-                  value={formData.interest}
-                  onChange={handleInputChange}
+                  {...register('interest')}
                   className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 text-sm"
                 >
                   <option value="">Select an option</option>
@@ -241,6 +240,9 @@ export default function Contact() {
                   <option value="helping">Helping</option>
                   <option value="event">Event Information</option>
                 </select>
+                {errors.interest && (
+                  <p className="mt-1 text-red-600 text-xs">{errors.interest.message}</p>
+                )}
               </div>
 
               <div>
@@ -248,37 +250,39 @@ export default function Contact() {
                   Leave us a message
                 </label>
                 <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
+                  {...register('message')}
                   rows={3}
                   className="w-full px-3 py-2.5 bg-white border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-primary-purple focus:shadow-md transition-all duration-300 resize-none text-sm"
                   placeholder="Tell us more about your interest..."
                 />
+                {errors.message && (
+                  <p className="mt-1 text-red-600 text-xs">{errors.message.message}</p>
+                )}
               </div>
 
               <div className="flex items-start space-x-2">
                 <input
                   type="checkbox"
-                  name="agree"
-                  checked={formData.agree}
-                  onChange={handleInputChange}
-                  required
+                  {...register('agree')}
                   className="mt-0.5 w-4 h-4 text-primary-purple bg-white border-black/20 rounded focus:ring-primary-purple"
                 />
                 <label className="text-black/60 font-red-hat-display text-xs group-hover:text-black/80 transition-colors duration-300">
                   I have read & I agree to the privacy policy.
                 </label>
               </div>
+              {errors.agree && (
+                <p className="mt-1 text-red-600 text-xs">{errors.agree.message}</p>
+              )}
 
               <button
                 type="submit"
-                className="w-full px-4 py-2.5 rounded-lg font-red-hat-display font-semibold text-white text-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02]"
+                disabled={isSubmitting || submitContactMutation.isPending}
+                className="w-full px-4 py-2.5 rounded-lg font-red-hat-display font-semibold text-white text-sm transition-all duration-300 hover:shadow-lg hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 style={{
                   background: 'linear-gradient(144deg, #5c0f8b 50%, #ff5100 100%)'
                 }}
               >
-                Submit
+                {isSubmitting || submitContactMutation.isPending ? 'Submitting...' : 'Submit'}
               </button>
             </form>
           </Card>

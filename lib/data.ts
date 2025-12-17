@@ -119,13 +119,13 @@ export const mentors = {
       name: "Dr. Nilesh Ingale",
       title: "Dr. Nilesh Ingale",
       role: "Faculty, GHRCEM, Jalgaon",
-      image: "/patrons/Nilesh-Ingale.jpeg"
+      image: ""
     },
     {
       name: "Dr. Chetan Chaudhari",
       title: "Dr. Chetan Chaudhari",
       role: "Faculty, GHRCEM, Jalgaon",
-      image: "/patrons/Chetan-Chaudhari.jpeg"
+      image: "/convener/chetan-chaudhari.jpg"
     }
   ],
   facultyCoordinator: {
@@ -203,6 +203,26 @@ export const organizers = {
       linkedin: ""
     }
   ],
+  coLeads: [
+    {
+      name: "Prathmesh Misar",
+      role: "Co-Lead",
+      image: "/images/prathmesh-colead.jpg",
+      linkedin: ""
+    },
+    {
+      name: "Riya Bhangale",
+      role: "Co-Lead",
+      image: "",
+      linkedin: ""
+    },
+    {
+      name: "Shreyas Shejwal",
+      role: "Co-Lead",
+      image: "/images/shreyas-Co-lead.png",
+      linkedin: ""
+    }
+  ],
   leads: [
     {
       name: "Himanshu Kawale",
@@ -217,29 +237,41 @@ export const organizers = {
       linkedin: ""
     },
     {
+      name:"Lokesh Sapkale",
+      role:"Technical Lead",
+      image: "/images/lokesh-technical.jpg",
+      linkedin: ""
+    },
+    {
       name: "Purvaja Mahajan",
       role: "Design Lead",
       image: "/images/purvaja-design lead.png",
       linkedin: ""
     },
     {
-      name: "Priyal",
+      name: "Priyal Sonawane",
       role: "Marketing Lead",
       image: "/images/Priyal_marketing.jpg",
       linkedin: ""
     },
     {
-      name: "Nakul",
+      name: "Umesh Jhurke",
+      role: "Finance Lead",
+      image: "",
+      linkedin: ""
+    },
+    {
+      name: "Rutuja Patil",
+      role: "Finance Lead",
+      image: "",
+      linkedin: ""
+    },
+    {
+      name: "Nakul Mahajan",
       role: "Media Lead",
       image: "/images/nakul-media lead.jpg",
       linkedin: ""
     },
-    {
-      name: "Piyush Salunkhe",
-      role: "Marketing Head",
-      image: "/images/Piyush Salunkhe.jpg",
-      linkedin: ""
-    }
   ]
 };
 
@@ -285,9 +317,9 @@ export const contact = {
 };
 
 export const socialLinks = {
-  linkedin: "",
-  instagram: "",
-  discord: ""
+  linkedin: "https://www.linkedin.com/in/ghr-hack/",
+  instagram: "https://www.instagram.com/ghrhack_2.0/?hl=en",
+  discord: "https://discord.gg/wt8kQqqM"
 };
 
 export const aboutEvent = {

@@ -23,13 +23,20 @@ export default function NavigationBar() {
   const [isOverHero, setIsOverHero] = useState(true);
   const navRef = useRef(null);
   const logoRef = useRef(null);
+  const rightLogoRef = useRef(null);
   const menuItemsRef = useRef<HTMLButtonElement[]>([]);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Initial animation for logo
+    // Initial animation for left logo
     gsap.fromTo(logoRef.current,
       { opacity: 0, x: -20 },
+      { opacity:  1, x: 0, duration: 0.8, ease: "power2.out" }
+    );
+
+    // Initial animation for right logo
+    gsap.fromTo(rightLogoRef.current,
+      { opacity: 0, x: 20 },
       { opacity:  1, x: 0, duration: 0.8, ease: "power2.out" }
     );
 
@@ -192,7 +199,7 @@ export default function NavigationBar() {
       }`}
     >
       {/* Main container with proper padding */}
-      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-12">
+      <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 mx-auto max-w-7xl">
           
           {/* Logo - Left side with proper padding */}
@@ -212,8 +219,8 @@ export default function NavigationBar() {
             </button>
           </div>
 
-          {/* Desktop Navigation - Right side with proper spacing */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8 pr-6 xl:pr-8">
+          {/* Desktop Navigation - Center with proper spacing */}
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
             {navItems.map((item, index) => (
               <button
                 key={item.name}
@@ -231,8 +238,39 @@ export default function NavigationBar() {
             ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="lg:hidden pr-4 md:pr-6">
+          {/* Logo - Right side */}
+          <div className="hidden lg:flex flex-shrink-0">
+            <button
+              ref={rightLogoRef}
+              onClick={() => scrollToSection('#home')}
+              className="relative h-12 w-32 md:h-14 md:w-40 hover:opacity-90 transition-opacity duration-300"
+            >
+              <Image
+                src="/logo.png"
+                alt="GHR Hack 2.0 Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </button>
+          </div>
+
+          {/* Mobile - Right side with logo and menu button */}
+          <div className="lg:hidden flex items-center gap-4 pr-4 md:pr-6">
+            {/* Logo on mobile right */}
+            <button
+              onClick={() => scrollToSection('#home')}
+              className="relative h-10 w-24 hover:opacity-90 transition-opacity duration-300"
+            >
+              <Image
+                src="/logo.png"
+                alt="GHR Hack 2.0 Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </button>
+            {/* Mobile Menu Button */}
             <button
               onClick={handleMenuToggle}
               className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors duration-300"
