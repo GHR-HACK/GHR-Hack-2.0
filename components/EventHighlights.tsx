@@ -62,7 +62,7 @@ export default function EventHighlightsSection() {
               <div className="prose prose-lg max-w-none space-y-4">
                 <div>
                   <p className="text-black text-lg leading-relaxed text-justify font-red-hat-display">
-                    <strong className="text-primary-purple">Duration:</strong> 28 hours of non-stop innovation.
+                    <strong className="text-primary-purple">Duration:</strong> 30 hours of non-stop innovation.
                   </p>
                 </div>
                 <div>
