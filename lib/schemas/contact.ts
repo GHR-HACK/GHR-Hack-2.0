@@ -12,7 +12,7 @@ export const contactSchema = z.object({
     .max(15, 'Phone number must be less than 15 digits')
     .regex(/^[6-9]\d{9}$/, 'Please enter a valid Indian phone number'),
   interest: z.enum(['participating', 'collaboration', 'sponsorship', 'helping', 'event'], {
-    errorMap: () => ({ message: 'Please select a valid interest option' })
+    message: 'Please select a valid interest option'
   }),
   message: z.string()
     .min(10, 'Message must be at least 10 characters')
