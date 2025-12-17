@@ -162,7 +162,7 @@ export default function HeroSection() {
             ref={subtitleRef}
             className="text-xl md:text-2xl text-white/80 font-red-hat-display font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle text-center"
           >
-            <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the career</p>
+            <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the Career</p>
             <p>28 Feb - 1 March 2026</p>
           </div>
          
