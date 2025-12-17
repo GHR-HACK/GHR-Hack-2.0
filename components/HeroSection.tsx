@@ -165,28 +165,7 @@ export default function HeroSection() {
             <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the career</p>
             <p>28 Feb - 1 March 2026</p>
           </div>
-
-          {/* Action Buttons */}
-          <div ref={buttonsRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-            <Button
-              variant="primary"
-              size="lg"
-              onClick={() => {
-                const element = document.querySelector('#contact');
-                if (element) {
-                  gsap.to(window, {
-                    duration: 1,
-                    scrollTo: { y: element, offsetY: 80 },
-                    ease: 'power2.inOut',
-                  });
-                }
-              }}
-              className="font-red-hat-display text-lg px-8 py-4 min-w-[200px]"
-            >
-              <span className="split-btn-text">Register Now</span>
-            </Button>
-          </div>
-
+         
           {/* Devfolio Apply Button */}
           <div className="flex justify-center py-8">
             <div
