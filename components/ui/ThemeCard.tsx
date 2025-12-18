@@ -112,7 +112,7 @@ export function ThemeCard({
           right: 0;
           width: 100%;
           height: 100%;
-          background: #9609a6;
+          background: #5c0f8b;
           clip-path: polygon(0% 100%, 0% 75%, 10% 72%, 20% 70%, 30% 68%, 40% 65%, 50% 62%, 60% 58%, 70% 55%, 80% 52%, 90% 48%, 100% 45%, 100% 100%);
           opacity: 0.15;
           transition: all 0.9s ease-out;
