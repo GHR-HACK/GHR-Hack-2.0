@@ -44,8 +44,6 @@ export default React.forwardRef<HTMLDivElement, CardProps>(function Card({
   return (
     <div ref={ref} onClick={onClick} className={classes}>
      
-      
-      
       {/* Main content */}
       <div className="relative z-10">
         {children}

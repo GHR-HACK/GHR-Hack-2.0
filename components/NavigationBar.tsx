@@ -200,18 +200,37 @@ export default function NavigationBar() {
     >
       {/* Main container with proper padding */}
       <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 mx-auto max-w-7xl">
+        <div className="flex items-center justify-between h-20  max-w-7xl">
           
           {/* Logo - Left side with proper padding */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 flex items-center">
             <button
               ref={logoRef}
               onClick={() => scrollToSection('#home')}
               className="relative h-12 w-32 md:h-14 md:w-40 hover:opacity-90 transition-opacity duration-300"
             >
               <Image
-                src="/logo.png"
+                src="/raisoni-logo.png"
                 alt="GHR Hack 2.0 Logo"
+                fill
+                className="object-cover"
+                priority
+              />
+            </button>
+            <span
+              className={`h-12 w-[2px] inline-block rounded-full ${
+                isOverHero ? 'bg-white/80' : 'bg-black/40'
+              }`}
+              aria-hidden="true"
+            />
+            <button
+              ref={rightLogoRef}
+              onClick={() => scrollToSection('#home')}
+              className="relative h-12 w-32 md:h-14 md:w-40 hover:opacity-90 transition-opacity duration-300"
+            >
+              <Image
+                src="/logo.png"
+                alt="Raisoni Logo"
                 fill
                 className="object-contain"
                 priority
@@ -220,7 +239,7 @@ export default function NavigationBar() {
           </div>
 
           {/* Desktop Navigation - Center with proper spacing */}
-          <div className="hidden lg:flex items-center gap-6 xl:gap-8 flex-1 justify-center">
+          <div className="hidden lg:flex items-end gap-6 xl:gap-8 flex-1 justify-end">
             {navItems.map((item, index) => (
               <button
                 key={item.name}
@@ -238,38 +257,8 @@ export default function NavigationBar() {
             ))}
           </div>
 
-          {/* Logo - Right side */}
-          <div className="hidden lg:flex flex-shrink-0">
-            <button
-              ref={rightLogoRef}
-              onClick={() => scrollToSection('#home')}
-              className="relative h-12 w-32 md:h-14 md:w-40 hover:opacity-90 transition-opacity duration-300"
-            >
-              <Image
-                src="/logo.png"
-                alt="GHR Hack 2.0 Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </button>
-          </div>
-
-          {/* Mobile - Right side with logo and menu button */}
-          <div className="lg:hidden flex items-center gap-4 pr-4 md:pr-6">
-            {/* Logo on mobile right */}
-            <button
-              onClick={() => scrollToSection('#home')}
-              className="relative h-10 w-24 hover:opacity-90 transition-opacity duration-300"
-            >
-              <Image
-                src="/logo.png"
-                alt="GHR Hack 2.0 Logo"
-                fill
-                className="object-contain"
-                priority
-              />
-            </button>
+          {/* Mobile - Right side with only menu button (no extra logo) */}
+          <div className="lg:hidden flex items-center pr-4 md:pr-6">
             {/* Mobile Menu Button */}
             <button
               onClick={handleMenuToggle}
