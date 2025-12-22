@@ -89,7 +89,7 @@ export default function Mentors() {
   }
 
   return (
-    <section id="patrons" ref={sectionRef} className="py-6 md:py-12 bg-background">
+    <section id="patrons" ref={sectionRef} className="py-4 md:py-8 bg-background">
       <Container>
         <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
           <div className="text-center ">

@@ -143,8 +143,7 @@ export default function NavigationBar() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      // Use smaller offset for patrons section to show more content below
-      const offset = href === '#patrons' ? 50 : 100;
+      const offset = 100; // account for fixed nav height
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const target = elementPosition - offset;
 

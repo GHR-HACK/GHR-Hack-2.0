@@ -41,18 +41,21 @@ export default function NavigationBar() {
       { opacity:  1, x: 0, duration: 0.8, ease: "power2.out" }
     );
 
-    // Stagger animation for desktop menu items
-    gsap.fromTo(menuItemsRef.current,
-      { opacity: 0, y: -10 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.5, 
-        stagger: 0.1,
-        ease: "power2.out",
-        delay: 0.3
-      }
-    );
+    // Stagger animation for desktop menu items (only animate actual elements)
+    const menuEls = (menuItemsRef.current || []).filter(Boolean) as HTMLElement[];
+    if (menuEls.length > 0) {
+      gsap.fromTo(menuEls,
+        { opacity: 0, y: -10 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.5, 
+          stagger: 0.1,
+          ease: "power2.out",
+          delay: 0.3
+        }
+      );
+    }
   }, []);
 
   useEffect(() => {

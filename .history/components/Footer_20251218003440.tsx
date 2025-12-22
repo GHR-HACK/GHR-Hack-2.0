@@ -3,6 +3,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
+import Title from './ui/Title';
+import Container from './ui/Container';
 import SocialTooltip from './ui/SocialTooltip';
 import { eventData, contact, socialLinks } from '../lib/data';
 
@@ -19,62 +22,45 @@ export default function Footer() {
       const target = elementPosition - offset;
 
       // Use GSAP to animate a dummy object for smooth easing
-      try {
-        gsap.to({ value: window.pageYOffset }, {
-          value: target,
-          duration: 1,
-          ease: 'power2.inOut',
-          onUpdate: function() {
-            window.scrollTo(0, this.targets()[0].value);
-          }
-        });
-      } catch (err) {
-        // Fallback to native smooth scroll if GSAP fails
-        try {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          setTimeout(() => window.scrollBy(0, -offset), 200);
-        } catch (e) {
-          // Last resort: instant jump
-          window.scrollTo(0, target);
+      gsap.to({ value: window.pageYOffset }, {
+        value: target,
+        duration: 1,
+        ease: 'power2.inOut',
+        onUpdate: function() {
+          window.scrollTo(0, this.targets()[0].value);
         }
-      }
+      });
     }
   };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate footer content (guard for existence)
-      const contentEl = footerRef.current?.querySelector('.footer-content');
-      if (contentEl) {
-        gsap.from(contentEl, {
-          scrollTrigger: {
-            trigger: contentEl,
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-          y: 50,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-        });
-      }
+      // Animate footer content
+      gsap.from('.footer-content', {
+        scrollTrigger: {
+          trigger: '.footer-content',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power3.out',
+      });
 
-      // Animate footer links (only if present)
-      const linkEls = footerRef.current?.querySelectorAll('.footer-links');
-      if (linkEls && linkEls.length > 0) {
-        gsap.from(Array.from(linkEls), {
-          scrollTrigger: {
-            trigger: linkEls[0],
-            start: 'top 80%',
-            toggleActions: 'play none none reverse',
-          },
-          y: 30,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          ease: 'power3.out',
-        });
-      }
+      // Animate footer links
+      gsap.from('.footer-links', {
+        scrollTrigger: {
+          trigger: '.footer-links',
+          start: 'top 80%',
+          toggleActions: 'play none none reverse',
+        },
+        y: 30,
+        opacity: 0,
+        duration: 0.8,
+        stagger: 0.1,
+        ease: 'power3.out',
+      });
 
     }, footerRef);
 

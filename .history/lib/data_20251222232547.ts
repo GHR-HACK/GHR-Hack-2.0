@@ -256,6 +256,12 @@ export const organizers = {
       linkedin: ""
     },
     {
+      name: "Umesh Jhurke",
+      role: "Finance Lead",
+      image: "",
+      linkedin: ""
+    },
+    {
       name: "Rutuja Patil",
       role: "Finance Lead",
       image: "images/Rutuja-Patil.jpeg",
@@ -267,13 +273,6 @@ export const organizers = {
       image: "/images/nakul-media lead.jpg",
       linkedin: ""
     },
-    {
-      name: "Umesh Jhurke",
-      role: "Finance Lead",
-      image: "",
-      linkedin: ""
-    },
-    
   ]
 };
 
@@ -326,5 +325,5 @@ export const socialLinks = {
 
 export const aboutEvent = {
   title: "ABOUT THE EVENT",
-  description: "GHRhack 2.0 is the flagship hackathon of G H Raisoni College of Engineering and Management, Jalgaon, aimed at fostering innovation, collaboration, and creativity among tech enthusiasts. Scheduled for 28<sup>th</sup> February and 1<sup>st</sup> March 2026, this 30-hour offline hackathon provides a platform for students, developers, and innovators from across the country to showcase their technical skills and problem-solving abilities. With the theme Code the Career, GHRhack 2.0 challenges participants to tackle real-world problems, explore cutting-edge technologies, and push the boundaries of innovation. The event promises to be a hub for groundbreaking ideas, networking opportunities and knowledge exchange, all within an environment of healthy competition."
+  description: "GHRhack 2.0 is the flagship hackathon of G H Raisoni College of Engineering and Management, Jalgaon, aimed at fostering innovation, collaboration, and creativity among tech enthusiasts. Scheduled for 28th February and 1st March 2026, this 30-hour offline hackathon provides a platform for students, developers, and innovators from across the country to showcase their technical skills and problem-solving abilities. With the theme Code the Career, GHRhack 2.0 challenges participants to tackle real-world problems, explore cutting-edge technologies, and push the boundaries of innovation. The event promises to be a hub for groundbreaking ideas, networking opportunities and knowledge exchange, all within an environment of healthy competition."
 };

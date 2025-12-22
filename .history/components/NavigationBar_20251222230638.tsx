@@ -143,8 +143,7 @@ export default function NavigationBar() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      // Use smaller offset for patrons section to show more content below
-      const offset = href === '#patrons' ? 50 : 100;
+      const offset = 100; // account for fixed nav height
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const target = elementPosition - offset;
 
@@ -257,8 +256,9 @@ export default function NavigationBar() {
             ))}
           </div>
 
-          {/* Mobile - Right side with only menu button */}
-          <div className="lg:hidden flex items-center">
+          {/* Mobile - Right side with only menu button (no extra logo) */}
+          <div className="lg:hidden flex items-center pr-4 md:pr-6">
+            {/* Mobile Menu Button */}
             <button
               onClick={handleMenuToggle}
               className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors duration-300"

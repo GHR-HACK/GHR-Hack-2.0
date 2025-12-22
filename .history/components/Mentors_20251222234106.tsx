@@ -1,14 +1,46 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { Phone, User } from "lucide-react"
 import Card from "./ui/Card"
 import Title from "./ui/Title"
 import Container from "./ui/Container"
 import { mentors } from "@/lib/data"
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 export default function Mentors() {
   const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      gsap.registerPlugin(ScrollTrigger)
+    } catch (e) {
+      // already registered or SSR - ignore
+    }
+
+    const ctx = gsap.context(() => {
+      const cards = sectionRef.current?.querySelectorAll('.mentor-card')
+      if (cards && cards.length > 0) {
+        gsap.from(cards, {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 85%',
+            toggleActions: 'play none none reverse',
+          },
+          y: 32,
+          opacity: 0,
+          scale: 0.98,
+          duration: 0.7,
+          stagger: 0.08,
+          ease: 'power3.out',
+        })
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   // Safety check
   if (!mentors) {

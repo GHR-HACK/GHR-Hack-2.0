@@ -143,8 +143,7 @@ export default function NavigationBar() {
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
-      // Use smaller offset for patrons section to show more content below
-      const offset = href === '#patrons' ? 50 : 100;
+      const offset = 100; // account for fixed nav height
       const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
       const target = elementPosition - offset;
 
@@ -200,11 +199,12 @@ export default function NavigationBar() {
           : 'bg-white text-black'
       }`}
     >
-      <div className="w-full">
-        <div className="flex items-center justify-between h-20 px-4 lg:px-8">
+      {/* Main container with proper padding */}
+      <div className="w-full px-2 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20 max-w-7xl space-x-12">
           
-          {/* Logo - Left side */}
-          <div className="flex items-center gap-2">
+          {/* Logo - Left side with proper padding */}
+          <div className="flex-shrink-0 flex items-center gap-2">
             <button
               ref={logoRef}
               onClick={() => scrollToSection('#home')}
@@ -219,9 +219,10 @@ export default function NavigationBar() {
               />
             </button>
             <span
-              className={`h-12 w-[2px] rounded-full ${
+              className={`h-12 w-[2px] inline-block rounded-full ${
                 isOverHero ? 'bg-white/80' : 'bg-black/40'
               }`}
+              aria-hidden="true"
             />
             <button
               ref={rightLogoRef}
@@ -239,7 +240,7 @@ export default function NavigationBar() {
           </div>
 
           {/* Desktop Navigation - Right side */}
-          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6 ">
             {navItems.map((item, index) => (
               <button
                 key={item.name}
@@ -257,8 +258,9 @@ export default function NavigationBar() {
             ))}
           </div>
 
-          {/* Mobile - Right side with only menu button */}
-          <div className="lg:hidden flex items-center">
+          {/* Mobile - Right side with only menu button (no extra logo) */}
+          <div className="lg:hidden flex items-center pr-4 md:pr-6">
+            {/* Mobile Menu Button */}
             <button
               onClick={handleMenuToggle}
               className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-white/10 transition-colors duration-300"

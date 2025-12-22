@@ -256,6 +256,12 @@ export const organizers = {
       linkedin: ""
     },
     {
+      name: "Umesh Jhurke",
+      role: "Finance Lead",
+      image: "",
+      linkedin: ""
+    },
+    {
       name: "Rutuja Patil",
       role: "Finance Lead",
       image: "images/Rutuja-Patil.jpeg",
@@ -267,13 +273,6 @@ export const organizers = {
       image: "/images/nakul-media lead.jpg",
       linkedin: ""
     },
-    {
-      name: "Umesh Jhurke",
-      role: "Finance Lead",
-      image: "",
-      linkedin: ""
-    },
-    
   ]
 };
 

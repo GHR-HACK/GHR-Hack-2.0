@@ -1,14 +1,54 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { Phone, User } from "lucide-react"
 import Card from "./ui/Card"
 import Title from "./ui/Title"
 import Container from "./ui/Container"
 import { mentors } from "@/lib/data"
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 
 export default function Mentors() {
   const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+
+    try {
+      gsap.registerPlugin(ScrollTrigger)
+    } catch (e) {
+      // already registered or SSR
+    }
+
+    // Respect users' reduced motion preference
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
+
+    const mm = gsap.matchMedia()
+
+    mm.add({ isDesktop: '(min-width: 768px)' }, (context) => {
+      const cards = sectionRef.current?.querySelectorAll('.mentor-card')
+      if (!cards || cards.length === 0) return
+
+      return gsap.from(cards, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: 'top 85%',
+          toggleActions: 'play none none reverse',
+        },
+        y: context.conditions.isDesktop ? 28 : 18,
+        opacity: 0,
+        scale: context.conditions.isDesktop ? 0.99 : 1,
+        duration: context.conditions.isDesktop ? 0.7 : 0.55,
+        stagger: context.conditions.isDesktop ? 0.08 : 0.06,
+        ease: 'power3.out',
+      })
+    })
+
+    return () => mm.revert()
+  }, [])
 
   // Safety check
   if (!mentors) {

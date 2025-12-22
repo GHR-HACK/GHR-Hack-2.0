@@ -41,18 +41,21 @@ export default function NavigationBar() {
       { opacity:  1, x: 0, duration: 0.8, ease: "power2.out" }
     );
 
-    // Stagger animation for desktop menu items
-    gsap.fromTo(menuItemsRef.current,
-      { opacity: 0, y: -10 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.5, 
-        stagger: 0.1,
-        ease: "power2.out",
-        delay: 0.3
-      }
-    );
+    // Stagger animation for desktop menu items (only animate actual elements)
+    const menuEls = (menuItemsRef.current || []).filter(Boolean) as HTMLElement[];
+    if (menuEls.length > 0) {
+      gsap.fromTo(menuEls,
+        { opacity: 0, y: -10 },
+        { 
+          opacity: 1, 
+          y: 0, 
+          duration: 0.5, 
+          stagger: 0.1,
+          ease: "power2.out",
+          delay: 0.3
+        }
+      );
+    }
   }, []);
 
   useEffect(() => {
@@ -75,18 +78,20 @@ export default function NavigationBar() {
         }
       );
 
-      // Animate mobile menu items
-      const mobileItems = mobileMenuRef.current. querySelectorAll('button');
-      gsap.fromTo(mobileItems,
-        { opacity: 0, x: -20 },
-        { 
-          opacity: 1, 
-          x: 0, 
-          duration: 0.3, 
-          stagger: 0.05,
-          ease: "power2.out"
-        }
-      );
+      // Animate mobile menu items (if present)
+      const mobileItems = mobileMenuRef.current.querySelectorAll('button');
+      if (mobileItems && mobileItems.length > 0) {
+        gsap.fromTo(mobileItems,
+          { opacity: 0, x: -20 },
+          { 
+            opacity: 1, 
+            x: 0, 
+            duration: 0.3, 
+            stagger: 0.05,
+            ease: "power2.out"
+          }
+        );
+      }
     } else {
       // CLOSE MENU
       gsap.to(mobileMenuRef.current, {
@@ -149,14 +154,21 @@ export default function NavigationBar() {
       const target = elementPosition - offset;
 
       // Use GSAP to animate a dummy object for smooth easing (consistent with Footer)
-      gsap.to({ value: window.pageYOffset }, {
-        value: target,
-        duration: 1,
-        ease: 'power2.inOut',
-        onUpdate: function() {
-          window.scrollTo(0, this.targets()[0].value);
-        }
-      });
+      try {
+        gsap.to({ value: window.pageYOffset }, {
+          value: target,
+          duration: 1,
+          ease: 'power2.inOut',
+          onUpdate: function() {
+            window.scrollTo(0, this.targets()[0].value);
+          }
+        });
+      } catch (err) {
+        // Fallback to native smooth scroll if GSAP fails for any reason
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        // apply offset after a short delay to allow native scroll to finish partway
+        setTimeout(() => window.scrollBy(0, -offset), 200);
+      }
 
       // click feedback
       const clickedIndex = navItems.findIndex(item => item.href === href);
