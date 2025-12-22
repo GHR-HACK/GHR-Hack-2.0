@@ -124,11 +124,8 @@ export default function RootLayout({
       <head>
         {/* Additional SEO Meta Tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
-        <meta name="theme-color" content="#000000" />
-        <meta name="google-site-verification" content="your-google-verification-code" />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/logo.png" />
-        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#000000" />       
+        <link rel="icon" href="/logo.png" sizes="any" />              
         
         {/* Structured Data for SEO */}
         <script
@@ -137,9 +134,8 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Event",
-              "name": "Raisoni Hackathon - GHR Hack 2.0 - Code to Career",
-              "description": "30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Join Raisoni Hackathon 2025 and transform your coding skills into career opportunities.",
-              "keywords": "Raisoni hackathon, GHR Hack 2.0, Raisoni hackathon 2025, GHRCEM hackathon",
+              "name": "GHR Hack 2.0 - Code to Career",
+              "description": "30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon",          
               "location": {
                 "@type": "Place",
                 "name": "G H Raisoni College of Engineering and Management",
@@ -154,27 +150,8 @@ export default function RootLayout({
               "organizer": {
                 "@type": "Organization",
                 "name": "G H Raisoni College of Engineering and Management, Jalgaon",
-                "url": "https://www.ghrhack.tech/",
-                "sameAs": [
-                  "https://www.ghrhack.tech/"
-                ]
-              },
-              "url": "https://www.ghrhack.tech/",
-              "image": "https://www.ghrhack.tech/logo.png"
-            })
-          }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "GHR Hack 2.0 - Raisoni Hackathon",
-              "alternateName": "Raisoni Hackathon",
-              "url": "https://www.ghrhack.tech/",
-              "logo": "https://www.ghrhack.tech/logo.png",
-              "description": "Official website for Raisoni Hackathon - GHR Hack 2.0 at G H Raisoni College, Jalgaon"
+                "url": "https://www.ghrhack.tech/"
+              },             
             })
           }}
         />

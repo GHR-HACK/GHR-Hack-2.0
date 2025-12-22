@@ -1,0 +1,18 @@
+{
+  "name": "Raisoni Hackathon - GHR Hack 2.0",
+  "short_name": "GHR Hack 2.0",
+  "description": "30-hour Raisoni Hackathon at G H Raisoni College, Jalgaon",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#000000",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/"
+}
