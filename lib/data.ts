@@ -193,6 +193,12 @@ export const organizers = {
       name: "Mrunal Mahajan",
       role: "Overall Coordinator",
       linkedin: ""
+    },
+    {
+      name: "Riya Bhangale",
+      Role: "Co-lead",
+      linkedin:"",
+      image:"/images/riya bhangale.jpeg"
     }
   ]
 };

@@ -236,8 +236,16 @@ export default function HeroSection() {
             >
               <span className="split-btn-text">Learn More</span>
             </Button>
-          </div>
+         
+          <Button
+  variant="primary"
+  size="lg"
+  className="font-red-hat-display text-lg px-8 py-4 min-w-[200px]"
+>
+  <span className="split-btn-text">Download Brochure</span>
+</Button>
 
+ </div>
         </div>
       </div>
 
