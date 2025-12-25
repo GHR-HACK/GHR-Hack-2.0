@@ -220,7 +220,7 @@ export const organizers = {
     {
       name: "Riya Bhangale",
       role: "Co-Lead",
-      image: "",
+      image: "/images/riya-bhangale.jpg",
       linkedin: ""
     }
   ],
