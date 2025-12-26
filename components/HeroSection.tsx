@@ -31,10 +31,11 @@ export default function HeroSection() {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
+
     };
   }, []);
 
-  useEffect(() => {
+useEffect(() => {
     const ctx = gsap.context(() => {
       // Optimized ScrambleText animation for title - reduced complexity
       if (titleRef.current) {
@@ -179,9 +180,20 @@ export default function HeroSection() {
               style={{ height: '44px', width: '312px' }}
             ></div>
           </div>
-
+{/* Download Brochure Button  */}
+            <div className="flex justify-center mt-4">
+              <Button
+                variant="outline"
+                size="lg"
+                className="font-red-hat-display text-lg px-8 py-4 min-w-[220px] border-primary-orange text-primary-orange hover:bg-primary-orange hover:text-black"
+              >
+                Download Brochure
+              </Button>
+            </div>
+          </div>
         </div>
-      </div>
+        
+    
 
       {/* Gradient overlays */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent" />
