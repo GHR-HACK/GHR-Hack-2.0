@@ -31,13 +31,6 @@ export default function HeroSection() {
       if (document.body.contains(script)) {
         document.body.removeChild(script);
       }
-      <div className="flex justify-center mt-4">
-  <button
-    className="px-8 py-4 text-lg border-2 border-red-500 text-red-500"
-  >
-    Download Brochure
-  </button>
-</div>
 
     };
   }, []);
