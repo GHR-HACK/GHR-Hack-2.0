@@ -123,7 +123,7 @@ export const mentors = {
       name: "Dr. Nilesh Ingale",
       title: "Dr Nilesh Ingale",
       role: "HoD, IT/DS Department",
-      image: "/convener/nilesh-ingale.jpg"
+      image: "/convener/nilesh-ingle.jpeg"
     }
   ],
   facultyCoordinator: {
