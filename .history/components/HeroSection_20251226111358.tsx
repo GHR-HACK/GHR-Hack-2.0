@@ -192,6 +192,8 @@ useEffect(() => {
             </div>
           </div>
         </div>
+        
+    
 
       {/* Gradient overlays */}
       <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent" />

@@ -1,5 +1,3 @@
-import Title from "./ui/Title";
-
 const timelineData = [
   {
     step: 1,
@@ -171,12 +169,7 @@ const EventTimeline = () => {
   };
 
   return (
-    <div id="schedule" className="relative w-full max-w-5xl mx-auto pt-16 md:pt-24 overflow-hidden font-redhat">
-                <Title level={2} variant="gradient" size="lg" className="mb-6">
-
-                  Event Timeline
-                </Title>
-      
+    <div className="relative w-full max-w-5xl mx-auto py-8 px-4 overflow-hidden font-redhat">
       {/* Desktop Timeline */}
       <div className="hidden md:block relative" style={{ height: totalHeight }}>
         {/* SVG for connecting snake lines - 3 parallel lines with gaps */}
@@ -187,12 +180,12 @@ const EventTimeline = () => {
           viewBox={`0 0 600 ${totalHeight}`}
           fill="none"
         >
-          {/* Use global orange for timeline line */}
+          {/* Fallback color for timeline line if CSS variable is missing */}
           {[-6, 0, 6].map((offset, idx) => (
             <path
               key={idx}
               d={generatePath()}
-              stroke="var(--primary-orange, #e9552b)"
+              stroke="hsl(var(--timeline-line,220,10%,60%))"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
@@ -235,13 +228,13 @@ const EventTimeline = () => {
 
               {/* Circle */}
               <div
-                className="absolute flex items-center justify-center rounded-full font-red-hat-display font-bold text-xl shadow-lg z-10"
+                className="absolute flex items-center justify-center rounded-full bg-timeline-circle text-primary-foreground font-bold text-xl shadow-lg z-10"
                 style={{
                   left: pos.x - circleRadius,
                   width: circleRadius * 2,
                   height: circleRadius * 2,
-                  background: 'var(--primary-purple, #680b7d)',
-                  color: '#fff',
+                  background: 'var(--timeline-circle-bg, #e9d8fd)', // fallback for bg-timeline-circle
+                  color: 'var(--timeline-circle-fg, #22223b)', // fallback for text-primary-foreground
                 }}
               >
                 {item.step}
@@ -276,12 +269,12 @@ const EventTimeline = () => {
           viewBox={`0 0 120 ${totalHeight}`}
           fill="none"
         >
-          {/* Use global orange for timeline line */}
+          {/* Fallback color for timeline line if CSS variable is missing */}
           {[-4, 0, 4].map((offset, idx) => (
             <path
               key={idx}
               d={generateMobilePath()}
-              stroke="var(--primary-orange, #e9552b)"
+              stroke="hsl(var(--timeline-line,220,10%,60%))"
               strokeWidth="2"
               fill="none"
               strokeLinecap="round"
@@ -306,13 +299,13 @@ const EventTimeline = () => {
             >
               {/* Circle */}
               <div
-                className="flex-shrink-0 flex items-center justify-center rounded-full font-red-hat-display font-bold text-lg shadow-lg z-10"
+                className="flex-shrink-0 flex items-center justify-center rounded-full bg-timeline-circle text-primary-foreground font-bold text-lg shadow-lg z-10"
                 style={{
                   width: circleRadius * 2,
                   height: circleRadius * 2,
                   marginLeft: pos.x - circleRadius,
-                  background: 'var(--primary-purple, #680b7d)',
-                  color: '#fff',
+                  background: 'var(--timeline-circle-bg, #e9d8fd)', // fallback for bg-timeline-circle
+                  color: 'var(--timeline-circle-fg, #22223b)', // fallback for text-primary-foreground
                 }}
               >
                 {item.step}

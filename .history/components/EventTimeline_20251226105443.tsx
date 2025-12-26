@@ -171,11 +171,10 @@ const EventTimeline = () => {
   };
 
   return (
-    <div id="schedule" className="relative w-full max-w-5xl mx-auto pt-16 md:pt-24 overflow-hidden font-redhat">
-                <Title level={2} variant="gradient" size="lg" className="mb-6">
-
-                  Event Timeline
-                </Title>
+    <div id="schedule" className="relative w-full max-w-5xl mx-auto pt-8 pb-2 px-4 overflow-hidden font-red-hat-display">
+      <Title level={2} variant="gradient" size="lg" className="mb-6">
+        Event Timeline
+      </Title>
       
       {/* Desktop Timeline */}
       <div className="hidden md:block relative" style={{ height: totalHeight }}>

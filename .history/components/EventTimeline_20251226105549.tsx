@@ -171,7 +171,7 @@ const EventTimeline = () => {
   };
 
   return (
-    <div id="schedule" className="relative w-full max-w-5xl mx-auto pt-16 md:pt-24 overflow-hidden font-redhat">
+    <div id="schedule" className="relative w-full max-w-5xl mx-auto py-16 md:py-24 overflow-hidden font-redhat">
                 <Title level={2} variant="gradient" size="lg" className="mb-6">
 
                   Event Timeline
