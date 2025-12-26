@@ -11,8 +11,9 @@ export default function MapEmbed() {
       <div className="w-full">
         <div className="text-center ">
                     <Title level={2} variant="gradient" size="xl" className="mb-8">
-                        Location
-                    </Title>                   
+                      Location
+                    </Title>
+                   
                   </div>
         <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: 12 }}>
           <iframe
