@@ -279,36 +279,52 @@ export const organizers = {
 
 export const faqs = [
   {
-    question: "How do i register for the hackthon",
-    answer: ""
+    question: "Is GHRhack 2.0 right for me?",
+    answer: "Yes. GHRhack 2.0 is open to students from all branches and all skill levels. Whether you are a beginner or an experienced participant, the hackathon is designed to help you learn, build, and grow."
   },
   {
-    question: "Is there any registration fees?",
-    answer: ""
+    question: "What is the theme of GHRhack 2.0 – Code to Career?",
+    answer: "Code to Career focuses on building practical, real-world solutions that help participants develop industry-relevant skills. The goal is to turn your ideas and code into projects that add value to your career, resume, internships, placements, or startup journey."
   },
   {
-    question: "What is the ideal Team size",
-    answer: ""
+    question: "Do I have to pay any registration fee?",
+    answer: "No. Registration is completely free, with no hidden charges."
+  },
+  {
+    question: "How do I register for the hackathon?",
+    answer: "Visit the official GHRhack website and click on the Register button. You will be redirected to the Devfolio registration form, where you must fill in your details and submit the form before the deadline."
+  },
+  {
+    question: "Can I participate alone?",
+    answer: "No. Solo participation is not allowed. All participants must register as part of a team to promote collaboration and teamwork. Inter-college teams are not allowed; all team members must be from the same college."
+  },
+  {
+    question: "What is the required team size?",
+    answer: "Each team must consist of either 2 or 4 members. Teams that do not meet this requirement will not be eligible."
+  },
+  {
+    question: "How and when will teams be shortlisted?",
+    answer: "Teams will be shortlisted based on the details provided during registration and submissions. Shortlisting results and further instructions will be shared via email."
+  },
+  {
+    question: "Will internet access be provided at the venue?",
+    answer: "Yes, internet access will be available at the venue. Participants are advised to keep backup options if possible."
+  },
+  {
+    question: "Are meals and accommodation provided?",
+    answer: "Meals will be provided during the hackathon. Accommodation details, will be shared closer to the event."
+  },
+  {
+    question: "What should participants bring?",
+    answer: "Participants should bring their laptops, chargers and any required hardware for their projects."
   },
   {
     question: "Why should I participate in GHRhack 2.0?",
-    answer: ""
+    answer: "GHRhack 2.0 offers hands-on experience solving real-world problems, mentorship from experienced professionals, networking with innovators and peers, certificates, recognition, and exciting rewards. It's a platform to learn by building and move one step closer to your career goals."
   },
   {
-    question: "Who can participate ?",
-    answer: ""
-  },
-  {
-    question: "When and How the team will be shortlisted?",
-    answer: ""
-  },
-  {
-    question: "Does the hackathon include accomodation and meals for the participants?",
-    answer: ""
-  },
-  {
-    question: "Does GHRhack provide Internet facility during hackathon?",
-    answer: ""
+    question: "Where can I get official updates?",
+    answer: "All announcements and updates will be shared through the official GHRhack website and social media channels."
   }
 ];
 
