@@ -111,7 +111,7 @@ export const mentors = {
       name: "Dr. Swati Patil",
       title: "Dr Swati Patil",
       role: "HoD, AI/AIML Department",
-      image: "/convener/SwatiPatil.jpg"
+      image: "/convener/swati-patil.jpg"
     },
     {
       name: "Dr. Chetan Chaudhari",
