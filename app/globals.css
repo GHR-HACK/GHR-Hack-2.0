@@ -26,10 +26,8 @@
   --font-red-hat-display: var(--font-red-hat-display);
 }
 
-* {  
+* {
   box-sizing: border-box;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
   font-family: var(--font-red-hat-display), sans-serif !important;
 }
 
@@ -42,7 +40,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-red-hat-display), sans-serif !important;
-  overflow: hidden; /* Hide default scrollbar */
+  /* overflow: hidden; - Now controlled by GSAPSetup after ScrollSmoother initialization */
+  /* Hide default scrollbar */
 }
 
 /* Ensure font-red-hat-display class works */
@@ -50,42 +49,6 @@ body {
   font-family: var(--font-red-hat-display), sans-serif !important;
 }
 
-/* Hide scrollbar */
-::-webkit-scrollbar {
-  display: none;
-}
-
-/* Optimized GSAP ScrollSmoother wrapper */
-#smooth-wrapper {
-  height: 100vh;
-  overflow: hidden;
-  transform: translateZ(0); /* Force hardware acceleration */
-}
-
-#smooth-content {
-  will-change: transform;
-  contain: layout style paint; /* CSS containment for better performance */
-}
-
-/* Custom scrollbar for smooth scrolling */
-.custom-scrollbar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 8px;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.05);
-  z-index: 1000;
-}
-
-.custom-scrollbar-thumb {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  background: linear-gradient(180deg, var(--primary-orange), var(--primary-purple));
-  border-radius: 4px;
-  transition: opacity 0.3s ease;
-}
 
 /* Gradient text utilities - Custom purple to orange gradient */
 .gradient-text {
@@ -128,22 +91,4 @@ body {
   will-change: transform, opacity;
   backface-visibility: hidden;
   transform-style: preserve-3d;
-}
-
-/* Reduce motion for users who prefer it */
-@media (prefers-reduced-motion: reduce) {
-  .gsap-animated {
-    transition: none !important;
-    animation: none !important;
-  }
-
-  #smooth-content {
-    transform: none !important;
-  }
-}
-
-/* Optimize scrollbar animations */
-.custom-scrollbar-thumb {
-  will-change: transform, height;
-  transform: translateZ(0);
 }

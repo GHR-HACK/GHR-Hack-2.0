@@ -94,7 +94,7 @@ export const metadata: Metadata = {
     images: ["https://www.ghrhack.tech/logo.png"],
   },
   alternates: {
-    canonical: "https://www.ghrhack.tech/", 
+    canonical: "https://www.ghrhack.tech/",
   },
   category: "Technology",
   icons: {
@@ -129,7 +129,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="apple-touch-icon" href="/logo.png" />
         <link rel="manifest" href="/site.webmanifest" />
-        
+
         {/* Structured Data for SEO */}
         <script
           type="application/ld+json"
@@ -180,20 +180,20 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatDisplay.variable} overflow-hidden`}
+        className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatDisplay.variable}`}
         suppressHydrationWarning
       >
-         <GSAPSetup />
-         <NavigationBar />
-         <Providers>
-           <div id="smooth-wrapper">
+        <GSAPSetup />
+        <NavigationBar />
+        <Providers>
+          <div id="smooth-wrapper">
             <div id="smooth-content">
               {children}
             </div>
           </div>
-         </Providers>
-         <Toaster position="top-right" richColors />
-       
+        </Providers>
+        <Toaster position="top-right" richColors />
+
         {/* {children} */}
       </body>
     </html>

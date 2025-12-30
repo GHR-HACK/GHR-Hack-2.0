@@ -39,7 +39,7 @@ export const hackathonThemes = [
 ];
 
 export const prizes = {
-  cash: "₹1,00,000+",
+  cash: "₹1,10,000+",
   description: "Exciting Prizes Await!"
 };
 
@@ -69,7 +69,7 @@ export const sponsors = {
     { name: "DEVFOLIO", logo: "/sponsors/Devfolio.png" }
   ],
   silver: [
-    { name: "ETHINDIA", logo: "/sponsors/ETHIndia.png" },   
+    { name: "ETHINDIA", logo: "/sponsors/ETHIndia.png" },
   ],
   educationPartners: [
     { name: "Partner 1", logo: "" }
@@ -130,7 +130,7 @@ export const mentors = {
     name: "Dr Nilesh Ingle",
     phone: "8668297264"
   },
-  coordinators: [   
+  coordinators: [
     {
       name: "Dr. Dipak Nemade",
       phone: "8668929577",
@@ -214,9 +214,9 @@ export const organizers = {
     {
       name: "Shreyas Shejwal",
       role: "Co-Lead",
-      image: "/images/shreyas-Co-lead.png",
+      image: "/images/shreyas-shejwal.jpeg",
       linkedin: ""
-    } ,
+    },
     {
       name: "Riya Bhangale",
       role: "Co-Lead",
@@ -238,8 +238,8 @@ export const organizers = {
       linkedin: ""
     },
     {
-      name:"Lokesh Sapkale",
-      role:"Technical Lead",
+      name: "Lokesh Sapkale",
+      role: "Technical Lead",
       image: "/images/lokesh-technical.jpg",
       linkedin: ""
     },
@@ -273,7 +273,7 @@ export const organizers = {
       image: "",
       linkedin: ""
     },
-    
+
   ]
 };
 
@@ -329,7 +329,7 @@ export const faqs = [
 ];
 
 export const contact = {
-  email: "hackathon@ghrcemj.raisoni.net", 
+  email: "hackathon@ghrcemj.raisoni.net",
   phones: ["+91 7558213669", "+91 8411906657"],
   address: "Gate No 57, Shirsoli Rd, Mohadi, Jalgaon Maharashtra 425002"
 };
