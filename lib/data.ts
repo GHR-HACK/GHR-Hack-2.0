@@ -270,7 +270,7 @@ export const organizers = {
     {
       name: "Umesh Jhurke",
       role: "Finance Lead",
-      image: "",
+      image: "/images/umesh-jhurke.jpeg",
       linkedin: ""
     },
 

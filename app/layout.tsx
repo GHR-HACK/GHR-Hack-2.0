@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { Orbitron, Rajdhani, JetBrains_Mono, Red_Hat_Display } from "next/font/google";
 import "./globals.css";
 import GSAPSetup from "../components/GSAPSetup";
-import NavigationBar from "../components/NavigationBar";
 import { Providers } from "../lib/providers";
 import { Toaster } from "sonner";
+import { VideoProvider } from "../lib/contexts/VideoContext";
+import ConditionalNav from "../components/ConditionalNav";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -183,18 +184,19 @@ export default function RootLayout({
         className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatDisplay.variable}`}
         suppressHydrationWarning
       >
-        <GSAPSetup />
-        <NavigationBar />
-        <Providers>
-          <div id="smooth-wrapper">
-            <div id="smooth-content">
-              {children}
-            </div>
-          </div>
-        </Providers>
-        <Toaster position="top-right" richColors />
+        <VideoProvider>
+          <GSAPSetup />
+          <ConditionalNav />
 
-        {/* {children} */}
+          <Providers>
+            <div id="smooth-wrapper">
+              <div id="smooth-content">
+                {children}
+              </div>
+            </div>
+          </Providers>
+          <Toaster position="top-right" richColors />
+        </VideoProvider>
       </body>
     </html>
   );

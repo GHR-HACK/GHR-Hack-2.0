@@ -17,37 +17,32 @@ export default function FAQs() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Animate section title
+      // Animate section title - optimized
       gsap.from('.faqs-title', {
         scrollTrigger: {
           trigger: '.faqs-title',
           start: 'top 80%',
-          toggleActions: 'play none none reverse',
+          once: true, // Only animate once
         },
-        y: 50,
+        y: 30,
         opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
+        duration: 0.6,
+        ease: 'power2.out',
       });
 
-      // Ensure visible defaults
-      gsap.set('.faq-item', { autoAlpha: 1, y: 0 });
-
-      // Animate FAQ items with batch for reliability
-      ScrollTrigger.batch('.faq-item', {
-        start: 'top 90%',
-        once: true,
-        onEnter: (batch) => {
-          (batch as HTMLElement[]).forEach((el, idx) => {
-            gsap.from(el, {
-              y: 30,
-              autoAlpha: 0,
-              duration: 0.6,
-              ease: 'power3.out',
-              delay: idx * 0.05,
-            });
-          });
+      // Optimized FAQ items animation - use simple stagger instead of batch
+      gsap.from('.faq-item', {
+        scrollTrigger: {
+          trigger: '.faqs-grid',
+          start: 'top 80%',
+          once: true, // Only animate once for better performance
         },
+        y: 20,
+        opacity: 0,
+        duration: 0.4,
+        stagger: 0.05, // Reduced stagger for faster animation
+        ease: 'power2.out',
+        clearProps: 'all', // Clear inline styles after animation
       });
     }, sectionRef);
 
@@ -117,44 +112,45 @@ export default function FAQs() {
     >
       <Container>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="text-center ">
-          <Title level={2} variant="gradient" size="xl" className="faqs-title mb-8">
-            Frequently Asked Questions
-          </Title>
-          
-        </div>
+          <div className="text-center ">
+            <Title level={2} variant="gradient" size="xl" className="faqs-title mb-8">
+              Frequently Asked Questions
+            </Title>
 
-        <div className="faqs-grid max-w-4xl mx-auto">
-          {faqs.map((faq, index) => (
-            <Card
-              key={index}
-              variant="glass"
-              className="faq-item mb-4 cursor-pointer group"
-              onClick={() => toggleFAQ(index)}
-              ref={(el) => {
-                if (el) faqRefs.current[index] = el;
-              }}
-            >
-              <div className="p-6">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-red-hat-display font-bold text-black group-hover:gradient-text transition-all duration-300 pr-4">
-                    {faq.question}
-                  </h3>
-                  <div className="faq-icon flex-shrink-0 w-6 h-6 text-primary-orange transition-transform duration-300">
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+          </div>
+
+          <div className="faqs-grid max-w-4xl mx-auto">
+            {faqs.map((faq, index) => (
+              <Card
+                key={index}
+                variant="glass"
+                className="faq-item mb-4 cursor-pointer group"
+                style={{ willChange: 'transform, opacity' }}
+                onClick={() => toggleFAQ(index)}
+                ref={(el) => {
+                  if (el) faqRefs.current[index] = el;
+                }}
+              >
+                <div className="p-6">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-red-hat-display font-bold text-black group-hover:gradient-text transition-all duration-300 pr-4">
+                      {faq.question}
+                    </h3>
+                    <div className="faq-icon flex-shrink-0 w-6 h-6 text-primary-orange transition-transform duration-300">
+                      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="faq-answer overflow-hidden" style={{ height: 0, opacity: 0 }}>
+                    <p className="text-black/70 font-red-hat-display mt-4 pt-4 border-t border-black/10 group-hover:text-black/90 transition-colors duration-300">
+                      {faq.answer || "We're working on providing detailed answers for all your questions. Stay tuned for updates!"}
+                    </p>
                   </div>
                 </div>
-                <div className="faq-answer overflow-hidden" style={{ height: 0, opacity: 0 }}>
-                  <p className="text-black/70 font-red-hat-display mt-4 pt-4 border-t border-black/10 group-hover:text-black/90 transition-colors duration-300">
-                    {faq.answer || "We're working on providing detailed answers for all your questions. Stay tuned for updates!"}
-                  </p>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
+              </Card>
+            ))}
+          </div>
 
         </div>
       </Container>
