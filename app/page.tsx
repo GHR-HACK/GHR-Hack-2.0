@@ -18,6 +18,7 @@ import FAQs from "../components/FAQs";
 import Footer from "../components/Footer";
 import MapEmbed from "../components/MapEmbed";
 import Button from "../components/ui/Button";
+import SwipeButton from "../components/ui/SwipeButton";
 import { useVideo } from "../lib/contexts/VideoContext";
 
 gsap.registerPlugin(ScrollToPlugin);
@@ -90,16 +91,7 @@ export default function Home() {
   if (!hasStarted) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-black overflow-hidden">
-        <div className="z-10">
-          <Button
-            variant="primary"
-            size="lg"
-            className="min-w-[220px] font-red-hat-display transform hover:scale-105 transition-transform duration-300"
-            onClick={handleStart}
-          >
-            Start
-          </Button>
-        </div>
+        <SwipeButton onComplete={handleStart} />
       </div>
     );
   }

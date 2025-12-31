@@ -330,7 +330,7 @@ export const faqs = [
 
 export const contact = {
   email: "hackathon@ghrcemj.raisoni.net",
-  phones: ["+91 7558213669", "+91 8411906657"],
+  phones: ["+91 84689 36670", "+91 7558213669"],
   address: "Gate No 57, Shirsoli Rd, Mohadi, Jalgaon Maharashtra 425002"
 };
 

@@ -24,7 +24,7 @@ export default function Footer() {
           value: target,
           duration: 1,
           ease: 'power2.inOut',
-          onUpdate: function() {
+          onUpdate: function () {
             window.scrollTo(0, this.targets()[0].value);
           }
         });
@@ -87,15 +87,15 @@ export default function Footer() {
       ref={footerRef}
       className="bg-[#5c0f8b] border-t border-purple-500/20 py-16"
     >
-      
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
         <div className="footer-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-12">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <h3 className="text-white font-red-hat-display font-bold text-2xl mb-4">
               GHRhack 2.0
             </h3>
-            
+
             <p className="text-white font-red-hat-display mb-6 max-w-md">
               Join us for an innovative hackathon experience at G H Raisoni College of Engineering and Management, Jalgaon.
             </p>
@@ -133,13 +133,24 @@ export default function Footer() {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <span className="text-primary-purple">📧</span>
-                <span className="text-white font-red-hat-display text-sm">{contact.email}</span>
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="text-white hover:text-primary-orange font-red-hat-display text-sm transition-colors duration-300 underline-offset-4 hover:underline"
+                >
+                  {contact.email}
+                </a>
               </div>
               <div className="flex items-center space-x-3">
                 <span className="text-primary-orange">📞</span>
                 <div className="text-white font-red-hat-display text-sm">
                   {contact.phones.map((phone, index) => (
-                    <div key={index}>{phone}</div>
+                    <a
+                      key={index}
+                      href={`tel:${phone.replace(/\s/g, '')}`}
+                      className="block hover:text-primary-orange transition-colors duration-300 underline-offset-4 hover:underline"
+                    >
+                      {phone}
+                    </a>
                   ))}
                 </div>
               </div>
@@ -174,13 +185,13 @@ export default function Footer() {
           </div>
         </div>
 
-        </div>
-        {/* Animated background elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-10 left-10 w-20 h-20 border border-primary-purple/20 rounded-full animate-pulse" />
-          <div className="absolute bottom-10 right-10 w-16 h-16 bg-primary-orange/10 rounded-lg animate-pulse" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/4 w-12 h-12 border border-primary-purple/20 rotate-45 animate-pulse" style={{ animationDelay: '2s' }} />
-        </div>     
+      </div>
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-10 left-10 w-20 h-20 border border-primary-purple/20 rounded-full animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-16 h-16 bg-primary-orange/10 rounded-lg animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-1/2 left-1/4 w-12 h-12 border border-primary-purple/20 rotate-45 animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
     </footer>
   );
 }
