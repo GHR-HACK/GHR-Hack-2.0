@@ -35,7 +35,7 @@ export default function HeroSection() {
     };
   }, []);
 
-useEffect(() => {
+  useEffect(() => {
     const ctx = gsap.context(() => {
       // Optimized ScrambleText animation for title - reduced complexity
       if (titleRef.current) {
@@ -128,64 +128,72 @@ useEffect(() => {
   }, []);
 
   return (
-<>  
-    {/* Mouse Animation - Only for Hero Section */}
-    <OptimizedSnakeCursor />
+    <>
+      {/* Mouse Animation - Only for Hero Section */}
+      <OptimizedSnakeCursor />
 
-    <section
-      id="home"
-      ref={heroRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 md:pt-40"
-    >
-      {/* Animated Background */}
-      
-      <div ref={backgroundRef} className="absolute inset-0">
-        {/* Grid pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)]" />
-      </div>
+      <section
+        id="home"
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black pt-32 md:pt-40"
+      >
+        {/* Animated Background */}
 
-      {/* Particles Background */}
-      <ParticlesWeb />
+        <div ref={backgroundRef} className="absolute inset-0">
+          {/* Grid pattern */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(139,92,246,0.1),transparent_50%)]" />
+        </div>
 
-      
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center hero-3d">
-        <div className="max-w-5xl mx-auto">
-          {/* Main Title */}
-          <Title
-            ref={titleRef}
-            level={1}
-            variant="gradient"
-            size="3xl"
-            className="mb-6 leading-tight text-6xl md:text-7xl lg:text-8xl"
-          >
-            GHRhack 2.0
-          </Title>
+        {/* Particles Background */}
+        <ParticlesWeb />
 
-          {/* Subtitle */}
-          <div
-            ref={subtitleRef}
-            className="text-xl md:text-2xl text-white/80 font-red-hat-display font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle text-center"
-          >
-            <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the Career</p>
-            <p>28<sup>th</sup> Feb - 1<sup>st</sup> March 2026</p>
-          </div>
-         
-          {/* Devfolio Apply Button */}
-          <div className="flex justify-center py-8">
+
+        {/* Main Content */}
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center hero-3d">
+          <div className="max-w-5xl mx-auto">
+            {/* Main Title */}
+            <Title
+              ref={titleRef}
+              level={1}
+              variant="gradient"
+              size="3xl"
+              className="mb-6 leading-tight text-6xl md:text-7xl lg:text-8xl"
+            >
+              GHRhack 2.0
+            </Title>
+
+            {/* Subtitle */}
             <div
-              className="apply-button"
-              data-hackathon-slug="ghrhack2"
-              data-button-theme="light"
-              style={{ height: '44px', width: '312px' }}
-            ></div>
-          </div>
-{/* Download Brochure Button  */}
+              ref={subtitleRef}
+              className="text-xl md:text-2xl text-white/80 font-red-hat-display font-light mb-12 max-w-3xl mx-auto leading-relaxed split-subtitle text-center"
+            >
+              <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the Career</p>
+              <p>28<sup>th</sup> Feb - 1<sup>st</sup> March 2026</p>
+            </div>
+
+            {/* Devfolio Apply Button */}
+            <div className="flex justify-center py-8">
+              <div
+                className="apply-button"
+                data-hackathon-slug="ghrhack2"
+                data-button-theme="light"
+                style={{ height: '44px', width: '312px' }}
+              ></div>
+            </div>
+            {/* Download Brochure Button  */}
             <div className="flex justify-center mt-4">
               <Button
                 variant="primary"
                 size="lg"
                 className="min-w-[220px] font-red-hat-display"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/brouchure.pdf';
+                  link.download = 'GHRhack-2.0-Brochure.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
               >
                 Download Brochure
               </Button>
@@ -193,10 +201,10 @@ useEffect(() => {
           </div>
         </div>
 
-      {/* Gradient overlays */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent" />
-      <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent" />
-    </section>
+        {/* Gradient overlays */}
+        <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-black to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent" />
+      </section>
     </>
   );
 }
