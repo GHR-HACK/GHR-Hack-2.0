@@ -4,8 +4,8 @@ import "./globals.css";
 import GSAPSetup from "../components/GSAPSetup";
 import { Providers } from "../lib/providers";
 import { Toaster } from "sonner";
-import { VideoProvider } from "../lib/contexts/VideoContext";
-import ConditionalNav from "../components/ConditionalNav";
+import NavigationBar from "../components/NavigationBar";
+import ConditionalSmoothWrapper from "../components/ConditionalSmoothWrapper";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -184,19 +184,15 @@ export default function RootLayout({
         className={`${orbitron.variable} ${rajdhani.variable} ${jetbrainsMono.variable} ${redHatDisplay.variable}`}
         suppressHydrationWarning
       >
-        <VideoProvider>
-          <GSAPSetup />
-          <ConditionalNav />
+        <GSAPSetup />
+        <NavigationBar />
 
-          <Providers>
-            <div id="smooth-wrapper">
-              <div id="smooth-content">
-                {children}
-              </div>
-            </div>
-          </Providers>
-          <Toaster position="top-right" richColors />
-        </VideoProvider>
+        <Providers>
+          <ConditionalSmoothWrapper>
+            {children}
+          </ConditionalSmoothWrapper>
+        </Providers>
+        <Toaster position="top-right" richColors />
       </body>
     </html>
   );

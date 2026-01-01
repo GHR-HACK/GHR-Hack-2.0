@@ -1,7 +1,7 @@
 // Simple authentication utilities
 // In a production app, use proper JWT tokens and secure authentication
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123'; // Use environment variable in production
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'himanshu@5566'; // Use environment variable in production
 
 export function verifyAdminPassword(password: string): boolean {
   return password === ADMIN_PASSWORD;

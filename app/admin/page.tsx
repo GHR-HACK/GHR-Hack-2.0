@@ -108,9 +108,9 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 pt-32">
-      <div className="max-w-7xl mx-auto">
-        {/* Header Card */}
-        <Card variant="elevated" className="mb-6 p-6">
+      {/* Header Card - constrained width */}
+      <div className="max-w-7xl mx-auto mb-6">
+        <Card variant="elevated" className="p-6">
           <div className="flex justify-between items-center">
             <div>
               <h1 className="text-3xl font-bold text-gray-900">Admin Dashboard</h1>
@@ -131,9 +131,11 @@ export default function AdminPage() {
             </div>
           </div>
         </Card>
+      </div>
 
-        {/* Main Content */}
-        {contacts.length === 0 ? (
+      {/* Main Content - full width for scrolling */}
+      {contacts.length === 0 ? (
+        <div className="max-w-7xl mx-auto">
           <Card variant="elevated" className="p-16 text-center">
             <svg className="w-24 h-24 mx-auto mb-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -141,57 +143,70 @@ export default function AdminPage() {
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No Submissions Yet</h3>
             <p className="text-gray-500">Contact form submissions will appear here once users start submitting.</p>
           </Card>
-        ) : (
-          <Card variant="elevated" className="overflow-hidden">
+        </div>
+      ) : (
+        <div className="max-w-7xl mx-auto">
+          <Card variant="elevated" className="overflow-visible">
             <div className="p-6 border-b border-gray-200">
               <h2 className="text-xl font-semibold text-gray-900">Contact Submissions</h2>
               <p className="text-gray-600 mt-1">View and manage all contact form submissions</p>
             </div>
-            <div className="overflow-x-auto">
-              <Table>
-                <TableHeader>
-                  <TableRow className="bg-gray-50">
-                    <TableHead className="font-semibold text-gray-900">Name</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Email</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Phone</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Interest</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Message</TableHead>
-                    <TableHead className="font-semibold text-gray-900">Submitted At</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {contacts.map((contact, index) => (
-                    <TableRow key={contact.id} className={index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}>
-                      <TableCell className="font-medium text-gray-900">{contact.name}</TableCell>
-                      <TableCell className="text-gray-700">{contact.email}</TableCell>
-                      <TableCell className="text-gray-700 font-mono">{contact.phone}</TableCell>
-                      <TableCell>
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize">
-                          {contact.interest}
-                        </span>
-                      </TableCell>
-                      <TableCell className="max-w-xs">
-                        <div className="truncate text-gray-700" title={contact.message}>
-                          {contact.message}
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-gray-600 text-sm">
-                        {new Date(contact.createdAt).toLocaleString('en-IN', {
-                          day: '2-digit',
-                          month: 'short',
-                          year: 'numeric',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+            <div
+              className="overflow-x-auto -mx-6 px-6"
+              style={{
+                touchAction: 'pan-x pan-y',
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehaviorX: 'contain'
+              }}
+            >
+              <div className="min-w-full inline-block align-middle">
+                <div className="overflow-hidden border rounded-md">
+                  <table className="w-full caption-bottom text-sm min-w-max">
+                    <thead className="[&_tr]:border-b">
+                      <tr className="border-b transition-colors hover:bg-muted/50 bg-gray-50">
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Name</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Email</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Phone</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Interest</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Message</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Submitted At</th>
+                      </tr>
+                    </thead>
+                    <tbody className="[&_tr:last-child]:border-0">
+                      {contacts.map((contact, index) => (
+                        <tr key={contact.id} className={`border-b transition-colors hover:bg-muted/50 ${index % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}`}>
+                          <td className="p-4 align-middle font-medium text-gray-900 whitespace-nowrap">{contact.name}</td>
+                          <td className="p-4 align-middle text-gray-700 whitespace-nowrap">{contact.email}</td>
+                          <td className="p-4 align-middle text-gray-700 font-mono whitespace-nowrap">{contact.phone}</td>
+                          <td className="p-4 align-middle whitespace-nowrap">
+                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 capitalize">
+                              {contact.interest}
+                            </span>
+                          </td>
+                          <td className="p-4 align-middle min-w-[250px] max-w-md">
+                            <div className="truncate text-gray-700" title={contact.message}>
+                              {contact.message}
+                            </div>
+                          </td>
+                          <td className="p-4 align-middle text-gray-600 text-sm whitespace-nowrap">
+                            {new Date(contact.createdAt).toLocaleString('en-IN', {
+                              day: '2-digit',
+                              month: 'short',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            })}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </Card>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
