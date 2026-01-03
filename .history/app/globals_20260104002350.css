@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+  --primary-purple: #680b7d;
+  --primary-orange: #e9552b;
+  --secondary-purple: #680b7d;
+  --secondary-orange: #e9552b;
+  --accent-purple: #680b7d;
+  --accent-orange: #e9552b;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary-purple: var(--primary-purple);
+  --color-primary-orange: var(--primary-orange);
+  --color-secondary-purple: var(--secondary-purple);
+  --color-secondary-orange: var(--secondary-orange);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-orange: var(--accent-orange);
+  --font-orbitron: var(--font-orbitron);
+  --font-rajdhani: var(--font-rajdhani);
+  --font-jetbrains-mono: var(--font-jetbrains-mono);
+  --font-red-hat-display: var(--font-red-hat-display);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: var(--font-red-hat-display), sans-serif !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-red-hat-display), sans-serif !important;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-red-hat-display), sans-serif !important;
+  /* overflow: hidden; - Now controlled by GSAPSetup after ScrollSmoother initialization */
+  /* Hide default scrollbar */
+}
+
+/* Ensure font-red-hat-display class works */
+.font-red-hat-display {
+  font-family: var(--font-red-hat-display), sans-serif !important;
+}
+
+
+/* Gradient text utilities - Custom purple to orange gradient */
+.gradient-text {
+  background: linear-gradient(144deg, #5c0f8b 50%, #ff5100 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.gradient-text-reverse {
+  background: linear-gradient(135deg, var(--primary-orange), var(--primary-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 3D transform utilities */
+.transform-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-2000 {
+  perspective: 2000px;
+}
+
+/* Performance optimizations for animations */
+.gsap-animated {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}

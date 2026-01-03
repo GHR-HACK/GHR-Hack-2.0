@@ -188,7 +188,7 @@ export default function HeroSection() {
                 className="min-w-[220px] font-red-hat-display"
                 onClick={() => {
                   const link = document.createElement('a');
-                  link.href = '/brouchure.pdf';
+                  link.href = '/ghrbrochure.pdf';
                   link.download = 'GHRhack-2.0-Brochure.pdf';
                   document.body.appendChild(link);
                   link.click();

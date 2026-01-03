@@ -85,7 +85,7 @@ export default function Footer() {
   return (
     <footer
       ref={footerRef}
-      className="bg-[#5c0f8b] border-t border-purple-500/20 py-16"
+      className="relative bg-[#5c0f8b] border-t border-purple-500/20 py-16"
     >
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
