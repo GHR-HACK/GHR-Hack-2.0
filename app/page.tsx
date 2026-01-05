@@ -14,6 +14,7 @@ import RaisoniAboutUs from "../components/RaisoniAboutUs";
 import FAQs from "../components/FAQs";
 import Footer from "../components/Footer";
 import MapEmbed from "../components/MapEmbed";
+import TeamMembers from "../components/TeamMembers";
 
 export default function Home() {
   return (
@@ -27,6 +28,7 @@ export default function Home() {
       <Sponsors />
       <Mentors />
       <Organizers />
+      <TeamMembers/>
       <Contact />
       <FAQs />
       <RaisoniAboutUs />

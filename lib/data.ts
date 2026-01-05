@@ -274,6 +274,75 @@ export const organizers = {
       linkedin: ""
     },
 
+  ],
+  teamMembers: [
+    {
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },{
+      name: "Himanshu Kawale",
+      role: "Technical Lead",
+      image: "/images/Himanshu-Technical.jpg",
+      linkedin: ""
+    },
+
   ]
 };
 
