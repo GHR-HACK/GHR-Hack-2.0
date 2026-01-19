@@ -214,7 +214,7 @@ export const organizers = {
       linkedin: ""
     },
     {
-      name: "Shreyas Shejwal",
+      name: "Shreyash Shejwal",
       role: "Co-Lead",
       image: "/images/shreyas-shejwal.jpeg",
       linkedin: ""
@@ -259,7 +259,7 @@ export const organizers = {
     },
     {
       name: "Rutuja Patil",
-      role: "Finance Lead",
+      role: "Sponsorship Lead",
       image: "images/Rutuja-Patil.jpeg",
       linkedin: ""
     },

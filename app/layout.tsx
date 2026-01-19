@@ -32,15 +32,15 @@ const redHatDisplay = Red_Hat_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Raisoni Hackathon 2025 | GHR Hack 2.0 - Code to Career | GHRCEM Jalgaon",
-  description: "Join Raisoni Hackathon - GHR Hack 2.0, a 30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Code to Career - Transform your coding skills into professional opportunities. Registration open for students and innovators.",
+  title: "Raisoni Hackathon 2025 | GHRhack 2.0 - Code to Career | GHRCEM Jalgaon",
+  description: "Join Raisoni Hackathon - GHRhack 2.0, a 30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Code to Career - Transform your coding skills into professional opportunities. Registration open for students and innovators.",
   keywords: [
     "Raisoni hackathon",
     "Raisoni hackathon 2025",
     "GHR hackathon",
     "G H Raisoni hackathon",
     "Raisoni college hackathon",
-    "GHR Hack 2.0",
+    "GHRhack 2.0",
     "Code to Career",
     "30 hour hackathon",
     "GHRCEM Jalgaon hackathon",
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     "Raisoni tech event",
     "Jalgaon hackathon"
   ],
-  authors: [{ name: "GHR Hack 2.0 Team" }],
+  authors: [{ name: "GHRhack 2.0 Team" }],
   creator: "G H Raisoni College of Engineering and Management, Jalgaon",
   publisher: "GHRCEM Jalgaon",
   robots: {
@@ -73,24 +73,24 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "Raisoni Hackathon 2025 | GHR Hack 2.0 - Code to Career",
+    title: "Raisoni Hackathon 2025 | GHRhack 2.0 - Code to Career",
     description: "Join Raisoni Hackathon - the ultimate 30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Transform your coding skills into career opportunities.",
     type: "website",
     locale: "en_IN",
-    siteName: "GHR Hack 2.0 - Raisoni Hackathon",
+    siteName: "GHRhack 2.0 - Raisoni Hackathon",
     url: "https://www.ghrhack.tech/",
     images: [
       {
         url: "https://www.ghrhack.tech/logo.png",
         width: 1200,
         height: 630,
-        alt: "Raisoni Hackathon - GHR Hack 2.0 - Code to Career",
+        alt: "Raisoni Hackathon - GHRhack 2.0 - Code to Career",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Raisoni Hackathon 2025 | GHR Hack 2.0",
+    title: "Raisoni Hackathon 2025 | GHRhack 2.0",
     description: "Join the ultimate 30-hour Raisoni Hackathon at GHRCEM Jalgaon. Register now!",
     images: ["https://www.ghrhack.tech/logo.png"],
   },
@@ -138,9 +138,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Event",
-              "name": "Raisoni Hackathon - GHR Hack 2.0 - Code to Career",
+              "name": "Raisoni Hackathon - GHRhack 2.0 - Code to Career",
               "description": "30-hour offline hackathon at G H Raisoni College of Engineering and Management, Jalgaon. Join Raisoni Hackathon 2025 and transform your coding skills into career opportunities.",
-              "keywords": "Raisoni hackathon, GHR Hack 2.0, Raisoni hackathon 2025, GHRCEM hackathon",
+              "keywords": "Raisoni hackathon, GHRhack 2.0, Raisoni hackathon 2025, GHRCEM hackathon",
               "location": {
                 "@type": "Place",
                 "name": "G H Raisoni College of Engineering and Management",
@@ -171,7 +171,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "GHR Hack 2.0 - Raisoni Hackathon",
+              "name": "GHRhack 2.0 - Raisoni Hackathon",
               "alternateName": "Raisoni Hackathon",
               "url": "https://www.ghrhack.tech/",
               "logo": "https://www.ghrhack.tech/logo.png",
