@@ -51,7 +51,7 @@ export default function HackathonThemesSection() {
           <Title level={2} variant="gradient" size="lg" className="text-center mb-8 pb-4">
             Hackathon Themes
           </Title>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-y-20 max-w-7xl mx-auto mt-10 md:mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-y-20 max-w-7xl mx-auto mt-10 md:mt-16">
             {hackathonThemes.map((theme, index) => {
               return (
                 <div key={theme.name} className="flex justify-center">

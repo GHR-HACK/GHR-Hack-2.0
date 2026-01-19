@@ -295,11 +295,7 @@ export const faqs = [
   {
     question: "How do I register for the hackathon?",
     answer: "Visit the official GHRhack website and click on the Register button. You will be redirected to the Devfolio registration form, where you must fill in your details and submit the form before the deadline."
-  },
-  {
-    question: "Can I participate alone?",
-    answer: "No. Solo participation is not allowed. All participants must register as part of a team to promote collaboration and teamwork. Inter-college teams are not allowed; all team members must be from the same college."
-  },
+  },  
   {
     question: "What is the required team size?",
     answer: "Each team must consist of either 2 or 4 members. Teams that do not meet this requirement will not be eligible."
