@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import Title from './ui/Title';
 import Container from './ui/Container';
+import { hackathonThemes } from '../lib/data';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -67,7 +68,7 @@ export default function EventHighlightsSection() {
                 </div>
                 <div>
                   <p className="text-black text-lg leading-relaxed text-justify font-red-hat-display">
-                    <strong className="text-primary-purple">Themes:</strong> EdTech Evolution, Blockchain Revolution, AI and Machine Learning, AR/VR Realities, HealthTech Innovations, Cybersecurity, Agritech, Social Impact Tech
+                    <strong className="text-primary-purple">Themes:</strong> {hackathonThemes.map(theme => theme.name).join(', ')}
                   </p>
                 </div>
                 <div>
