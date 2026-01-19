@@ -122,7 +122,7 @@ export default function Organizers() {
               <Title level={4} variant="default" size="lg" className="mb-8 !text-[#ff5100]">
                 Leads
               </Title>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto justify-items-center">
+              <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-8 max-w-7xl mx-auto justify-items-center">
                 {organizers.leads.map((lead, index) => {
                   const [imageError, setImageError] = useState(false);
                   const hasImage = lead?.image && !imageError;

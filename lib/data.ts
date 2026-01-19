@@ -275,7 +275,12 @@ export const organizers = {
       image: "/images/umesh-jhurke.jpeg",
       linkedin: ""
     },
-
+    {
+      name: "Bhavesh Narkhede",
+      role: "Logistic Lead",
+      image: "/images/BhaveshNarkhede.jpeg",
+      linkedin: ""
+    }
   ]
 };
 
