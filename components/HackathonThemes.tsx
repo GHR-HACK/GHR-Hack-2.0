@@ -38,7 +38,7 @@ export default function HackathonThemesSection() {
     return () => ctx.revert();
   }, []);
 
-  const accentColorSequence = ['orange', 'orange', 'orange', 'orange', 'orange', 'orange', 'orange', 'orange'];
+  const accentColorSequence = ['orange', 'orange', 'orange', 'orange', 'orange', 'orange', 'orange', 'orange', 'orange', 'orange'];
 
   return (
     <section

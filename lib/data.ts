@@ -35,7 +35,9 @@ export const hackathonThemes = [
   { name: "HealthTech", image: "/themes/Healthcare.png" },
   { name: "Cyber security", image: "/themes/cyber-security.png" },
   { name: "Agritech", image: "/themes/Agritech-removebg-preview.png" },
-  { name: "Social Impact", image: "/themes/Social-impact.png" }
+  { name: "Social Impact", image: "/themes/Social-impact.png" },
+  { name: "Fintech", image: "/themes/Fintech.png" },
+  { name: "IoT", image: "/themes/IoT.png" }
 ];
 
 export const prizes = {
