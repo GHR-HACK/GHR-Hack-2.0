@@ -122,7 +122,7 @@ export default function Organizers() {
               <Title level={4} variant="default" size="lg" className="mb-8 !text-[#ff5100]">
                 Leads
               </Title>
-              <div className="grid grid-cols-1 md:grid-cols-5 lg:grid-cols-5 gap-8 max-w-7xl mx-auto justify-items-center">
+              <div className="flex flex-wrap justify-center gap-8 max-w-7xl mx-auto">
                 {organizers.leads.map((lead, index) => {
                   const [imageError, setImageError] = useState(false);
                   const hasImage = lead?.image && !imageError;
@@ -130,7 +130,7 @@ export default function Organizers() {
                   return (
                     <div
                       key={index}
-                      className="organizer-card group relative h-96 w-full max-w-sm overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] hover:translate-y-[-4px]"
+                      className="organizer-card group relative h-80 w-full max-w-sm md:w-[calc((100%-8rem)/5)] lg:w-[calc((100%-8rem)/5)] overflow-hidden rounded-3xl shadow-2xl transition-all duration-500 ease-in-out hover:shadow-2xl hover:shadow-purple-500/20 hover:scale-[1.02] hover:translate-y-[-4px]"
                     >
                       {hasImage ? (
                         <img
