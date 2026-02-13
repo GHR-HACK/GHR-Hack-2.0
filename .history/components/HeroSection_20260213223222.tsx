@@ -9,7 +9,7 @@ import Button from './ui/Button';
 import Title from './ui/Title';
 import ParticlesWeb from './particles-web';
 import OptimizedSnakeCursor from './ui/custom-cursor';
-import Link from 'next/link';
+import { Link } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger, ScrambleTextPlugin, SplitText);
 
@@ -171,7 +171,11 @@ export default function HeroSection() {
               <p className="mb-2 text-3xl md:text-4xl font-semibold text-white">Code the Career</p>
               <p>28<sup>th</sup> Feb - 1<sup>st</sup> March 2026</p>
             </div>
-
+            <div className="flex justify-center py-8">
+              <Link className="mr-6" href="/shortlisted-teams">
+                Shortlisted Teams
+              </Link>
+            </div>
 
             {/* Devfolio Apply Button 
             <div className="flex justify-center py-8">
@@ -182,21 +186,7 @@ export default function HeroSection() {
                 style={{ height: '44px', width: '312px' }}
               ></div>
             </div>
-
-
-            
             {/* Download Brochure Button  */}
-            <div className="flex justify-center mt-4">
-              <Link href='/shortlisted-teams'>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="min-w-[220px] font-red-hat-display bg-purple-600 hover:bg-purple-700 text-white"
-                >
-                  Shortlisted Teams
-                </Button>
-              </Link>
-            </div>
             <div className="flex justify-center mt-4">
               <Button
                 variant="primary"

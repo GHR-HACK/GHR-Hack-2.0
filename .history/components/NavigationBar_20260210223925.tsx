@@ -103,14 +103,6 @@ export default function NavigationBar() {
 
 
   const scrollToSection = (href: string) => {
-    // If not on homepage, navigate to homepage with hash
-    if (pathname !== '/') {
-      router.push(`/${href}`);
-      setIsMobileMenuOpen(false);
-      return;
-    }
-
-    // If on homepage, scroll to section
     const element = document.querySelector(href);
     if (element) {
       // Use smaller offset for patrons section to show more content below
