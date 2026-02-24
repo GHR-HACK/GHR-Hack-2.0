@@ -11,8 +11,7 @@ export default function ConditionalSmoothWrapper({ children }: { children: React
         pathname?.startsWith('/admin') || 
         pathname === '/shortlisted-teams' ||
         pathname === '/select-ps' ||
-        pathname === '/team-login' ||
-        pathname === '/problem-statements';
+        pathname === '/team-login';
 
     if (disableSmoothScroll) {
         return <>{children}</>;

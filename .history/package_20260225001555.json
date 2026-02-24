@@ -8,8 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "setup:db": "tsx scripts/setup-mongodb.ts",
-    "add:ps": "tsx scripts/add-diverse-ps.ts",
-    "update:ps": "tsx scripts/update-ps-10-domains.ts"
+    "add:ps": "tsx scripts/add-diverse-ps.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
