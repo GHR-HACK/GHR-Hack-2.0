@@ -83,9 +83,9 @@ export default function ProblemStatementsPage() {
             <p className="text-lg text-black/70 font-red-hat-display max-w-2xl mx-auto">
               Explore all available problem statements across different domains.
               <br />
-              {/* <span className="text-sm text-primary-purple font-semibold">
+              <span className="text-sm text-primary-purple font-semibold">
                 Click "Team Login" to select your problem statement
-              </span> */}
+              </span>
             </p>
           </div>
 

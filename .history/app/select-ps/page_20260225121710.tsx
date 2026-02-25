@@ -155,16 +155,7 @@ export default function SelectPSPage() {
       <div className="px-4 pb-16 pt-28">
         <Container size="xl">
           {/* Header */}
-          <div className="relative text-center mb-8">
-            <div className="hidden lg:block absolute right-0 top-0">
-              <Button
-                onClick={handleLogout}
-                variant="primary"
-                size="md"
-              >
-                Logout
-              </Button>
-            </div>
+          <div className="text-center mb-8">
             <Title level={1} variant="gradient" size="xl" align="center" className="mb-2">
               Select Problem Statement
             </Title>
@@ -175,17 +166,15 @@ export default function SelectPSPage() {
                 {alreadySelected ? '✓ You have already selected a PS' : 'Each team can select only ONE PS. FCFS applies!'}
               </span>
             </p>
-          </div>
-
-          {/* Logout Button for Mobile/Tablet - Below Header */}
-          <div className="flex justify-center lg:hidden mb-8">
-            <Button
-              onClick={handleLogout}
-              variant="primary"
-              size="md"
-            >
-              Logout
-            </Button>
+            <div className="flex justify-end mt-4">
+              <Button
+                onClick={handleLogout}
+                variant="primary"
+                size="md"
+              >
+                Logout
+              </Button>
+            </div>
           </div>
 
           {/* Domain Tabs */}

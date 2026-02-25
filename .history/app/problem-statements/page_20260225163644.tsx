@@ -66,7 +66,7 @@ export default function ProblemStatementsPage() {
           {/* Header with Team Login Button */}
           <div className="text-center mb-8 relative">
             {/* Team Login Button - Top Right (Desktop Only) */}
-            {/* <div className="hidden lg:block absolute top-0 right-0">
+            <div className="hidden lg:block absolute top-0 right-0">
               <Button 
                 onClick={handleTeamLoginClick}
                 variant="primary"
@@ -75,7 +75,7 @@ export default function ProblemStatementsPage() {
               >
                 Team Login
               </Button>
-            </div> */}
+            </div>
 
             <Title level={1} variant="gradient" size="xl" align="center" className="mb-2">
               Problem Statements
@@ -83,14 +83,14 @@ export default function ProblemStatementsPage() {
             <p className="text-lg text-black/70 font-red-hat-display max-w-2xl mx-auto">
               Explore all available problem statements across different domains.
               <br />
-              {/* <span className="text-sm text-primary-purple font-semibold">
+              <span className="text-sm text-primary-purple font-semibold">
                 Click "Team Login" to select your problem statement
-              </span> */}
+              </span>
             </p>
           </div>
 
           {/* Team Login Button for Mobile/Tablet - Below Header */}
-          {/* <div className="flex justify-center lg:hidden mb-8">
+          <div className="flex justify-center lg:hidden mb-8">
             <Button 
               onClick={handleTeamLoginClick}
               variant="primary"
@@ -99,7 +99,7 @@ export default function ProblemStatementsPage() {
             >
               Team Login
             </Button>
-          </div> */}
+          </div>
 
           {/* Domain Tabs */}
           <div className="mb-8 flex items-center justify-center">

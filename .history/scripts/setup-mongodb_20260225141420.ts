@@ -1,4 +1,4 @@
-﻿import { MongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
@@ -7,7 +7,7 @@ dotenv.config({ path: path.resolve(process.cwd(), '.env') });
 
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://himanshu:Himanshu%4088@cluster0.lfmoyh1.mongodb.net/ghrhack?appName=Cluster0&retryWrites=true&w=majority';
 
-console.log('ðŸ”— Connecting to MongoDB...');
+console.log('🔗 Connecting to MongoDB...');
 console.log('URI:', MONGODB_URI.substring(0, 50) + '...');
 
 async function setupMongoDB() {
@@ -15,20 +15,20 @@ async function setupMongoDB() {
 
   try {
     await client.connect();
-    console.log('âœ… Connected to MongoDB');
+    console.log('✅ Connected to MongoDB');
 
     const db = client.db('ghrhack');
 
     // ===== CREATE COLLECTIONS =====
-    console.log('\nðŸ“¦ Creating collections...');
+    console.log('\n📦 Creating collections...');
 
     // Create teams collection
     try {
       await db.createCollection('teams');
-      console.log('âœ… Created "teams" collection');
+      console.log('✅ Created "teams" collection');
     } catch (error: any) {
       if (error.codeName === 'NamespaceExists') {
-        console.log('âš ï¸  "teams" collection already exists');
+        console.log('⚠️  "teams" collection already exists');
       } else {
         throw error;
       }
@@ -37,17 +37,17 @@ async function setupMongoDB() {
     // Create problem_statements collection
     try {
       await db.createCollection('problem_statements');
-      console.log('âœ… Created "problem_statements" collection');
+      console.log('✅ Created "problem_statements" collection');
     } catch (error: any) {
       if (error.codeName === 'NamespaceExists') {
-        console.log('âš ï¸  "problem_statements" collection already exists');
+        console.log('⚠️  "problem_statements" collection already exists');
       } else {
         throw error;
       }
     }
 
     // ===== INSERT SAMPLE DATA =====
-    console.log('\nðŸ“ Inserting sample data...');
+    console.log('\n📝 Inserting sample data...');
 
     const teamsCollection = db.collection('teams');
     const psCollection = db.collection('problem_statements');
@@ -134,7 +134,7 @@ async function setupMongoDB() {
       },
       {
         title: 'Cognitive Skill Gap Detection & Future Career Simulation Platform',
-        description: 'Design an intelligent platform that continuously analyzes a learner\'s cognitive abilities â€” such as problem-solving, critical thinking, collaboration, and adaptability â€” through real learning interactions instead of exams. The system should simulate future career scenarios (developer, analyst, designer, entrepreneur, etc.) and dynamically identify skill gaps required for real-world roles.\nTraditional education evaluates memory, not readiness for future jobs. The platform must shift learning evaluation from marks to capability forecasting.',
+        description: 'Design an intelligent platform that continuously analyzes a learner\'s cognitive abilities — such as problem-solving, critical thinking, collaboration, and adaptability — through real learning interactions instead of exams. The system should simulate future career scenarios (developer, analyst, designer, entrepreneur, etc.) and dynamically identify skill gaps required for real-world roles.\nTraditional education evaluates memory, not readiness for future jobs. The platform must shift learning evaluation from marks to capability forecasting.',
         domain: 'EdTech & AI',
         expected_outcomes: [
           'Real-time cognitive skill profiling of learners',
@@ -153,7 +153,7 @@ async function setupMongoDB() {
       },
       {
         title: 'Collaborative Intelligence Learning Platform (Human + AI + Peer Reasoning)',
-        description: 'Design a learning environment where learners solve problems collaboratively with peers and AI agents, where the AI acts as a facilitator rather than a solution provider. The system should measure collaborative reasoning, discussion quality, and knowledge construction.\nFocus shifts from individual answers â†’ collective intelligence building.',
+        description: 'Design a learning environment where learners solve problems collaboratively with peers and AI agents, where the AI acts as a facilitator rather than a solution provider. The system should measure collaborative reasoning, discussion quality, and knowledge construction.\nFocus shifts from individual answers → collective intelligence building.',
         domain: 'EdTech & AI',
         expected_outcomes: [
           'AI moderation of learning discussions',
@@ -238,7 +238,7 @@ async function setupMongoDB() {
         ],
         key_constraints: [
           'The system must operate in real time with minimal latency',
-          'Detection accuracy must remain reliable for small-sized objects (5â€“20 mm)',
+          'Detection accuracy must remain reliable for small-sized objects (5–20 mm)',
           'Integration must be compatible with existing Delta Robot hardware and control systems',
           'Solution should handle continuous conveyor motion without stopping operations',
           'Environmental variations such as lighting conditions must be considered',
@@ -367,270 +367,6 @@ async function setupMongoDB() {
           ],
           created_at: new Date(),
         },
-        {
-          title: 'Trusted Farm-to-Market Digital Marketplace with Price Intelligence',
-          description: 'Farmers often receive unfair prices due to lack of market transparency and dependence on intermediaries.\nDevelop a digital marketplace platform that connects farmers directly with buyers (local consumers, retailers, or institutions). The system should provide real-time price intelligence, demand forecasting, and trust scoring to ensure fair trade and reliable transactions.',
-          domain: 'Agritech',
-          expected_outcomes: [
-            'Direct farmer-to-buyer connectivity',
-            'Market price prediction and comparison tools',
-            'Trust and reputation mechanisms',
-            'Reduced post-harvest and logistical inefficiencies',
-          ],
-          key_constraints: [
-            'Platform must be usable by low-literacy users',
-            'Pricing algorithms must remain transparent',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'Climate-Resilient Crop Planning and Advisory Platform',
-          description: 'Climate variability has made traditional crop planning unreliable, increasing farmer risk and uncertainty.\nBuild a decision-support platform that uses historical climate data, long-term climate models, and soil parameters to recommend climate-resilient crops and sowing schedules. The system should help farmers adapt to changing weather patterns while maximizing yield and minimizing risk.',
-          domain: 'Agritech',
-          expected_outcomes: [
-            'Climate-aware crop and season recommendations',
-            'Risk analysis based on rainfall and temperature trends',
-            'Region-specific advisory insights',
-            'Visual dashboards for farmers and policymakers',
-          ],
-          key_constraints: [
-            'Models must account for uncertainty in climate data',
-            'Recommendations should be interpretable and actionable',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Based Early Pest & Disease Outbreak Prediction Network',
-          description: 'Design an intelligent AgriTech system that predicts pest infestations and crop diseases before visible damage occurs. The platform should combine field sensor data, farmer-uploaded crop images, environmental conditions, and regional agricultural patterns to detect early outbreak signals.\nThe system should generate preventive recommendations rather than reactive treatment advice.',
-          domain: 'Agritech',
-          expected_outcomes: [
-            'Early pest or disease risk prediction alerts',
-            'Image-based crop health analysis',
-            'Region-wise outbreak risk heatmaps',
-            'Preventive farming recommendations',
-            'Reduced pesticide overuse',
-          ],
-          key_constraints: [
-            'Must function with limited labeled agricultural datasets',
-            'Predictions must include confidence levels',
-            'Recommendations should remain crop-specific',
-            'Should work under varying lighting/image quality conditions',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AR-Assisted Remote Technical Support System',
-          description: 'Design an AR-based remote assistance platform where experts can guide field workers or technicians remotely by overlaying instructions, annotations, and visual markers onto real-world equipment through AR devices.\nThe system should enable real-time collaboration to solve technical problems without requiring expert physical presence.',
-          domain: 'AR/VR',
-          expected_outcomes: [
-            'Live AR annotation and guidance tools',
-            'Real-time video + spatial interaction support',
-            'Reduced equipment downtime',
-            'Remote expert collaboration interface',
-            'Session recording for training purposes',
-          ],
-          key_constraints: [
-            'Must operate under low or unstable network conditions',
-            'Interaction latency must remain minimal',
-            'AR overlays must align accurately with physical objects',
-            'Secure communication required',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AR-Based Indoor Navigation System for Large Public Spaces',
-          description: 'Develop an AR navigation system that helps users navigate complex indoor environments such as hospitals, airports, universities, or malls using real-world directional overlays instead of traditional maps.\nThe platform should guide users using spatial understanding and real-time positioning without relying solely on GPS.',
-          domain: 'AR/VR',
-          expected_outcomes: [
-            'Real-time AR navigation arrows and markers',
-            'Indoor localization using visual positioning or sensors',
-            'Accessibility-friendly navigation modes',
-            'Dynamic rerouting capabilities',
-            'Improved visitor experience in large facilities',
-          ],
-          key_constraints: [
-            'Must work in GPS-denied indoor environments',
-            'Localization accuracy must remain reliable',
-            'Minimal infrastructure modification allowed',
-            'Must support real-time performance on mobile devices',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'VR-Based Stress and Emotional Wellbeing Management Platform',
-          description: 'Create a Virtual Reality (VR) platform that helps users manage stress and emotional challenges through immersive guided environments and adaptive simulations. The system should adjust virtual scenarios based on user interaction patterns to promote relaxation, focus, or emotional resilience.\nThe platform should focus on preventive wellbeing support rather than clinical therapy.',
-          domain: 'AR/VR',
-          expected_outcomes: [
-            'Immersive VR relaxation or focus environments',
-            'Adaptive scenario personalization',
-            'User engagement and mood tracking metrics',
-            'Guided breathing or mindfulness simulations',
-            'Non-clinical mental wellbeing support system',
-          ],
-          key_constraints: [
-            'Must not provide medical or psychological diagnosis',
-            'Experiences must avoid motion sickness risks',
-            'Privacy of user interaction data must be protected',
-            'System should remain accessible for beginner VR users',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'Phishing-Resistant Passwordless Authentication System',
-          description: 'Passwords remain one of the weakest links in cybersecurity, being highly vulnerable to phishing, reuse, and credential stuffing attacks.\nDevelop a phishing-resistant login system for a college or enterprise portal using passwordless authentication. The system should leverage passkeys, biometric verification (such as fingerprint or Face ID), and proximity-based hardware tokens (e.g., Bluetooth-enabled smartphones) to authenticate users securely without transmitting passwords.',
-          domain: 'Cybersecurity',
-          expected_outcomes: [
-            'Complete elimination of password-based authentication',
-            'Strong resistance against phishing and credential theft',
-            'Seamless user experience across devices',
-            'Compliance with modern authentication standards',
-          ],
-          key_constraints: [
-            'Authentication must work under real-world network conditions',
-            'Privacy of biometric data must be strictly preserved',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Based Real-Time Ransomware Early Warning System',
-          description: 'Ransomware attacks often go undetected until irreversible damage has occurred, resulting in data loss and financial harm.\nDesign a real-time ransomware early-warning system that monitors file system activity, process behavior, and network signals to identify suspicious encryption or privilege escalation patterns. The system should generate early alerts and initiate defensive actions before widespread compromise occurs.',
-          domain: 'Cybersecurity',
-          expected_outcomes: [
-            'Behavioral analysis of file and process activity',
-            'Early-stage ransomware detection',
-            'Automated alerting or containment actions',
-            'Minimal performance overhead',
-          ],
-          key_constraints: [
-            'The system must operate in real time',
-            'False alarms should be minimized to maintain usability',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'Autonomous Zero-Trust Network Architecture with Dynamic Risk Scoring',
-          description: 'Design a cybersecurity system implementing a Zero-Trust architecture where every user, device, and application is continuously verified using dynamic risk scoring instead of static authentication rules. The system should analyze behavioral patterns, device posture, access context, and network activity to grant or restrict permissions in real time.\nThe platform must automatically adapt security policies based on evolving threat conditions without manual intervention.',
-          domain: 'Cybersecurity',
-          expected_outcomes: [
-            'Continuous trust evaluation engine',
-            'Dynamic access control decisions',
-            'Real-time risk scoring dashboard',
-            'Automated policy adjustment mechanisms',
-            'Detection of insider threats and lateral movement',
-          ],
-          key_constraints: [
-            'Must support scalable enterprise environments',
-            'Access decisions must be explainable',
-            'System latency should not affect usability',
-            'Must integrate with existing authentication systems',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'Decentralized Fake News Verification and Provenance Protocol',
-          description: 'The spread of misinformation and manipulated news content has eroded public trust in digital media. Centralized fact-checking systems often suffer from bias, limited scalability, and lack of transparency.\nDesign a decentralized news verification protocol where the credibility of a news item is established through consensus among independent, high-reputation verifiers such as journalists, domain experts, or institutions. The system should immutably record the origin, verification status, and edit history of news content using blockchain technology, without relying on a single controlling authority.',
-          domain: 'Web3/Blockchain',
-          expected_outcomes: [
-            'Immutable record of news sources and version history',
-            'Reputation-based or consensus-driven verification mechanism',
-            'Transparent trust or credibility scoring for news content',
-            'Resistance to censorship, tampering, and single-point failure',
-          ],
-          key_constraints: [
-            'The system must avoid central authority control',
-            'Verification logic must be transparent and auditable',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'Blockchain-Based Whistleblower Protection System',
-          description: 'Whistleblowers exposing corruption or misconduct face risks of retaliation, data tampering, and suppression of evidence. Existing reporting systems often fail to ensure anonymity and long-term data integrity.\nDevelop a blockchain-backed whistleblower protection system that allows individuals to submit sensitive information anonymously while ensuring data authenticity, immutability, and secure access for authorized investigators. The system should protect the identity of the whistleblower while maintaining trust in the submitted evidence.',
-          domain: 'Web3/Blockchain',
-          expected_outcomes: [
-            'Anonymous and secure data submission mechanisms',
-            'Immutable storage of evidence and metadata',
-            'Verification of data integrity without identity disclosure',
-            'Controlled access for authorized entities',
-          ],
-          key_constraints: [
-            'Whistleblower anonymity must be preserved at all stages',
-            'The system must prevent metadata-based identity leakage',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'Smart Contract–Based Transparent Donation and Crowdfunding Platform',
-          description: 'Lack of transparency in donation and crowdfunding systems often leads to misuse of funds and loss of donor trust, especially in student initiatives, social causes, and community events.\nDevelop a blockchain-based donation platform where contributions are managed through smart contracts. Funds should be released only when predefined milestones are achieved and verified through decentralized approval mechanisms such as donor voting or trusted oracles. All transactions and fund movements must be fully transparent and auditable.',
-          domain: 'Web3/Blockchain',
-          expected_outcomes: [
-            'End-to-end transparency of donation flows',
-            'Smart contract–controlled escrow and milestone-based fund release',
-            'Verifiable proof of milestone completion',
-            'Increased donor trust and accountability',
-          ],
-          key_constraints: [
-            'Fund release conditions must be tamper-proof',
-            'The system must prevent fraudulent milestone claims',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Powered Personal Financial Advisory for Everyday Users',
-          description: 'Design an AI-driven financial advisory platform that helps individuals make smarter financial decisions based on their income, spending behavior, savings patterns, and financial goals. Unlike traditional advisory tools designed for investors, the system should simplify financial planning for common users with limited financial literacy.\nThe platform should analyze financial data and provide actionable insights such as budgeting suggestions, savings optimization, and risk-aware financial recommendations.',
-          domain: 'Fintech',
-          expected_outcomes: [
-            'Personalized financial insights dashboard',
-            'AI-generated savings and budgeting recommendations',
-            'Spending behavior analysis',
-            'Goal-based financial planning assistance',
-            'Easy-to-understand financial explanations',
-          ],
-          key_constraints: [
-            'Must avoid giving regulated investment advice',
-            'Financial recommendations must be explainable',
-            'User financial data must remain secure and private',
-            'System should work with incomplete financial inputs',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Based Bank Statement Intelligence & Financial Health Analyzer',
-          description: 'Develop a platform that automatically analyzes bank statements (PDF/SMS/transaction history) using AI to generate meaningful financial insights. The system should categorize expenses, detect unusual spending patterns, and provide a financial health score.\nThe goal is to transform complex financial records into understandable summaries for everyday users.',
-          domain: 'Fintech',
-          expected_outcomes: [
-            'Automatic transaction categorization',
-            'Monthly spending analytics and visualization',
-            'Financial health scoring system',
-            'Detection of recurring expenses and hidden costs',
-            'AI-generated financial summaries',
-          ],
-          key_constraints: [
-            'Must handle multiple bank statement formats',
-            'Data extraction accuracy must remain high',
-            'Sensitive financial data must be securely processed',
-            'Users must retain control over uploaded data',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Based Tax Assistant for Smart Filing & Savings Guidance',
-          description: 'Create an AI-powered assistant that helps individuals understand tax filing processes, identify eligible deductions, and discover government schemes or tax-saving opportunities based on income patterns and expenses.\nThe system should simplify taxation for non-experts through guided interactions and intelligent document understanding.',
-          domain: 'Fintech',
-          expected_outcomes: [
-            'Tax-saving opportunity suggestions',
-            'Document-based tax information extraction',
-            'Guided tax filing workflow',
-            'Scheme eligibility recommendations',
-            'Simplified tax explanations',
-          ],
-          key_constraints: [
-            'Must not act as a certified tax authority',
-            'Recommendations must remain transparent and explainable',
-            'Must comply with privacy and financial data protection practices',
-            'System should adapt to changing tax rules',
-          ],
-          created_at: new Date(),
-        },
       ];
 
     // Clear existing data and insert
@@ -639,39 +375,39 @@ async function setupMongoDB() {
     await psCollection.deleteMany({});
 
     const teamResult = await teamsCollection.insertMany(sampleTeams);
-    console.log(`âœ… Inserted ${teamResult.insertedCount} sample teams`);
+    console.log(`✅ Inserted ${teamResult.insertedCount} sample teams`);
 
     const psResult = await psCollection.insertMany(samplePS);
-    console.log(`âœ… Inserted ${psResult.insertedCount} sample problem statements`);
+    console.log(`✅ Inserted ${psResult.insertedCount} sample problem statements`);
 
     // ===== CREATE INDEXES =====
-    console.log('\nðŸ” Creating indexes...');
+    console.log('\n🔍 Creating indexes...');
 
     // Index on leader_email for faster login queries
     await teamsCollection.createIndex({ leader_email: 1 }, { unique: true });
-    console.log('âœ… Created index on teams.leader_email');
+    console.log('✅ Created index on teams.leader_email');
 
     // Index on selected_ps for faster PS count queries
     await teamsCollection.createIndex({ selected_ps: 1 });
-    console.log('âœ… Created index on teams.selected_ps');
+    console.log('✅ Created index on teams.selected_ps');
 
     // ===== SUMMARY =====
     console.log('\n' + '='.repeat(50));
-    console.log('âœ… MongoDB Setup Complete!');
+    console.log('✅ MongoDB Setup Complete!');
     console.log('='.repeat(50));
-    console.log('\nðŸ“‹ Sample Login Credentials:');
+    console.log('\n📋 Sample Login Credentials:');
     console.log('  Email: team1@college.edu');
     console.log('  Password: password123');
-    console.log('\nðŸ“‹ Also available:');
+    console.log('\n📋 Also available:');
     console.log('  Email: team2@college.edu');
     console.log('  Email: team3@college.edu');
     console.log('  (All with password: password123)');
-    console.log('\nðŸ“Š Database: ghrhack');
+    console.log('\n📊 Database: ghrhack');
     console.log('  Collections: teams, problem_statements');
-    console.log('\nðŸš€ Ready to test! Run: pnpm dev');
+    console.log('\n🚀 Ready to test! Run: pnpm dev');
     console.log('='.repeat(50));
   } catch (error) {
-    console.error('âŒ Setup Error:', error);
+    console.error('❌ Setup Error:', error);
     process.exit(1);
   } finally {
     await client.close();
@@ -679,5 +415,3 @@ async function setupMongoDB() {
 }
 
 setupMongoDB();
-
-

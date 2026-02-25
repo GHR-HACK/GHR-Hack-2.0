@@ -155,37 +155,29 @@ export default function SelectPSPage() {
       <div className="px-4 pb-16 pt-28">
         <Container size="xl">
           {/* Header */}
-          <div className="relative text-center mb-8">
-            <div className="hidden lg:block absolute right-0 top-0">
+          <div className="mb-8">
+            <div className="flex items-start justify-between gap-4 mb-6">
+              <div className="flex-1">
+                <Title level={1} variant="gradient" size="xl" align="left" className="mb-2">
+                  Select Problem Statement
+                </Title>
+              </div>
               <Button
                 onClick={handleLogout}
                 variant="primary"
                 size="md"
+                className="whitespace-nowrap"
               >
                 Logout
               </Button>
             </div>
-            <Title level={1} variant="gradient" size="xl" align="center" className="mb-2">
-              Select Problem Statement
-            </Title>
-            <p className="text-lg text-black/70 font-red-hat-display max-w-2xl mx-auto">
+            <p className="text-lg text-black/70 font-red-hat-display max-w-2xl">
               Welcome, {teamName}! Choose one problem statement for your team.
               <br />
               <span className="text-sm text-primary-purple font-semibold">
                 {alreadySelected ? '✓ You have already selected a PS' : 'Each team can select only ONE PS. FCFS applies!'}
               </span>
             </p>
-          </div>
-
-          {/* Logout Button for Mobile/Tablet - Below Header */}
-          <div className="flex justify-center lg:hidden mb-8">
-            <Button
-              onClick={handleLogout}
-              variant="primary"
-              size="md"
-            >
-              Logout
-            </Button>
           </div>
 
           {/* Domain Tabs */}

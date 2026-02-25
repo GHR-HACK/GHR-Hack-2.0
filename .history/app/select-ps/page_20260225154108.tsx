@@ -156,7 +156,7 @@ export default function SelectPSPage() {
         <Container size="xl">
           {/* Header */}
           <div className="relative text-center mb-8">
-            <div className="hidden lg:block absolute right-0 top-0">
+            <div className="absolute right-0 top-0">
               <Button
                 onClick={handleLogout}
                 variant="primary"
@@ -175,17 +175,6 @@ export default function SelectPSPage() {
                 {alreadySelected ? '✓ You have already selected a PS' : 'Each team can select only ONE PS. FCFS applies!'}
               </span>
             </p>
-          </div>
-
-          {/* Logout Button for Mobile/Tablet - Below Header */}
-          <div className="flex justify-center lg:hidden mb-8">
-            <Button
-              onClick={handleLogout}
-              variant="primary"
-              size="md"
-            >
-              Logout
-            </Button>
           </div>
 
           {/* Domain Tabs */}

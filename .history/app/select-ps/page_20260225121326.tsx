@@ -12,7 +12,6 @@ import { getProblemStatements } from '@/services/problem-statements/getProblemSt
 import { selectProblemStatement } from '@/services/ps-selections/selectProblemStatement';
 import { getPSCounts } from '@/services/ps-selections/getPSCounts';
 import { getTeamProfile } from '@/services/teams/getTeamProfile';
-import { logout } from '@/services/auth/loginWithCredentials';
 import type { ProblemStatement } from '@/services/types/database';
 
 export default function SelectPSPage() {
@@ -99,10 +98,24 @@ export default function SelectPSPage() {
     }
   };
 
-  const handleLogout = () => {
-    logout();
-    router.push('/team-login');
-  };
+  // Logout mutation
+  const logoutMutation = useMutation({
+    mutationFn: async () => {
+      const { getSupabaseBrowserClient } = await import('@/lib/supabase/client');
+      const supabase = getSupabaseBrowserClient();
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+      localStorage.removeItem('team_name');
+      localStorage.removeItem('team_id');
+    },
+    onSuccess: () => {
+      queryClient.clear();
+      router.push('/team-login');
+    },
+    onError: (error: any) => {
+      alert(`Logout error: ${error.message}`);
+    },
+  });
 
   const isLoading = psLoading || countsLoading || profileLoading;
   const alreadySelected = !!currentSelectedPs;
@@ -152,19 +165,30 @@ export default function SelectPSPage() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="px-4 pb-16 pt-28">
-        <Container size="xl">
-          {/* Header */}
-          <div className="relative text-center mb-8">
-            <div className="hidden lg:block absolute right-0 top-0">
+      {/* Header with Logout Button */}
+      <div className="fixed top-0 left-0 right-0 bg-white border-b border-black/10 z-50">
+        <div className="px-4 py-4">
+          <Container size="xl">
+            <div className="flex items-center justify-between">
+              <h1 className="text-2xl font-bold text-primary-purple">Problem Statements</h1>
               <Button
-                onClick={handleLogout}
-                variant="primary"
-                size="md"
+                onClick={() => logoutMutation.mutate()}
+                variant="secondary"
+                size="sm"
+                disabled={logoutMutation.isPending}
+                className="bg-red-100 hover:bg-red-200 text-red-700 border border-red-300"
               >
-                Logout
+                {logoutMutation.isPending ? 'Logging out...' : 'Logout'}
               </Button>
             </div>
+          </Container>
+        </div>
+      </div>
+
+      <div className="px-4 pb-16 pt-32">
+        <Container size="xl">
+          {/* Header */}
+          <div className="text-center mb-8">
             <Title level={1} variant="gradient" size="xl" align="center" className="mb-2">
               Select Problem Statement
             </Title>
@@ -175,17 +199,6 @@ export default function SelectPSPage() {
                 {alreadySelected ? '✓ You have already selected a PS' : 'Each team can select only ONE PS. FCFS applies!'}
               </span>
             </p>
-          </div>
-
-          {/* Logout Button for Mobile/Tablet - Below Header */}
-          <div className="flex justify-center lg:hidden mb-8">
-            <Button
-              onClick={handleLogout}
-              variant="primary"
-              size="md"
-            >
-              Logout
-            </Button>
           </div>
 
           {/* Domain Tabs */}

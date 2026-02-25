@@ -574,63 +574,6 @@ async function setupMongoDB() {
           ],
           created_at: new Date(),
         },
-        {
-          title: 'AI-Powered Personal Financial Advisory for Everyday Users',
-          description: 'Design an AI-driven financial advisory platform that helps individuals make smarter financial decisions based on their income, spending behavior, savings patterns, and financial goals. Unlike traditional advisory tools designed for investors, the system should simplify financial planning for common users with limited financial literacy.\nThe platform should analyze financial data and provide actionable insights such as budgeting suggestions, savings optimization, and risk-aware financial recommendations.',
-          domain: 'Fintech',
-          expected_outcomes: [
-            'Personalized financial insights dashboard',
-            'AI-generated savings and budgeting recommendations',
-            'Spending behavior analysis',
-            'Goal-based financial planning assistance',
-            'Easy-to-understand financial explanations',
-          ],
-          key_constraints: [
-            'Must avoid giving regulated investment advice',
-            'Financial recommendations must be explainable',
-            'User financial data must remain secure and private',
-            'System should work with incomplete financial inputs',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Based Bank Statement Intelligence & Financial Health Analyzer',
-          description: 'Develop a platform that automatically analyzes bank statements (PDF/SMS/transaction history) using AI to generate meaningful financial insights. The system should categorize expenses, detect unusual spending patterns, and provide a financial health score.\nThe goal is to transform complex financial records into understandable summaries for everyday users.',
-          domain: 'Fintech',
-          expected_outcomes: [
-            'Automatic transaction categorization',
-            'Monthly spending analytics and visualization',
-            'Financial health scoring system',
-            'Detection of recurring expenses and hidden costs',
-            'AI-generated financial summaries',
-          ],
-          key_constraints: [
-            'Must handle multiple bank statement formats',
-            'Data extraction accuracy must remain high',
-            'Sensitive financial data must be securely processed',
-            'Users must retain control over uploaded data',
-          ],
-          created_at: new Date(),
-        },
-        {
-          title: 'AI-Based Tax Assistant for Smart Filing & Savings Guidance',
-          description: 'Create an AI-powered assistant that helps individuals understand tax filing processes, identify eligible deductions, and discover government schemes or tax-saving opportunities based on income patterns and expenses.\nThe system should simplify taxation for non-experts through guided interactions and intelligent document understanding.',
-          domain: 'Fintech',
-          expected_outcomes: [
-            'Tax-saving opportunity suggestions',
-            'Document-based tax information extraction',
-            'Guided tax filing workflow',
-            'Scheme eligibility recommendations',
-            'Simplified tax explanations',
-          ],
-          key_constraints: [
-            'Must not act as a certified tax authority',
-            'Recommendations must remain transparent and explainable',
-            'Must comply with privacy and financial data protection practices',
-            'System should adapt to changing tax rules',
-          ],
-          created_at: new Date(),
-        },
       ];
 
     // Clear existing data and insert
