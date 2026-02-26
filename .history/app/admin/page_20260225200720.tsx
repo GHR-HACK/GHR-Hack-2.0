@@ -105,37 +105,6 @@ export default function AdminPage() {
   }
 
   const teams = teamsData?.data || [];
-  const psStats = teamsData?.ps_statistics || [];
-
-  const handleExportToExcel = () => {
-    // Prepare CSV data
-    const headers = ['Team Name', 'Team Leader', 'Email', 'Selected PS', 'Domain'];
-    const rows = teams.map(team => [
-      team.team_name,
-      team.team_leader_name,
-      team.leader_email,
-      team.selected_ps_title,
-      team.selected_ps_domain || '-',
-    ]);
-
-    // Create CSV content
-    const csvContent = [
-      headers.join(','),
-      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
-    ].join('\n');
-
-    // Create blob and download
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const link = document.createElement('a');
-    const url = URL.createObjectURL(blob);
-    link.setAttribute('href', url);
-    link.setAttribute('download', `teams_data_${new Date().toISOString().split('T')[0]}.csv`);
-    link.style.visibility = 'hidden';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast.success('Teams data exported successfully!');
-  };
 
   return (
     <div className="min-h-screen bg-gray-50 p-6 pt-32">
@@ -179,21 +148,8 @@ export default function AdminPage() {
         <div className="max-w-7xl mx-auto">
           <Card variant="elevated" className="overflow-visible">
             <div className="p-6 border-b border-gray-200">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h2 className="text-xl font-semibold text-gray-900">Teams Overview</h2>
-                  <p className="text-gray-600 mt-1">View all registered teams and their selections</p>
-                </div>
-                <Button
-                  onClick={handleExportToExcel}
-                  className="bg-green-600 hover:bg-green-700 text-white"
-                >
-                  <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Export to Excel
-                </Button>
-              </div>
+              <h2 className="text-xl font-semibold text-gray-900">Teams Overview</h2>
+              <p className="text-gray-600 mt-1">View all registered teams and their selections</p>
             </div>
             <div
               className="overflow-x-auto -mx-6 px-6"
@@ -213,6 +169,7 @@ export default function AdminPage() {
                         <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Email</th>
                         <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Selected PS</th>
                         <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Domain</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Registered At</th>
                       </tr>
                     </thead>
                     <tbody className="[&_tr:last-child]:border-0">
@@ -241,6 +198,15 @@ export default function AdminPage() {
                               <span className="text-gray-400 text-sm">-</span>
                             )}
                           </td>
+                          <td className="p-4 align-middle text-gray-600 text-sm whitespace-nowrap">
+                            {team.created_at ? new Date(team.created_at).toLocaleString('en-IN', {
+                              day: '2-digit',
+                              month: 'short',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            }) : 'N/A'}
+                          </td>
                         </tr>
                       ))}
                     </tbody>
@@ -249,47 +215,6 @@ export default function AdminPage() {
               </div>
             </div>
           </Card>
-
-          {/* Problem Statement Statistics */}
-          {psStats.length > 0 && (
-            <Card variant="elevated" className="mt-6">
-              <div className="p-6 border-b border-gray-200">
-                <h2 className="text-xl font-semibold text-gray-900">Problem Statement Statistics</h2>
-                <p className="text-gray-600 mt-1">Selection count for each problem statement</p>
-              </div>
-              <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {psStats.map((ps, index) => (
-                    <div
-                      key={index}
-                      className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
-                    >
-                      <div className="flex items-start justify-between mb-2">
-                        <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
-                          {ps.domain}
-                        </span>
-                        <span className="text-2xl font-bold text-gray-900">{ps.count}</span>
-                      </div>
-                      <h3 className="text-sm font-medium text-gray-900 line-clamp-2" title={ps.title}>
-                        {ps.title}
-                      </h3>
-                      <div className="mt-2">
-                        <div className="flex items-center gap-1">
-                          <div className="flex-1 bg-gray-200 rounded-full h-2">
-                            <div
-                              className="bg-gradient-to-r from-primary-purple to-primary-orange h-2 rounded-full"
-                              style={{ width: `${(ps.count / 3) * 100}%` }}
-                            ></div>
-                          </div>
-                          <span className="text-xs text-gray-500">{ps.count}/3</span>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </Card>
-          )}
         </div>
       )}
     </div>

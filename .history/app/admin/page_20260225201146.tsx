@@ -109,13 +109,14 @@ export default function AdminPage() {
 
   const handleExportToExcel = () => {
     // Prepare CSV data
-    const headers = ['Team Name', 'Team Leader', 'Email', 'Selected PS', 'Domain'];
+    const headers = ['Team Name', 'Team Leader', 'Email', 'Selected PS', 'Domain', 'Registered At'];
     const rows = teams.map(team => [
       team.team_name,
       team.team_leader_name,
       team.leader_email,
       team.selected_ps_title,
       team.selected_ps_domain || '-',
+      team.created_at ? new Date(team.created_at).toLocaleString('en-IN') : 'N/A'
     ]);
 
     // Create CSV content
@@ -213,6 +214,7 @@ export default function AdminPage() {
                         <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Email</th>
                         <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Selected PS</th>
                         <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Domain</th>
+                        <th className="h-12 px-4 text-left align-middle font-semibold text-gray-900 whitespace-nowrap">Registered At</th>
                       </tr>
                     </thead>
                     <tbody className="[&_tr:last-child]:border-0">
@@ -240,6 +242,15 @@ export default function AdminPage() {
                             ) : (
                               <span className="text-gray-400 text-sm">-</span>
                             )}
+                          </td>
+                          <td className="p-4 align-middle text-gray-600 text-sm whitespace-nowrap">
+                            {team.created_at ? new Date(team.created_at).toLocaleString('en-IN', {
+                              day: '2-digit',
+                              month: 'short',
+                              year: 'numeric',
+                              hour: '2-digit',
+                              minute: '2-digit'
+                            }) : 'N/A'}
                           </td>
                         </tr>
                       ))}
