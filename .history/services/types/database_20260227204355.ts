@@ -1,11 +1,11 @@
 export type Team = {
-  id: string;
-  name: string;
-  leader_email: string;
-  selected_ps?: string;
-  selected_at?: string;
+  team_id: string;
+  user_id?: string;
+  team_leader_name: string;
+  team_leader_email: string;
+  college: string;
   github_repo?: string;
-  created_at?: string;
+  created_at: string;
   updated_at?: string;
 };
 

@@ -156,7 +156,7 @@ export default function SelectPSPage() {
         <Container size="xl">
           {/* Header */}
           <div className="relative text-center mb-8">
-            <div className="hidden lg:block absolute left-0 top-0">
+            <div className="hidden lg:block absolute right-0 top-0 flex gap-3">
               <Button
                 onClick={() => router.push('/project-submission')}
                 variant="primary"
@@ -165,8 +165,6 @@ export default function SelectPSPage() {
               >
                 Submit Project
               </Button>
-            </div>
-            <div className="hidden lg:block absolute right-0 top-0">
               <Button
                 onClick={handleLogout}
                 variant="primary"
@@ -187,16 +185,8 @@ export default function SelectPSPage() {
             </p>
           </div>
 
-          {/* Submit Project & Logout Buttons for Mobile/Tablet - Below Header */}
-          <div className="flex justify-center gap-3 lg:hidden mb-8">
-            <Button
-              onClick={() => router.push('/project-submission')}
-              variant="primary"
-              size="md"
-              className="bg-primary-orange hover:bg-primary-orange/90 text-white"
-            >
-              Submit Project
-            </Button>
+          {/* Logout Button for Mobile/Tablet - Below Header */}
+          <div className="flex justify-center lg:hidden mb-8">
             <Button
               onClick={handleLogout}
               variant="primary"

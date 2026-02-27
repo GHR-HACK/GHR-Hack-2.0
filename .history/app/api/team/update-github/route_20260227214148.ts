@@ -3,7 +3,7 @@ import { getCollection } from '@/lib/mongodb';
 import { verifyToken, extractTokenFromHeader } from '@/lib/jwt';
 import { ObjectId } from 'mongodb';
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
     // Extract and verify JWT token
     const authHeader = request.headers.get('authorization');
@@ -24,35 +24,55 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    const { github_repo } = await request.json();
+
+    if (!github_repo || !github_repo.includes('github.com')) {
+      return NextResponse.json(
+        { error: 'Invalid GitHub repository URL' },
+        { status: 400 }
+      );
+    }
+
     const teamsCollection = await getCollection('teams');
     const teamId = new ObjectId(decoded.teamId);
 
-    // Get team data
-    const team = await teamsCollection.findOne({ _id: teamId });
+    // Update team's GitHub repository
+    const result = await teamsCollection.updateOne(
+      { _id: teamId },
+      {
+        $set: {
+          github_repo,
+          updated_at: new Date().toISOString(),
+        },
+      }
+    );
 
-    if (!team) {
+    if (result.matchedCount === 0) {
       return NextResponse.json(
         { error: 'Team not found' },
         { status: 404 }
       );
     }
 
+    // Get updated team data
+    const team = await teamsCollection.findOne({ _id: teamId });
+
     return NextResponse.json(
       {
         success: true,
+        message: 'GitHub repository updated successfully',
         team: {
-          id: team._id.toString(),
-          name: team.team_name,
-          leader_email: team.leader_email,
-          selected_ps: team.selected_ps ? team.selected_ps.toString() : null,
-          selected_at: team.selected_at || null,
-          github_repo: team.github_repo || null,
+          id: team?._id.toString(),
+          name: team?.team_name,
+          leader_email: team?.leader_email,
+          github_repo: team?.github_repo,
+          updated_at: team?.updated_at,
         },
       },
       { status: 200 }
     );
   } catch (error) {
-    console.error('❌ Get team profile error:', error);
+    console.error('Error updating GitHub repository:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 }

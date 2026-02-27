@@ -1,0 +1,237 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
+import Container from '@/components/ui/Container';
+import Title from '@/components/ui/Title';
+import Card from '@/components/ui/Card';
+import Button from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import { updateTeamGitHubRepo } from '@/services/teams/updateTeamGitHubRepo';
+import { getTeamProfile } from '@/services/teams/getTeamProfile';
+
+export default function ProjectSubmissionPage() {
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const [githubUrl, setGithubUrl] = useState('');
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [teamName, setTeamName] = useState<string>('');
+
+  // Load team info from localStorage on mount (same as select-ps page)
+  useEffect(() => {
+    const storedTeamName = localStorage.getItem('team_name');
+    if (!storedTeamName) {
+      router.push('/team-login');
+      return;
+    }
+    setTeamName(storedTeamName);
+  }, [router]);
+
+  // Get team profile (same as select-ps page)
+  const { data: teamProfile, isLoading: profileLoading } = useQuery({
+    queryKey: ['teamProfile'],
+    queryFn: getTeamProfile,
+    retry: 1,
+  });
+
+  // Load existing github repo if available
+  useEffect(() => {
+    if (teamProfile?.github_repo) {
+      setGithubUrl(teamProfile.github_repo);
+    }
+  }, [teamProfile]);
+
+  // Submit mutation
+  const submitMutation = useMutation({
+    mutationFn: async () => {
+      if (!githubUrl.trim()) throw new Error('GitHub URL is required');
+
+      // Basic validation
+      if (!githubUrl.includes('github.com')) {
+        throw new Error('Please enter a valid GitHub repository URL');
+      }
+
+      return updateTeamGitHubRepo(githubUrl.trim());
+    },
+    onSuccess: () => {
+      setShowSuccess(true);
+      queryClient.invalidateQueries({ queryKey: ['teamProfile'] });
+      setTimeout(() => {
+        router.push('/select-ps');
+      }, 2000);
+    },
+    onError: (error: any) => {
+      alert(`Error: ${error.message}`);
+    },
+  });
+
+  const isLoading = profileLoading;
+  const alreadySubmitted = !!teamProfile?.github_repo;
+
+  if (!teamName && !isLoading) {
+    return (
+      <div className="min-h-screen bg-white text-black flex items-center justify-center">
+        <Container size="sm">
+          <div className="text-center">
+            <Title level={2} variant="gradient" size="lg" className="mb-4">
+              Please Login First
+            </Title>
+            <p className="text-black/70 mb-6">You need to be logged in to submit a project.</p>
+            <Button onClick={() => router.push('/team-login')} variant="primary" size="lg">
+              Go to Login
+            </Button>
+          </div>
+        </Container>
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white text-black flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block">
+            <div className="w-10 h-10 border-4 border-primary-purple border-t-primary-orange rounded-full animate-spin"></div>
+          </div>
+          <p className="mt-4 text-black/70">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-white text-black">
+      <div className="px-4 pb-16 pt-8">
+        <Container size="md">
+          <div className="max-w-2xl mx-auto">
+            {/* Back Button */}
+            <div className="mb-8">
+              <Button
+                onClick={() => router.push('/select-ps')}
+                variant="secondary"
+                size="sm"
+                className="bg-black/10 hover:bg-black/20 text-black"
+              >
+                ← Back
+              </Button>
+            </div>
+
+            {/* Success Message */}
+            {showSuccess && (
+              <div className="mb-8 p-4 bg-green-100 border border-green-300 rounded-lg">
+                <p className="text-green-700 font-semibold">✅ Project submitted successfully!</p>
+                <p className="text-sm text-green-600">Redirecting back to Problem Statements...</p>
+              </div>
+            )}
+
+            {/* Form Card */}
+            <Card variant="gradient" padding="lg" className="mb-8">
+              {/* Header */}
+              <div className="text-center mb-8">
+                <Title level={2} variant="gradient" size="lg" align="center" className="mb-2">
+                  {alreadySubmitted ? 'Project Submitted' : 'Submit Your Project'}
+                </Title>
+                <p className="text-black/70">
+                  {alreadySubmitted 
+                    ? 'Your GitHub repository has been submitted successfully.' 
+                    : 'Submit your GitHub repository link for the hackathon project.'}
+                </p>
+              </div>
+
+              {/* Team Info */}
+              <div className="bg-primary-purple/10 p-4 rounded-lg mb-6">
+                <h3 className="font-bold text-black mb-2">Team Information</h3>
+                <p className="text-sm text-black/70">
+                  <span className="font-semibold">Team Name:</span> {teamProfile?.name || teamName}
+                </p>
+                <p className="text-sm text-black/70">
+                  <span className="font-semibold">Leader Email:</span> {teamProfile?.leader_email}
+                </p>
+                {alreadySubmitted && (
+                  <p className="text-sm text-black/70 mt-2">
+                    <span className="font-semibold">Submitted Repository:</span>{' '}
+                    <a href={teamProfile?.github_repo} target="_blank" rel="noopener noreferrer" className="text-primary-purple hover:underline">
+                      {teamProfile?.github_repo}
+                    </a>
+                  </p>
+                )}
+              </div>
+
+              {/* Form */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  submitMutation.mutate();
+                }}
+                className="space-y-6"
+              >
+                {/* GitHub URL Input */}
+                <div>
+                  <label htmlFor="github-url" className="block text-sm font-semibold text-black/80 mb-2">
+                    GitHub Repository URL *
+                  </label>
+                  <Input
+                    id="github-url"
+                    type="url"
+                    placeholder="https://github.com/username/project-name"
+                    value={githubUrl}
+                    onChange={(e) => setGithubUrl(e.target.value)}
+                    className="w-full rounded-xl border-black/15 bg-white text-black placeholder-black/40 focus:ring-primary-purple"
+                    required
+                    disabled={submitMutation.isPending || alreadySubmitted}
+                  />
+                  <p className="text-xs text-black/60 mt-2">
+                    Enter the complete GitHub repository URL for your hackathon project.
+                  </p>
+                </div>
+
+                {/* Helper Text */}
+                <div className="bg-primary-orange/10 p-4 rounded-lg border border-primary-orange/20">
+                  <p className="text-sm text-black/70">
+                    <span className="font-semibold text-primary-orange">📝 Tip:</span> Make sure your repository is accessible and contains your project code.
+                  </p>
+                </div>
+
+                {/* Submit Button */}
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  className="w-full"
+                  disabled={submitMutation.isPending || !githubUrl.trim() || alreadySubmitted}
+                >
+                  {alreadySubmitted 
+                    ? '✓ Already Submitted' 
+                    : submitMutation.isPending 
+                      ? 'Submitting...' 
+                      : 'Submit Project'}
+                </Button>
+              </form>
+            </Card>
+
+            {/* Info Box */}
+            <div className={`p-4 rounded-lg border ${alreadySubmitted ? 'bg-green-50 border-green-200' : 'bg-black/5 border-black/10'}`}>
+              <h4 className="font-bold text-black mb-2">{alreadySubmitted ? '✓ Submission Complete' : 'What happens next?'}</h4>
+              <ul className="text-sm text-black/70 space-y-1">
+                {alreadySubmitted ? (
+                  <>
+                    <li>✓ Your repository link has been saved successfully</li>
+                    <li>✓ Judges will access your project from the provided link</li>
+                    <li>✓ You can only submit once - please ensure your repository is complete</li>
+                  </>
+                ) : (
+                  <>
+                    <li>✓ Your repository link will be saved to your team profile</li>
+                    <li>✓ Judges will access your project from the provided link</li>
+                    <li>✓ You can only submit once - make sure your repository is ready</li>
+                  </>
+                )}
+              </ul>
+            </div>
+          </div>
+        </Container>
+      </div>
+    </div>
+  );
+}

@@ -152,29 +152,39 @@ export default function SelectPSPage() {
 
   return (
     <div className="min-h-screen bg-white text-black">
-      <div className="px-4 pb-16 pt-28">
-        <Container size="xl">
-          {/* Header */}
-          <div className="relative text-center mb-8">
-            <div className="hidden lg:block absolute left-0 top-0">
-              <Button
-                onClick={() => router.push('/project-submission')}
-                variant="primary"
-                size="md"
-                className="bg-primary-orange hover:bg-primary-orange/90 text-white"
-              >
-                Submit Project
-              </Button>
-            </div>
-            <div className="hidden lg:block absolute right-0 top-0">
+      {/* Fixed Header with Submit Project and Logout Buttons */}
+      <div className="fixed top-0 left-0 right-0 bg-white border-b border-black/10 z-50">
+        <div className="px-4 py-4">
+          <Container size="xl">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-4">
+                <h1 className="text-2xl font-bold text-primary-purple">Problem Statements</h1>
+                <Button
+                  onClick={() => router.push('/project-submission')}
+                  variant="primary"
+                  size="sm"
+                  className="bg-primary-orange hover:bg-primary-orange/90 text-white"
+                >
+                  Submit Project
+                </Button>
+              </div>
               <Button
                 onClick={handleLogout}
-                variant="primary"
-                size="md"
+                variant="secondary"
+                size="sm"
+                className="bg-red-100 hover:bg-red-200 text-red-700 border border-red-300"
               >
                 Logout
               </Button>
             </div>
+          </Container>
+        </div>
+      </div>
+
+      <div className="px-4 pb-16 pt-32">
+        <Container size="xl">
+          {/* Header */}
+          <div className="text-center mb-8">
             <Title level={1} variant="gradient" size="xl" align="center" className="mb-2">
               Select Problem Statement
             </Title>
@@ -185,25 +195,6 @@ export default function SelectPSPage() {
                 {alreadySelected ? '✓ You have already selected a PS' : 'Each team can select only ONE PS. FCFS applies!'}
               </span>
             </p>
-          </div>
-
-          {/* Submit Project & Logout Buttons for Mobile/Tablet - Below Header */}
-          <div className="flex justify-center gap-3 lg:hidden mb-8">
-            <Button
-              onClick={() => router.push('/project-submission')}
-              variant="primary"
-              size="md"
-              className="bg-primary-orange hover:bg-primary-orange/90 text-white"
-            >
-              Submit Project
-            </Button>
-            <Button
-              onClick={handleLogout}
-              variant="primary"
-              size="md"
-            >
-              Logout
-            </Button>
           </div>
 
           {/* Domain Tabs */}
