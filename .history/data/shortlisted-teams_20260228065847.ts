@@ -196,13 +196,13 @@ export const shortlistedTeams: Record<string, ShortlistedTeam> = {
     members: ["Atharva", "Sakshi", "Yash", "Sukhada"],
   },
   "team-39": {
+    teamName: "Ravenclaw",
+    college: "Lokmanya Tilak College, Mumbai",
+    members: ["Uday", "Riya"],
+  },
+  "team-40": {
     teamName: "Merge Point",
     college: "Raisoni",
     members: ["Nikita Patil", "Krutika", "Krushna", "Vishakha"],
-  },
-  "team-40": {
-    teamName: "TechXplorers",
-    college: "PICT Pune",
-    members: ["Atharva", "Ayush", "Pranav"],
   },
 };
