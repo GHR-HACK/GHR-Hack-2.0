@@ -6,6 +6,7 @@ import { Providers } from "../lib/providers";
 import { Toaster } from "sonner";
 import NavigationBar from "../components/NavigationBar";
 import ConditionalSmoothWrapper from "../components/ConditionalSmoothWrapper";
+import { Analytics } from "@vercel/analytics/next";
 
 const orbitron = Orbitron({
   variable: "--font-orbitron",
@@ -193,6 +194,7 @@ export default function RootLayout({
           </ConditionalSmoothWrapper>
         </Providers>
         <Toaster position="top-right" richColors />
+        <Analytics />
       </body>
     </html>
   );
